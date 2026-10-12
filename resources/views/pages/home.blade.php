@@ -28,10 +28,13 @@
 
                 <!-- Hero Impact Card / Highlights -->
                 <div class="lg:col-span-5">
-                    <div class="bg-gradient-to-br from-slate-800/90 to-slate-900/90 rounded-2xl border border-slate-700/60 p-6 sm:p-8 shadow-2xl backdrop-blur-md">
+                    <div class="interactive-card-glow bg-gradient-to-br from-slate-800/90 to-slate-900/90 rounded-2xl border border-slate-700/60 p-6 sm:p-8 shadow-2xl backdrop-blur-md cursor-pointer">
                         <div class="flex items-center justify-between border-b border-slate-700 pb-4 mb-6">
-                            <h2 class="text-lg font-bold text-white">Active Emergency Priority</h2>
-                            <span class="px-2.5 py-1 rounded text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Urgent Aid</span>
+                            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                Active Emergency Priority
+                            </h2>
+                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Urgent Aid</span>
                         </div>
 
                         @if($activeCampaigns->isNotEmpty())
@@ -61,7 +64,7 @@
                                 </div>
 
                                 <div class="pt-2">
-                                    <a href="{{ route('campaigns.show', $featuredCampaign->slug) }}" class="w-full block text-center py-3 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-500 text-white transition">
+                                    <a href="{{ route('campaigns.show', $featuredCampaign->slug) }}" class="w-full block text-center py-3 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-lg shadow-emerald-900/40">
                                         Contribute to this Campaign
                                     </a>
                                 </div>
@@ -81,19 +84,19 @@
     <section class="bg-white border-b border-slate-100 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center">
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
+                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-emerald-50/30 border border-slate-100 shadow-sm cursor-default">
                     <span class="text-3xl sm:text-4xl font-extrabold text-emerald-700 block mb-1">48</span>
                     <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">Projects Completed</span>
                 </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
+                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-emerald-50/30 border border-slate-100 shadow-sm cursor-default">
                     <span class="text-3xl sm:text-4xl font-extrabold text-emerald-700 block mb-1">35,000+</span>
                     <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">Lives Impacted</span>
                 </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
+                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-emerald-50/30 border border-slate-100 shadow-sm cursor-default">
                     <span class="text-3xl sm:text-4xl font-extrabold text-emerald-700 block mb-1">450+</span>
                     <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">Active Volunteers</span>
                 </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
+                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-emerald-50/30 border border-slate-100 shadow-sm cursor-default">
                     <span class="text-3xl sm:text-4xl font-extrabold text-emerald-700 block mb-1">14</span>
                     <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">Districts Reached</span>
                 </div>
@@ -126,8 +129,8 @@
 
                 <!-- Mission & Vision Cards -->
                 <div class="space-y-6">
-                    <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-5 hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                    <div class="interactive-card bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-5 cursor-default">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                         </div>
                         <div>
@@ -138,8 +141,8 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-5 hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center shrink-0">
+                    <div class="interactive-card bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-5 cursor-default">
+                        <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                         </div>
                         <div>
@@ -162,18 +165,18 @@
                     <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Our Work</span>
                     <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Featured Projects & Activities</h2>
                 </div>
-                <a href="{{ route('projects.index') }}" class="font-bold text-sm text-emerald-700 hover:text-emerald-800 flex items-center gap-1">
+                <a href="{{ route('projects.index') }}" class="font-bold text-sm text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group">
                     View All Projects
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($featuredProjects as $project)
-                    <div class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
+                    <div class="group interactive-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
                         <div class="h-48 bg-slate-100 relative overflow-hidden">
                             @if($project->featured_image)
-                                <img src="{{ $project->featured_image }}" alt="{{ $project->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <img src="{{ $project->featured_image }}" alt="{{ $project->title }}" class="w-full h-full object-cover card-img-zoom">
                             @else
                                 <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 text-emerald-700 font-bold text-sm px-6 text-center">
                                     {{ $project->title }}
@@ -207,7 +210,8 @@
                                     {{ $project->start_date ? $project->start_date->format('M Y') : 'Ongoing' }}
                                 </span>
                                 <a href="{{ route('projects.show', $project->slug) }}" class="text-sm font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center gap-1">
-                                    Read Details &rarr;
+                                    Read Details
+                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -225,18 +229,18 @@
                     <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Make an Immediate Difference</span>
                     <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Active Humanitarian Campaigns</h2>
                 </div>
-                <a href="{{ route('campaigns.index') }}" class="font-bold text-sm text-emerald-700 hover:text-emerald-800 flex items-center gap-1">
+                <a href="{{ route('campaigns.index') }}" class="font-bold text-sm text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group">
                     All Campaigns
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($activeCampaigns as $campaign)
-                    <div class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
+                    <div class="group interactive-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
                         <div class="h-48 bg-slate-200 relative overflow-hidden">
                             @if($campaign->featured_image)
-                                <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->title }}" class="w-full h-full object-cover card-img-zoom">
                             @else
                                 <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-600 to-teal-700 text-white font-bold text-base px-6 text-center">
                                     {{ $campaign->title }}
@@ -262,7 +266,7 @@
                                         <span class="text-slate-500">Target: ৳{{ number_format($campaign->target_amount) }}</span>
                                     </div>
                                     <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
-                                        <div class="bg-emerald-600 h-full rounded-full transition-all duration-500" style="width: {{ min(100, $campaign->progress_percentage) }}%"></div>
+                                        <div class="bg-gradient-to-r from-emerald-600 to-teal-500 h-full rounded-full transition-all duration-500" style="width: {{ min(100, $campaign->progress_percentage) }}%"></div>
                                     </div>
                                     <div class="text-right text-xs text-slate-500">
                                         {{ $campaign->progress_percentage }}% verified
@@ -270,7 +274,7 @@
                                 </div>
 
                                 <div class="flex gap-2">
-                                    <a href="{{ route('donate') }}?campaign={{ $campaign->slug }}" class="flex-1 text-center py-2.5 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-700 text-white transition">
+                                    <a href="{{ route('donate') }}?campaign={{ $campaign->slug }}" class="flex-1 text-center py-2.5 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm hover:shadow-md">
                                         Donate
                                     </a>
                                     <a href="{{ route('campaigns.show', $campaign->slug) }}" class="px-4 py-2.5 rounded-xl font-semibold text-sm border border-slate-200 hover:bg-slate-50 text-slate-700 transition">
@@ -293,15 +297,15 @@
                     <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Field Reports & Insights</span>
                     <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Latest News & Articles</h2>
                 </div>
-                <a href="{{ route('blog.index') }}" class="font-bold text-sm text-emerald-700 hover:text-emerald-800 flex items-center gap-1">
+                <a href="{{ route('blog.index') }}" class="font-bold text-sm text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group">
                     All Stories
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($latestPosts as $post)
-                    <article class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
+                    <article class="group interactive-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex items-center gap-2">
@@ -325,7 +329,8 @@
                             </div>
                             <div class="pt-6 border-t border-slate-50 mt-6">
                                 <a href="{{ route('blog.show', $post->slug) }}" class="text-sm font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center gap-1">
-                                    Read Article &rarr;
+                                    Read Article
+                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                                 </a>
                             </div>
                         </div>

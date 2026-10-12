@@ -7,3 +7,60 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Premium Card Hover & Elevation Micro-interactions */
+.interactive-card {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                background-color 0.3s ease;
+    will-change: transform, box-shadow;
+    position: relative;
+}
+
+.interactive-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.12),
+                0 10px 15px -5px rgba(15, 23, 42, 0.08);
+    border-color: rgba(16, 185, 129, 0.35);
+}
+
+.interactive-card-subtle {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background-color 0.25s ease;
+    will-change: transform, box-shadow;
+}
+
+.interactive-card-subtle:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08),
+                0 4px 8px -2px rgba(16, 185, 129, 0.08);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.interactive-card-glow {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
+    will-change: transform, box-shadow;
+}
+
+.interactive-card-glow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 35px -8px rgba(16, 185, 129, 0.2),
+                0 0 0 1px rgba(16, 185, 129, 0.25);
+    border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Card image zoom effect */
+.card-img-zoom {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interactive-card:hover .card-img-zoom,
+.group:hover .card-img-zoom {
+    transform: scale(1.07);
+}
+

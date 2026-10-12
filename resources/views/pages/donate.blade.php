@@ -66,10 +66,10 @@
                     <!-- MFS Options (bKash, Nagad, Rocket) -->
                     <div class="space-y-6">
                         <!-- bKash -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-pink-200 transition-all duration-300">
+                        <div class="interactive-card bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:border-pink-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-extrabold flex items-center justify-center text-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-extrabold flex items-center justify-center text-sm shadow-sm">
                                         bK
                                     </div>
                                     <div>
@@ -77,7 +77,7 @@
                                         <span class="text-xs text-slate-500">Send Money / Merchant Payment</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-100">MFS</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-200">MFS</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800 flex items-center justify-between">
@@ -94,10 +94,10 @@
                         </div>
 
                         <!-- Nagad -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-orange-200 transition-all duration-300">
+                        <div class="interactive-card bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:border-orange-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-extrabold flex items-center justify-center text-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-extrabold flex items-center justify-center text-sm shadow-sm">
                                         Ng
                                     </div>
                                     <div>
@@ -105,7 +105,7 @@
                                         <span class="text-xs text-slate-500">Send Money / Merchant Payment</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 text-orange-700 border border-orange-100">MFS</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 text-orange-700 border border-orange-200">MFS</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800 flex items-center justify-between">
@@ -121,10 +121,10 @@
                         </div>
 
                         <!-- Rocket -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-purple-200 transition-all duration-300">
+                        <div class="interactive-card bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:border-purple-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-extrabold flex items-center justify-center text-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-extrabold flex items-center justify-center text-sm shadow-sm">
                                         Rk
                                     </div>
                                     <div>
@@ -132,7 +132,7 @@
                                         <span class="text-xs text-slate-500">Dutch-Bangla Mobile Banking</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-100">MFS</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200">MFS</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800">
@@ -141,10 +141,10 @@
                         </div>
 
                         <!-- Bank Transfer -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
+                        <div class="interactive-card bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:border-emerald-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center text-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center text-sm shadow-sm">
                                         BK
                                     </div>
                                     <div>
@@ -152,7 +152,7 @@
                                         <span class="text-xs text-slate-500">Corporate & Institutional Donations</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">Bank</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Bank</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-xs text-slate-800 whitespace-pre-line leading-relaxed">

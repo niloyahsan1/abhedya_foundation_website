@@ -36,10 +36,10 @@
             @if($campaigns->isNotEmpty())
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($campaigns as $campaign)
-                        <div class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
+                        <div class="group interactive-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
                             <div class="h-48 bg-slate-200 relative overflow-hidden">
                                 @if($campaign->featured_image)
-                                    <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->title }}" class="w-full h-full object-cover card-img-zoom">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-600 to-teal-700 text-white font-bold text-base px-6 text-center">
                                         {{ $campaign->title }}
@@ -70,7 +70,7 @@
                                             <span class="text-slate-500">Target: ৳{{ number_format($campaign->target_amount) }}</span>
                                         </div>
                                         <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
-                                            <div class="bg-emerald-600 h-full rounded-full transition-all duration-500" style="width: {{ min(100, $campaign->progress_percentage) }}%"></div>
+                                            <div class="bg-gradient-to-r from-emerald-600 to-teal-500 h-full rounded-full transition-all duration-500" style="width: {{ min(100, $campaign->progress_percentage) }}%"></div>
                                         </div>
                                         <div class="flex justify-between text-xs text-slate-500">
                                             <span>{{ $campaign->progress_percentage }}% funded</span>
@@ -80,7 +80,7 @@
 
                                     <div class="flex gap-2">
                                         @if($campaign->status === 'active')
-                                            <a href="{{ route('donate') }}?campaign={{ $campaign->slug }}" class="flex-1 text-center py-2.5 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-700 text-white transition">
+                                            <a href="{{ route('donate') }}?campaign={{ $campaign->slug }}" class="flex-1 text-center py-2.5 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm hover:shadow-md">
                                                 Donate
                                             </a>
                                         @endif

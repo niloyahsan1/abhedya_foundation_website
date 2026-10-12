@@ -36,10 +36,10 @@
                     @if($posts->isNotEmpty())
                         <div class="space-y-8">
                             @foreach($posts as $post)
-                                <article class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
+                                <article class="group interactive-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row">
                                     @if($post->featured_image)
                                         <div class="md:w-1/3 h-52 md:h-auto bg-slate-100 relative shrink-0 overflow-hidden">
-                                            <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                            <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover card-img-zoom">
                                         </div>
                                     @endif
                                     <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
@@ -64,7 +64,8 @@
                                         <div class="pt-6 border-t border-slate-50 mt-6 flex items-center justify-between">
                                             <span class="text-xs text-slate-400">By {{ $post->user?->name ?? 'Abhedya Team' }}</span>
                                             <a href="{{ route('blog.show', $post->slug) }}" class="text-sm font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center gap-1">
-                                                Read Story &rarr;
+                                                Read Story
+                                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                                             </a>
                                         </div>
                                     </div>

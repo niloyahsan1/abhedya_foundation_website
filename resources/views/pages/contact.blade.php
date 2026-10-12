@@ -36,7 +36,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 <!-- Left: Contact Details & Office -->
                 <div class="lg:col-span-5 space-y-8">
-                    <div class="bg-white rounded-2xl border border-slate-100 p-8 shadow-sm space-y-6">
+                    <div class="interactive-card bg-white rounded-2xl border border-slate-100 p-8 shadow-sm space-y-6">
                         <h2 class="text-xl font-bold text-slate-900 border-b border-slate-100 pb-3">Foundation Office</h2>
 
                         <div class="space-y-4 text-sm text-slate-600">

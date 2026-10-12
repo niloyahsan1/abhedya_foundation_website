@@ -43,10 +43,10 @@
             @if($projects->isNotEmpty())
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($projects as $project)
-                        <div class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
+                        <div class="group interactive-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
                             <div class="h-48 bg-slate-100 relative overflow-hidden">
                                 @if($project->featured_image)
-                                    <img src="{{ $project->featured_image }}" alt="{{ $project->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <img src="{{ $project->featured_image }}" alt="{{ $project->title }}" class="w-full h-full object-cover card-img-zoom">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 text-emerald-800 font-bold text-sm px-6 text-center">
                                         {{ $project->title }}
@@ -80,7 +80,8 @@
                                         {{ $project->start_date ? $project->start_date->format('M Y') : 'Ongoing' }}
                                     </span>
                                     <a href="{{ route('projects.show', $project->slug) }}" class="text-sm font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center gap-1">
-                                        View Details &rarr;
+                                        View Details
+                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                                     </a>
                                 </div>
                             </div>
