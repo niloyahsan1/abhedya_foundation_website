@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Abhedya Foundation | Empowering Communities, Transforming Lives')</title>
-    <meta name="description" content="@yield('meta_description', 'Abhedya Foundation is a dedicated non-profit organisation committed to education, healthcare, disaster relief, and sustainable community empowerment in Bangladesh.')">
+    <title>@yield('title', 'Abhedya Foundation | Humanitarian Relief & Community Development')</title>
+    <meta name="description" content="@yield('meta_description', 'Abhedya Foundation is a dedicated non-profit organisation committed to education, healthcare, disaster relief, and community development across Bangladesh.')">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="@yield('title', 'Abhedya Foundation | Empowering Communities')">
+    <meta property="og:title" content="@yield('title', 'Abhedya Foundation | Non-Profit Organisation')">
     <meta property="og:description" content="@yield('meta_description', 'Dedicated to education, healthcare, disaster relief, and community development.')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="Abhedya Foundation">
@@ -34,33 +36,13 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" x-data="{ mobileMenuOpen: false }">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-emerald-900 text-emerald-100 text-xs py-2 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-            <div class="flex items-center gap-2">
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-700 text-white">Notice</span>
-                <span>Join our mission to bring sustainable hope to vulnerable families.</span>
-            </div>
-            <div class="flex items-center gap-4 text-emerald-200">
-                <a href="mailto:info@abhedyafoundation.org" class="hover:text-white transition flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    info@abhedyafoundation.org
-                </a>
-                <span class="hidden md:inline">•</span>
-                <a href="{{ route('donate') }}" class="font-medium text-amber-300 hover:text-amber-200 underline">Donate Now</a>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Navigation Header -->
     <header class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-600/20 group-hover:scale-105 transition">
-                        A
-                    </div>
+                    <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-11 w-auto object-contain group-hover:scale-105 transition" />
                     <div>
                         <span class="text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">ABHEDYA</span>
                         <span class="text-[10px] font-bold text-emerald-600 tracking-widest uppercase block">Foundation</span>
@@ -197,9 +179,7 @@
                 <!-- Col 1: About & Identity -->
                 <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-black text-lg">
-                            A
-                        </div>
+                        <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-10 w-auto object-contain rounded-lg bg-white/90 p-1" />
                         <span class="text-xl font-bold text-white tracking-tight">ABHEDYA FOUNDATION</span>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed max-w-sm">

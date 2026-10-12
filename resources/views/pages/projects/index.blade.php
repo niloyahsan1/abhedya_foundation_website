@@ -14,7 +14,7 @@
                     Projects & Community Activities
                 </h1>
                 <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
-                    Explore our ground initiatives designed to create sustainable, long-term empowerment across underserved and climate-vulnerable communities.
+                    Explore our ground initiatives designed to create sustainable, long-term impact across vulnerable and remote rural areas.
                 </p>
             </div>
         </div>
@@ -43,10 +43,10 @@
             @if($projects->isNotEmpty())
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($projects as $project)
-                        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition">
+                        <div class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
                             <div class="h-48 bg-slate-100 relative overflow-hidden">
                                 @if($project->featured_image)
-                                    <img src="{{ $project->featured_image }}" alt="{{ $project->title }}" class="w-full h-full object-cover">
+                                    <img src="{{ $project->featured_image }}" alt="{{ $project->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 text-emerald-800 font-bold text-sm px-6 text-center">
                                         {{ $project->title }}
@@ -67,7 +67,7 @@
                                         </div>
                                     @endif
                                     <h2 class="text-xl font-bold text-slate-900 leading-snug">
-                                        <a href="{{ route('projects.show', $project->slug) }}" class="hover:text-emerald-700 transition">
+                                        <a href="{{ route('projects.show', $project->slug) }}" class="group-hover:text-emerald-700 transition">
                                             {{ $project->title }}
                                         </a>
                                     </h2>
@@ -79,7 +79,7 @@
                                     <span class="text-xs text-slate-400">
                                         {{ $project->start_date ? $project->start_date->format('M Y') : 'Ongoing' }}
                                     </span>
-                                    <a href="{{ route('projects.show', $project->slug) }}" class="text-sm font-bold text-emerald-700 hover:text-emerald-800">
+                                    <a href="{{ route('projects.show', $project->slug) }}" class="text-sm font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center gap-1">
                                         View Details &rarr;
                                     </a>
                                 </div>

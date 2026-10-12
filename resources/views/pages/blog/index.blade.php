@@ -36,10 +36,10 @@
                     @if($posts->isNotEmpty())
                         <div class="space-y-8">
                             @foreach($posts as $post)
-                                <article class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row hover:shadow-md transition">
+                                <article class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
                                     @if($post->featured_image)
-                                        <div class="md:w-1/3 h-52 md:h-auto bg-slate-100 relative shrink-0">
-                                            <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                                        <div class="md:w-1/3 h-52 md:h-auto bg-slate-100 relative shrink-0 overflow-hidden">
+                                            <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                         </div>
                                     @endif
                                     <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
@@ -53,7 +53,7 @@
                                                 <span>{{ $post->published_at ? $post->published_at->format('M d, Y') : '' }}</span>
                                             </div>
                                             <h2 class="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
-                                                <a href="{{ route('blog.show', $post->slug) }}" class="hover:text-emerald-700 transition">
+                                                <a href="{{ route('blog.show', $post->slug) }}" class="group-hover:text-emerald-700 transition">
                                                     {{ $post->title }}
                                                 </a>
                                             </h2>
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="pt-6 border-t border-slate-50 mt-6 flex items-center justify-between">
                                             <span class="text-xs text-slate-400">By {{ $post->user?->name ?? 'Abhedya Team' }}</span>
-                                            <a href="{{ route('blog.show', $post->slug) }}" class="text-sm font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1">
+                                            <a href="{{ route('blog.show', $post->slug) }}" class="text-sm font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center gap-1">
                                                 Read Story &rarr;
                                             </a>
                                         </div>

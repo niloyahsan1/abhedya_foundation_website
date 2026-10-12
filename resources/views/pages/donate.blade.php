@@ -66,7 +66,7 @@
                     <!-- MFS Options (bKash, Nagad, Rocket) -->
                     <div class="space-y-6">
                         <!-- bKash -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4">
+                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-pink-200 transition-all duration-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-extrabold flex items-center justify-center text-sm">
@@ -94,7 +94,7 @@
                         </div>
 
                         <!-- Nagad -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4">
+                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-orange-200 transition-all duration-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-extrabold flex items-center justify-center text-sm">
@@ -121,7 +121,7 @@
                         </div>
 
                         <!-- Rocket -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4">
+                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-purple-200 transition-all duration-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-extrabold flex items-center justify-center text-sm">
@@ -141,7 +141,7 @@
                         </div>
 
                         <!-- Bank Transfer -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4">
+                        <div class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm space-y-4 hover:-translate-y-1 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center text-sm">

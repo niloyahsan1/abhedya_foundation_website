@@ -36,10 +36,10 @@
             @if($campaigns->isNotEmpty())
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($campaigns as $campaign)
-                        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition">
+                        <div class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:-translate-y-1.5 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
                             <div class="h-48 bg-slate-200 relative overflow-hidden">
                                 @if($campaign->featured_image)
-                                    <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->title }}" class="w-full h-full object-cover">
+                                    <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-600 to-teal-700 text-white font-bold text-base px-6 text-center">
                                         {{ $campaign->title }}
@@ -54,7 +54,7 @@
                             <div class="p-6 flex-1 flex flex-col justify-between">
                                 <div class="space-y-3">
                                     <h2 class="text-xl font-bold text-slate-900 leading-snug">
-                                        <a href="{{ route('campaigns.show', $campaign->slug) }}" class="hover:text-emerald-700 transition">
+                                        <a href="{{ route('campaigns.show', $campaign->slug) }}" class="group-hover:text-emerald-700 transition">
                                             {{ $campaign->title }}
                                         </a>
                                     </h2>
