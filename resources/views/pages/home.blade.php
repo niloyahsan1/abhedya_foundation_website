@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Abhedya Foundation — Humanitarian Impact, Education & Relief')
+@section('title', 'Abhedya Foundation | Humanitarian Impact, Education & Relief')
 
 @section('content')
 

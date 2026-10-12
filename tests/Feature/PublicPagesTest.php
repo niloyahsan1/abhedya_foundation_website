@@ -28,16 +28,14 @@ class PublicPagesTest extends TestCase
 
     public function test_projects_page_renders_and_detail_page_works(): void
     {
-        $project = Project::firstOrCreate(
-            ['slug' => 'test-community-project'],
-            [
-                'title' => 'Test Community Project',
-                'summary' => 'Summary for testing',
-                'description' => 'Detailed description for testing project',
-                'status' => 'ongoing',
-                'is_published' => true,
-            ]
-        );
+        $project = Project::published()->latest()->first() ?? Project::create([
+            'title' => 'Test Community Project',
+            'slug' => 'test-community-project',
+            'summary' => 'Summary for testing',
+            'description' => 'Detailed description for testing project',
+            'status' => 'ongoing',
+            'is_published' => true,
+        ]);
 
         $listResponse = $this->get('/projects');
         $listResponse->assertStatus(200);
@@ -50,17 +48,15 @@ class PublicPagesTest extends TestCase
 
     public function test_campaigns_page_renders_and_detail_page_works(): void
     {
-        $campaign = Campaign::firstOrCreate(
-            ['slug' => 'test-clean-water-campaign'],
-            [
-                'title' => 'Test Clean Water Campaign',
-                'short_description' => 'Clean water for test families',
-                'description' => 'Full campaign description for clean water wells',
-                'target_amount' => 200000.00,
-                'status' => 'active',
-                'is_published' => true,
-            ]
-        );
+        $campaign = Campaign::published()->where('status', 'active')->latest()->first() ?? Campaign::create([
+            'title' => 'Test Clean Water Campaign',
+            'slug' => 'test-clean-water-campaign',
+            'short_description' => 'Clean water for test families',
+            'description' => 'Full campaign description for clean water wells',
+            'target_amount' => 200000.00,
+            'status' => 'active',
+            'is_published' => true,
+        ]);
 
         $listResponse = $this->get('/campaigns');
         $listResponse->assertStatus(200);
@@ -73,16 +69,14 @@ class PublicPagesTest extends TestCase
 
     public function test_blog_page_renders_and_detail_page_works(): void
     {
-        $post = Post::firstOrCreate(
-            ['slug' => 'test-field-update-post'],
-            [
-                'title' => 'Test Field Update Post',
-                'summary' => 'Summary of test field post',
-                'content' => 'Full article body for field post',
-                'is_published' => true,
-                'published_at' => now(),
-            ]
-        );
+        $post = Post::published()->latest('published_at')->first() ?? Post::create([
+            'title' => 'Test Field Update Post',
+            'slug' => 'test-field-update-post',
+            'summary' => 'Summary of test field post',
+            'content' => 'Full article body for field post',
+            'is_published' => true,
+            'published_at' => now()->subMinute(),
+        ]);
 
         $listResponse = $this->get('/blog');
         $listResponse->assertStatus(200);

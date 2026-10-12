@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Photo Gallery — Abhedya Foundation')
+@section('title', 'Photo Gallery | Abhedya Foundation')
 @section('meta_description', 'View photography and field images documenting Abhedya Foundation relief campaigns, classrooms, and medical camps.')
 
 @section('content')

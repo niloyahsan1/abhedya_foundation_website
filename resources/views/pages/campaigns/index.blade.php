@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Fundraising Campaigns — Abhedya Foundation')
+@section('title', 'Fundraising Campaigns | Abhedya Foundation')
 @section('meta_description', 'Support verified emergency relief, medical camps, and educational campaigns initiated by Abhedya Foundation.')
 
 @section('content')

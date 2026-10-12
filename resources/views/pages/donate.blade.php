@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Make a Donation — Abhedya Foundation')
+@section('title', 'Make a Donation | Abhedya Foundation')
 @section('meta_description', 'Instructions and secure verification submission for contributing via bKash, Nagad, Rocket, or direct Bank Transfer to Abhedya Foundation.')
 
 @section('content')

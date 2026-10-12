@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $post->title . ' — Abhedya Foundation')
+@section('title', $post->title . ' | Abhedya Foundation')
 @section('meta_description', Str::limit(strip_tags($post->summary ?? $post->content), 160))
 
 @section('content')

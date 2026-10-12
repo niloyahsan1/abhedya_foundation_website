@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $campaign->title . ' — Abhedya Foundation')
+@section('title', $campaign->title . ' | Abhedya Foundation')
 @section('meta_description', Str::limit(strip_tags($campaign->short_description ?? $campaign->description), 160))
 
 @section('content')

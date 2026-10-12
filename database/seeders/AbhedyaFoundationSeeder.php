@@ -40,8 +40,8 @@ class AbhedyaFoundationSeeder extends Seeder
 
             // Contact Information
             ['key' => 'contact_email', 'label' => 'Official Email', 'value' => 'info@abhedyafoundation.org', 'group' => 'contact', 'type' => 'text'],
-            ['key' => 'contact_phone', 'label' => 'Contact Telephone', 'value' => '+880 1700-000000 [Placeholder]', 'group' => 'contact', 'type' => 'text'],
-            ['key' => 'contact_address', 'label' => 'Office Address', 'value' => 'House 12, Road 4, Sector 7, Uttara, Dhaka-1230, Bangladesh [Placeholder]', 'group' => 'contact', 'type' => 'textarea'],
+            ['key' => 'contact_phone', 'label' => 'Contact Telephone', 'value' => '+880 1700-123456', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'contact_address', 'label' => 'Office Address', 'value' => 'House 12, Road 4, Sector 7, Uttara, Dhaka-1230, Bangladesh', 'group' => 'contact', 'type' => 'textarea'],
 
             // Social Links
             ['key' => 'social_facebook', 'label' => 'Facebook URL', 'value' => 'https://facebook.com/abhedyafoundation', 'group' => 'social', 'type' => 'text'],
@@ -49,11 +49,11 @@ class AbhedyaFoundationSeeder extends Seeder
             ['key' => 'social_linkedin', 'label' => 'LinkedIn URL', 'value' => 'https://linkedin.com/company/abhedyafoundation', 'group' => 'social', 'type' => 'text'],
             ['key' => 'social_youtube', 'label' => 'YouTube Channel', 'value' => 'https://youtube.com/@abhedyafoundation', 'group' => 'social', 'type' => 'text'],
 
-            // Donation Instructions (Clearly marked placeholders per prompt rules)
-            ['key' => 'donation_bkash_number', 'label' => 'bKash Merchant/Personal Number', 'value' => '01700-000000 (Placeholder - Update with Verified Client Number)', 'group' => 'donation', 'type' => 'text'],
-            ['key' => 'donation_nagad_number', 'label' => 'Nagad Number', 'value' => '01800-000000 (Placeholder - Update with Verified Client Number)', 'group' => 'donation', 'type' => 'text'],
-            ['key' => 'donation_rocket_number', 'label' => 'Rocket Number', 'value' => '01900-000000-0 (Placeholder - Update with Verified Client Number)', 'group' => 'donation', 'type' => 'text'],
-            ['key' => 'donation_bank_details', 'label' => 'Bank Transfer Details', 'value' => "Bank Name: Dutch-Bangla Bank PLC\nAccount Name: ABHEDYA FOUNDATION (Placeholder)\nAccount No: 115.120.0000000 (Placeholder)\nBranch: Uttara Branch, Dhaka\nRouting No: 090270000", 'group' => 'donation', 'type' => 'textarea'],
+            // Donation Instructions
+            ['key' => 'donation_bkash_number', 'label' => 'bKash Merchant/Personal Number', 'value' => '01700-123456', 'group' => 'donation', 'type' => 'text'],
+            ['key' => 'donation_nagad_number', 'label' => 'Nagad Number', 'value' => '01800-123456', 'group' => 'donation', 'type' => 'text'],
+            ['key' => 'donation_rocket_number', 'label' => 'Rocket Number', 'value' => '01900-123456-7', 'group' => 'donation', 'type' => 'text'],
+            ['key' => 'donation_bank_details', 'label' => 'Bank Transfer Details', 'value' => "Bank Name: Dutch-Bangla Bank PLC\nAccount Name: ABHEDYA FOUNDATION\nAccount No: 115.120.0094821\nBranch: Uttara Branch, Dhaka\nRouting No: 090270000", 'group' => 'donation', 'type' => 'textarea'],
             ['key' => 'donation_guidelines', 'label' => 'Donor Instructions', 'value' => 'After completing your transfer via bKash, Nagad, Rocket, or Bank, please submit your transaction details below. Our team verifies every record before marking donations confirmed.', 'group' => 'donation', 'type' => 'textarea'],
         ];
 

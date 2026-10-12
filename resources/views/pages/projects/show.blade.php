@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $project->title . ' — Abhedya Foundation')
+@section('title', $project->title . ' | Abhedya Foundation')
 @section('meta_description', Str::limit(strip_tags($project->summary ?? $project->description), 160))
 
 @section('content')
@@ -26,7 +26,7 @@
                 @if($project->start_date)
                     <div class="flex items-center gap-1">
                         <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                        <span>{{ $project->start_date->format('F Y') }} @if($project->end_date) — {{ $project->end_date->format('F Y') }} @else (Ongoing) @endif</span>
+                        <span>{{ $project->start_date->format('F Y') }} @if($project->end_date) to {{ $project->end_date->format('F Y') }} @else (Ongoing) @endif</span>
                     </div>
                 @endif
                 <span class="px-2.5 py-0.5 rounded font-bold uppercase {{ $project->status === 'completed' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-blue-500/20 text-blue-300' }}">

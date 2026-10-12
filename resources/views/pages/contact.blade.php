@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us — Abhedya Foundation')
+@section('title', 'Contact Us | Abhedya Foundation')
 @section('meta_description', 'Connect with the leadership and program team at Abhedya Foundation. Reach us via email, phone, or our secure contact form.')
 
 @section('content')
