@@ -34,51 +34,66 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" x-data="{ mobileMenuOpen: false }">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" x-data="{ mobileMenuOpen: false, scrolled: false }" x-init="scrolled = (window.pageYOffset > 15)" @scroll.window="scrolled = (window.pageYOffset > 15)" @keydown.escape.window="mobileMenuOpen = false">
 
-    <!-- Main Navigation Header -->
-    <header class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 transition-all">
+    <!-- Main Navigation Header (Attached Full Width) -->
+    <header 
+        class="sticky top-0 z-50 w-full transition-all duration-300"
+        :class="scrolled 
+            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-md shadow-slate-900/5' 
+            : 'bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs'"
+    >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+            <div class="flex items-center justify-between h-18 sm:h-20">
                 <!-- Brand Logo -->
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-11 w-auto object-contain group-hover:scale-105 transition" />
+                <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+                    <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition" />
                     <div>
-                        <span class="text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">ABHEDYA</span>
-                        <span class="text-[10px] font-bold text-emerald-600 tracking-widest uppercase block">Foundation</span>
+                        <span class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">ABHEDYA</span>
+                        <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 tracking-widest uppercase block">Foundation</span>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center gap-8">
-                    <a href="{{ route('home') }}" class="text-sm font-semibold transition {{ request()->routeIs('home') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Home</a>
-                    <a href="{{ route('about') }}" class="text-sm font-semibold transition {{ request()->routeIs('about') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">About Us</a>
-                    <a href="{{ route('projects.index') }}" class="text-sm font-semibold transition {{ request()->routeIs('projects.*') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Projects</a>
-                    <a href="{{ route('campaigns.index') }}" class="text-sm font-semibold transition {{ request()->routeIs('campaigns.*') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Campaigns</a>
-                    <a href="{{ route('blog.index') }}" class="text-sm font-semibold transition {{ request()->routeIs('blog.*') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">News & Blog</a>
-                    <a href="{{ route('gallery.index') }}" class="text-sm font-semibold transition {{ request()->routeIs('gallery.index') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Gallery</a>
-                    <a href="{{ route('contact') }}" class="text-sm font-semibold transition {{ request()->routeIs('contact') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Contact</a>
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="{{ route('home') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('home') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Home</a>
+                    <a href="{{ route('about') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('about') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">About Us</a>
+                    <a href="{{ route('projects.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('projects.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Projects</a>
+                    <a href="{{ route('campaigns.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('campaigns.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Campaigns</a>
+                    <a href="{{ route('blog.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('blog.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">News & Blog</a>
+                    <a href="{{ route('gallery.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('gallery.index') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Gallery</a>
+                    <a href="{{ route('contact') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('contact') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Contact</a>
                 </nav>
 
                 <!-- Header Actions -->
-                <div class="hidden lg:flex items-center gap-3">
-                    <a href="{{ route('donate') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md shadow-emerald-600/25 transition active:scale-95">
-                        <svg class="w-4 h-4 text-emerald-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
-                        Donate Now
+                <div class="hidden lg:flex items-center gap-3 shrink-0">
+                    <a href="{{ route('donate') }}" class="inline-flex items-center justify-center gap-1.5 px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-xs xl:text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md shadow-emerald-600/25 transition active:scale-95 hover:shadow-emerald-600/40">
+                        <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 text-emerald-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+                        <span>Donate Now</span>
                     </a>
 
                     @auth
                         <!-- Authenticated User Menu -->
                         <div class="relative" x-data="{ open: false }" @click.outside="open = false">
-                            <button @click="open = !open" type="button" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition">
+                            <button @click="open = !open" type="button" class="inline-flex items-center gap-2 px-3 py-1.5 xl:py-2 rounded-full text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200/80 transition">
                                 <span class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-[11px]">
                                     {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                                 </span>
-                                <span class="max-w-[100px] truncate">{{ auth()->user()->name }}</span>
-                                <svg class="w-3.5 h-3.5 text-slate-500 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <span class="max-w-[80px] xl:max-w-[110px] truncate">{{ auth()->user()->name }}</span>
+                                <svg class="w-3.5 h-3.5 text-slate-500 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                             </button>
 
-                            <div x-show="open" x-cloak class="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 animate-in fade-in slide-in-from-top-2">
+                            <div 
+                                x-show="open" 
+                                x-cloak 
+                                x-transition:enter="transition ease-out duration-150"
+                                x-transition:enter-start="opacity-0 scale-95 -translate-y-1"
+                                x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                                x-transition:leave="transition ease-in duration-100"
+                                x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                                x-transition:leave-end="opacity-0 scale-95 -translate-y-1"
+                                class="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50"
+                            >
                                 <div class="px-4 py-2 border-b border-slate-100">
                                     <p class="text-xs font-bold text-slate-900 truncate">{{ auth()->user()->name }}</p>
                                     <p class="text-[11px] text-slate-500 truncate">{{ auth()->user()->email }}</p>
@@ -105,14 +120,20 @@
                         <!-- Guest Portal Link -->
                         <a href="/login" class="text-xs font-semibold text-slate-600 hover:text-emerald-600 px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5" title="Sign In to Staff Portal">
                             <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                            Portal
+                            <span>Portal</span>
                         </a>
                     @endauth
                 </div>
 
                 <!-- Mobile Hamburger Button -->
                 <div class="flex items-center lg:hidden">
-                    <button type="button" @click="mobileMenuOpen = !mobileMenuOpen" class="text-slate-700 hover:text-emerald-600 p-2 rounded-lg focus:outline-none" aria-label="Toggle navigation">
+                    <button 
+                        type="button" 
+                        @click="mobileMenuOpen = !mobileMenuOpen" 
+                        class="p-2.5 rounded-xl text-slate-700 hover:text-emerald-600 hover:bg-slate-100 transition focus:outline-none" 
+                        :aria-expanded="mobileMenuOpen"
+                        aria-label="Toggle navigation"
+                    >
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                             <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -122,46 +143,58 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation Menu -->
-        <div x-show="mobileMenuOpen" x-cloak class="lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-3">
-            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-base font-semibold {{ request()->routeIs('home') ? 'bg-emerald-50 text-emerald-600' : 'text-slate-700 hover:bg-slate-50' }}">Home</a>
-            <a href="{{ route('about') }}" class="block px-3 py-2 rounded-lg text-base font-semibold {{ request()->routeIs('about') ? 'bg-emerald-50 text-emerald-600' : 'text-slate-700 hover:bg-slate-50' }}">About Us</a>
-            <a href="{{ route('projects.index') }}" class="block px-3 py-2 rounded-lg text-base font-semibold {{ request()->routeIs('projects.*') ? 'bg-emerald-50 text-emerald-600' : 'text-slate-700 hover:bg-slate-50' }}">Projects & Activities</a>
-            <a href="{{ route('campaigns.index') }}" class="block px-3 py-2 rounded-lg text-base font-semibold {{ request()->routeIs('campaigns.*') ? 'bg-emerald-50 text-emerald-600' : 'text-slate-700 hover:bg-slate-50' }}">Fundraising Campaigns</a>
-            <a href="{{ route('blog.index') }}" class="block px-3 py-2 rounded-lg text-base font-semibold {{ request()->routeIs('blog.*') ? 'bg-emerald-50 text-emerald-600' : 'text-slate-700 hover:bg-slate-50' }}">News & Blog</a>
-            <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-lg text-base font-semibold {{ request()->routeIs('gallery.index') ? 'bg-emerald-50 text-emerald-600' : 'text-slate-700 hover:bg-slate-50' }}">Photo Gallery</a>
-            <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-lg text-base font-semibold {{ request()->routeIs('contact') ? 'bg-emerald-50 text-emerald-600' : 'text-slate-700 hover:bg-slate-50' }}">Contact Us</a>
+        <!-- Mobile Navigation Menu (Attached Full-Width Dropdown) -->
+        <div 
+            x-show="mobileMenuOpen" 
+            x-cloak 
+            @click.outside="mobileMenuOpen = false"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            class="lg:hidden border-t border-slate-200/80 bg-white/98 backdrop-blur-xl px-4 sm:px-6 pt-3 pb-6 space-y-1.5 shadow-xl max-h-[calc(100vh-80px)] overflow-y-auto no-scrollbar"
+        >
+            <a href="{{ route('home') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('home') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Home</a>
+            <a href="{{ route('about') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('about') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">About Us</a>
+            <a href="{{ route('projects.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('projects.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Projects & Activities</a>
+            <a href="{{ route('campaigns.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('campaigns.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Fundraising Campaigns</a>
+            <a href="{{ route('blog.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('blog.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">News & Blog</a>
+            <a href="{{ route('gallery.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('gallery.index') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Photo Gallery</a>
+            <a href="{{ route('contact') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('contact') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Contact Us</a>
 
             @auth
-                <div class="pt-3 border-t border-slate-100 space-y-2">
-                    <div class="px-3 py-1">
+                <div class="pt-2 border-t border-slate-100 space-y-1.5">
+                    <div class="px-3.5 py-1">
                         <p class="text-xs font-bold text-slate-900">{{ auth()->user()->name }}</p>
                         <p class="text-[11px] text-slate-500">{{ auth()->user()->email }}</p>
                     </div>
-                    <a href="/dashboard" class="block px-3 py-2 rounded-lg text-sm font-semibold text-emerald-700 bg-emerald-50">
+                    <a href="/dashboard" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-emerald-700 bg-emerald-50">
                         Access Dashboard
                     </a>
-                    <a href="/dashboard/profile" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                    <a href="/dashboard/profile" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
                         My Profile
                     </a>
                     <form method="POST" action="/logout">
                         @csrf
-                        <button type="submit" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-rose-600 hover:bg-rose-50">
+                        <button type="submit" class="w-full text-left px-3.5 py-2 rounded-xl text-sm font-semibold text-rose-600 hover:bg-rose-50">
                             Log Out
                         </button>
                     </form>
                 </div>
             @else
                 <div class="pt-2 border-t border-slate-100">
-                    <a href="/login" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50">
+                    <a href="/login" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-50">
                         Staff Portal (Sign In)
                     </a>
                 </div>
             @endauth
 
             <div class="pt-2">
-                <a href="{{ route('donate') }}" class="w-full text-center block px-5 py-3 rounded-xl text-base font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow">
-                    Donate Now
+                <a href="{{ route('donate') }}" class="w-full text-center flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md shadow-emerald-600/20">
+                    <svg class="w-4 h-4 text-emerald-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+                    <span>Donate Now</span>
                 </a>
             </div>
         </div>

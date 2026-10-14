@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- Header Banner -->
-    <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-20">
+    <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-16 sm:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
                 <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Who We Are</span>
