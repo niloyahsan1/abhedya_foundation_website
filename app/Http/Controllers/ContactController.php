@@ -14,8 +14,8 @@ class ContactController extends Controller
     {
         $contactInfo = [
             'email' => SiteSetting::get('contact_email', 'info@abhedyafoundation.org'),
-            'phone' => SiteSetting::get('contact_phone', '+880 1700-000000 [Placeholder]'),
-            'address' => SiteSetting::get('contact_address', 'House 12, Road 4, Sector 7, Uttara, Dhaka-1230, Bangladesh [Placeholder]'),
+            'phone' => SiteSetting::get('contact_phone', '+880 1518-913960'),
+            'address' => SiteSetting::get('contact_address', 'House 1, Road 3, Block C, Section 10, Mirpur, Dhaka-1216, Bangladesh'),
             'facebook' => SiteSetting::get('social_facebook', 'https://facebook.com/abhedyafoundation'),
             'twitter' => SiteSetting::get('social_twitter', 'https://twitter.com/abhedya_bd'),
             'linkedin' => SiteSetting::get('social_linkedin', 'https://linkedin.com/company/abhedyafoundation'),

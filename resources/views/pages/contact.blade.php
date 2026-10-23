@@ -90,7 +90,7 @@
 
                 <!-- Right: Contact Form -->
                 <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/80 p-8 shadow-sm">
-                    <h2 class="text-xl font-bold text-slate-900 mb-2 border-b-2 border-indigo-600 inline-block pb-1">{{ __('Send Us a Direct Message') }}</h2>
+                    <h2 class="text-xl font-bold text-slate-900 mb-2">{{ __('Send Us a Direct Message') }}</h2>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed">
                         {{ __('Fill out the inquiry form below and our volunteer coordinators will get back to you promptly.') }}
                     </p>

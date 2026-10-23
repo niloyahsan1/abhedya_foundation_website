@@ -162,8 +162,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest">{{ __('Our Work') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1 pb-2 border-b-2 border-indigo-600 inline-block">{{ __('Featured Projects & Activities') }}</h2>
+                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Our Work') }}</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Featured Projects & Activities') }}</h2>
                 </div>
                 <a href="{{ route('projects.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
                     {{ __('View All Projects') }}
@@ -226,8 +226,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest">{{ __('Make an Immediate Difference') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1 pb-2 border-b-2 border-indigo-600 inline-block">{{ __('Active Humanitarian Campaigns') }}</h2>
+                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Make an Immediate Difference') }}</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Active Humanitarian Campaigns') }}</h2>
                 </div>
                 <a href="{{ route('campaigns.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
                     {{ __('All Campaigns') }}
@@ -294,8 +294,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest">{{ __('Field Reports & Insights') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1 pb-2 border-b-2 border-indigo-600 inline-block">{{ __('Latest News & Articles') }}</h2>
+                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Field Reports & Insights') }}</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Latest News & Articles') }}</h2>
                 </div>
                 <a href="{{ route('blog.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
                     {{ __('All Stories') }}
@@ -345,7 +345,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">{{ __('Photo Moments') }}</span>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block">{{ __('Photo Moments') }}</span>
                     <h2 class="text-3xl font-extrabold text-white mt-1">{{ __('Impact in Pictures') }}</h2>
                 </div>
                 <a href="{{ route('gallery.index') }}" class="font-bold text-sm text-sky-400 hover:text-sky-300 flex items-center gap-1">
@@ -366,24 +366,6 @@
         </div>
     </section>
 
-    <!-- 8. Donation CTA Section (Mastul Blue & Orange Action Theme) -->
-    <section class="py-20 bg-gradient-to-br from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                {{ __('Your Generosity Reaches Where It Matters Most') }}
-            </h2>
-            <p class="text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed">
-                {{ __("Whether supporting clean drinking water, funding a student's scholarship, or rushing emergency flood rations, every contribution transforms real lives.") }}
-            </p>
-            <div class="pt-4 flex flex-wrap justify-center gap-4">
-                <a href="{{ route('donate') }}" class="px-8 py-4 rounded-xl font-extrabold text-white bg-orange-500 hover:bg-orange-600 shadow-xl transition transform hover:-translate-y-0.5">
-                    {{ __('View Donation Details (bKash, Nagad, Rocket, Bank)') }}
-                </a>
-                <a href="{{ route('contact') }}" class="px-8 py-4 rounded-xl font-bold text-white bg-white/10 hover:bg-white/20 border border-white/30 transition">
-                    {{ __('Get in Touch with Us') }}
-                </a>
-            </div>
-        </div>
-    </section>
+
 
 @endsection

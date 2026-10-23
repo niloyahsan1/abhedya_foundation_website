@@ -40,8 +40,8 @@ class AbhedyaFoundationSeeder extends Seeder
 
             // Contact Information
             ['key' => 'contact_email', 'label' => 'Official Email', 'value' => 'info@abhedyafoundation.org', 'group' => 'contact', 'type' => 'text'],
-            ['key' => 'contact_phone', 'label' => 'Contact Telephone', 'value' => '+880 1700-123456', 'group' => 'contact', 'type' => 'text'],
-            ['key' => 'contact_address', 'label' => 'Office Address', 'value' => 'House 12, Road 4, Sector 7, Uttara, Dhaka-1230, Bangladesh', 'group' => 'contact', 'type' => 'textarea'],
+            ['key' => 'contact_phone', 'label' => 'Contact Telephone', 'value' => '+880 1518-913960', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'contact_address', 'label' => 'Office Address', 'value' => 'House 1, Road 3, Block C, Section 10, Mirpur, Dhaka-1216, Bangladesh', 'group' => 'contact', 'type' => 'textarea'],
 
             // Social Links
             ['key' => 'social_facebook', 'label' => 'Facebook URL', 'value' => 'https://facebook.com/abhedyafoundation', 'group' => 'social', 'type' => 'text'],

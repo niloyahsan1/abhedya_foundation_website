@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
                 <span class="text-xs font-bold text-amber-300 uppercase tracking-widest">{{ __('Support Our Mission') }}</span>
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
                     {{ __('Donate to Abhedya Foundation') }}
                 </h1>
                 <p class="text-base sm:text-lg text-blue-100 leading-relaxed">

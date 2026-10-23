@@ -53,7 +53,7 @@
                     <!-- Published Updates -->
                     @if($campaign->updates->isNotEmpty())
                         <div class="pt-8 border-t border-slate-200 space-y-6">
-                            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-indigo-600 inline-block pb-1">{{ __('Campaign Field Updates') }}</h2>
+                            <h2 class="text-2xl font-bold text-slate-900">{{ __('Campaign Field Updates') }}</h2>
                             <div class="space-y-6">
                                 @foreach($campaign->updates as $update)
                                     <div class="p-6 rounded-2xl bg-[#f0f7fd]/40 border border-slate-200/80 space-y-3">

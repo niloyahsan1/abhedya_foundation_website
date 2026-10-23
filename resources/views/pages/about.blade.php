@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
                 <span class="text-xs font-bold text-sky-300 uppercase tracking-widest">{{ __('Who We Are') }}</span>
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
                     {{ __('About Abhedya Foundation') }}
                 </h1>
                 <p class="text-lg text-blue-100 leading-relaxed">
@@ -61,8 +61,8 @@
     <section class="py-20 bg-[#f0f7fd]/40 border-t border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-                <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest">{{ __('Guiding Principles') }}</span>
-                <h2 class="text-3xl font-extrabold text-slate-900 border-b-2 border-indigo-600 inline-block pb-1">{{ __('Mission, Vision & Core Values') }}</h2>
+                <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Guiding Principles') }}</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">{{ __('Mission, Vision & Core Values') }}</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -112,8 +112,8 @@
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-                <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest">{{ __('Our Strategic Focus') }}</span>
-                <h2 class="text-3xl font-extrabold text-slate-900 border-b-2 border-indigo-600 inline-block pb-1">{{ __('Key Pillars of Action') }}</h2>
+                <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Our Strategic Focus') }}</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">{{ __('Key Pillars of Action') }}</h2>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

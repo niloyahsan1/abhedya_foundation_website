@@ -46,8 +46,40 @@
 
 @font-face {
     font-family: 'Bornomala';
+    src: url('/fonts/Bornomala-Regular.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bornomala';
+    src: url('/fonts/Bornomala-Bold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bornomala';
     src: url('/fonts/Bornomala-Bold.woff2') format('woff2');
     font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bornomala';
+    src: url('/fonts/Bornomala-Bold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bornomala';
+    src: url('/fonts/Bornomala-Bold.woff2') format('woff2');
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
@@ -63,6 +95,91 @@
 
 html, body {
     font-family: 'UbuntuSans', 'Bornomala', sans-serif;
+}
+
+/* ========================================================
+   BANGLA TYPOGRAPHY & LEGIBILITY (Bornomala)
+   Keeps English & Bangla font sizes identical and fitted,
+   with proper Bengali ligature connection & contrast
+   ======================================================== */
+html[lang="bn"] {
+    font-family: 'Bornomala', 'UbuntuSans', sans-serif !important;
+}
+
+html[lang="bn"] body {
+    font-family: 'Bornomala', 'UbuntuSans', sans-serif !important;
+    line-height: 1.5;
+}
+
+html[lang="bn"] button,
+html[lang="bn"] input,
+html[lang="bn"] select,
+html[lang="bn"] textarea,
+html[lang="bn"] a,
+html[lang="bn"] span,
+html[lang="bn"] p,
+html[lang="bn"] h1,
+html[lang="bn"] h2,
+html[lang="bn"] h3,
+html[lang="bn"] h4,
+html[lang="bn"] h5,
+html[lang="bn"] h6 {
+    font-family: 'Bornomala', 'UbuntuSans', sans-serif !important;
+}
+
+/* Remove letter-spacing / tracking in Bengali
+   (tracking breaks shirorekha and character ligatures) */
+html[lang="bn"] [class*="tracking-"],
+html[lang="bn"] .tracking-widest,
+html[lang="bn"] .tracking-wider,
+html[lang="bn"] .tracking-wide,
+html[lang="bn"] .tracking-tight,
+html[lang="bn"] .tracking-tighter {
+    letter-spacing: normal !important;
+}
+
+/* Natural line-height for Bengali matras (no clipping) */
+html[lang="bn"] .leading-tight {
+    line-height: 1.35 !important;
+}
+
+html[lang="bn"] .leading-none {
+    line-height: 1.25 !important;
+}
+
+/* Ensure clean contrast for light text so it is easily visible without size ballooning */
+html[lang="bn"] .text-slate-400 {
+    color: #475569 !important; /* slate-600 */
+}
+
+html[lang="bn"] .text-slate-500 {
+    color: #334155 !important; /* slate-700 */
+}
+
+/* For dark backgrounds (like footer and hero), ensure text stays clear and readable */
+html[lang="bn"] footer .text-slate-400,
+html[lang="bn"] .bg-slate-900 .text-slate-400,
+html[lang="bn"] .bg-slate-950 .text-slate-400 {
+    color: #cbd5e1 !important; /* slate-300 */
+}
+
+html[lang="bn"] footer .text-slate-500,
+html[lang="bn"] .bg-slate-900 .text-slate-500,
+html[lang="bn"] .bg-slate-950 .text-slate-500 {
+    color: #94a3b8 !important; /* slate-400 */
+}
+
+/* Line-height safety for Bangla */
+html[lang="bn"] .leading-tight {
+    line-height: 1.35 !important;
+}
+
+html[lang="bn"] .leading-snug {
+    line-height: 1.45 !important;
+}
+
+html[lang="bn"] .leading-none {
+    line-height: 1.25 !important;
 }
 
 [x-cloak] {

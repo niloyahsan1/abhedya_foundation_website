@@ -73,7 +73,7 @@
     @if($relatedPosts->isNotEmpty())
         <section class="py-16 bg-[#f0f7fd]/40 border-t border-slate-200/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-bold text-slate-900 mb-8 border-b-2 border-indigo-600 inline-block pb-1">{{ __('Related Stories') }}</h2>
+                <h2 class="text-2xl font-bold text-slate-900 mb-8">{{ __('Related Stories') }}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     @foreach($relatedPosts as $rel)
                         <div class="bg-white rounded-xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
