@@ -19,6 +19,20 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+// Language Switch Route
+Route::get('/locale/{lang}', function (string $lang, \Illuminate\Http\Request $request) {
+    if (in_array($lang, ['bn', 'en'], true)) {
+        session(['locale' => $lang]);
+    }
+
+    $referer = $request->header('referer');
+    if ($referer && !str_contains($referer, '/locale/')) {
+        return redirect()->to($referer);
+    }
+
+    return redirect()->route('home');
+})->name('locale.switch');
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 

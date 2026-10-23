@@ -21,14 +21,13 @@
         <meta property="og:image" content="@yield('og_image')">
     @endif
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Fonts (Exact Mastul.net Fonts: UbuntuSans & Bornomala) -->
+    <link rel="preload" href="/fonts/Bornomala-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Bornomala-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        body, html, button, input, select, textarea {
+            font-family: 'UbuntuSans', 'Bornomala', sans-serif !important;
         }
     </style>
 
@@ -49,27 +48,41 @@
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
                     <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition" />
                     <div>
-                        <span class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">ABHEDYA</span>
-                        <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 tracking-widest uppercase block">Foundation</span>
+                        <span class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">{{ __('ABHEDYA') }}</span>
+                        <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 tracking-widest uppercase block">{{ __('Foundation') }}</span>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
-                    <a href="{{ route('home') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('home') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Home</a>
-                    <a href="{{ route('about') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('about') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">About Us</a>
-                    <a href="{{ route('projects.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('projects.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Projects</a>
-                    <a href="{{ route('campaigns.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('campaigns.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Campaigns</a>
-                    <a href="{{ route('blog.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('blog.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">News & Blog</a>
-                    <a href="{{ route('gallery.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('gallery.index') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Gallery</a>
-                    <a href="{{ route('contact') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('contact') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">Contact</a>
+                    <a href="{{ route('home') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('home') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">{{ __('Home') }}</a>
+                    <a href="{{ route('about') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('about') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">{{ __('About Us') }}</a>
+                    <a href="{{ route('projects.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('projects.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">{{ __('Projects') }}</a>
+                    <a href="{{ route('campaigns.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('campaigns.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">{{ __('Campaigns') }}</a>
+                    <a href="{{ route('blog.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('blog.*') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">{{ __('News & Blog') }}</a>
+                    <a href="{{ route('gallery.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('gallery.index') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">{{ __('Gallery') }}</a>
+                    <a href="{{ route('contact') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('contact') ? 'text-emerald-700 bg-emerald-50/90 font-bold' : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50' }}">{{ __('Contact') }}</a>
                 </nav>
 
                 <!-- Header Actions -->
-                <div class="hidden lg:flex items-center gap-3 shrink-0">
+                <div class="hidden lg:flex items-center gap-2.5 xl:gap-3 shrink-0">
+                    <!-- Language Switcher (Segmented Capsule) -->
+                    <div class="inline-flex items-center p-0.5 rounded-full bg-slate-100 border border-slate-200/90 text-xs font-bold shrink-0">
+                        <a href="{{ route('locale.switch', 'bn') }}" 
+                           class="px-2.5 py-1 rounded-full transition-all duration-200 {{ app()->getLocale() === 'bn' ? 'bg-emerald-600 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-emerald-700' }}"
+                           title="বাংলা ভাষায় পরিবর্তন করুন">
+                            বাংলা
+                        </a>
+                        <a href="{{ route('locale.switch', 'en') }}" 
+                           class="px-2.5 py-1 rounded-full transition-all duration-200 {{ app()->getLocale() === 'en' ? 'bg-emerald-600 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-emerald-700' }}"
+                           title="Switch to English">
+                            EN
+                        </a>
+                    </div>
+
                     <a href="{{ route('donate') }}" class="inline-flex items-center justify-center gap-1.5 px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-xs xl:text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md shadow-emerald-600/25 transition active:scale-95 hover:shadow-emerald-600/40">
                         <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 text-emerald-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
-                        <span>Donate Now</span>
+                        <span>{{ __('Donate Now') }}</span>
                     </a>
 
                     @auth
@@ -100,18 +113,18 @@
                                 </div>
                                 <a href="/dashboard" class="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition">
                                     <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-                                    Dashboard
+                                    {{ __('Dashboard') }}
                                 </a>
                                 <a href="/dashboard/profile" class="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition">
                                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                                    My Profile
+                                    {{ __('My Profile') }}
                                 </a>
                                 <div class="border-t border-slate-100 my-1"></div>
                                 <form method="POST" action="/logout">
                                     @csrf
                                     <button type="submit" class="w-full text-left flex items-center gap-2 px-4 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 transition">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                                        Log Out
+                                        {{ __('Log Out') }}
                                     </button>
                                 </form>
                             </div>
@@ -120,13 +133,17 @@
                         <!-- Guest Portal Link -->
                         <a href="/login" class="text-xs font-semibold text-slate-600 hover:text-emerald-600 px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5" title="Sign In to Staff Portal">
                             <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                            <span>Portal</span>
+                            <span>{{ __('Portal') }}</span>
                         </a>
                     @endauth
                 </div>
 
-                <!-- Mobile Hamburger Button -->
-                <div class="flex items-center lg:hidden">
+                <!-- Mobile Hamburger Button & Language Indicator -->
+                <div class="flex items-center gap-2 lg:hidden">
+                    <a href="{{ route('locale.switch', app()->getLocale() === 'bn' ? 'en' : 'bn') }}" 
+                       class="px-2.5 py-1 rounded-full text-xs font-bold border border-emerald-600/30 bg-emerald-50 text-emerald-700">
+                        {{ app()->getLocale() === 'bn' ? 'EN' : 'বাংলা' }}
+                    </a>
                     <button 
                         type="button" 
                         @click="mobileMenuOpen = !mobileMenuOpen" 
@@ -156,13 +173,28 @@
             x-transition:leave-end="opacity-0 -translate-y-2"
             class="lg:hidden border-t border-slate-200/80 bg-white/98 backdrop-blur-xl px-4 sm:px-6 pt-3 pb-6 space-y-1.5 shadow-xl max-h-[calc(100vh-80px)] overflow-y-auto no-scrollbar"
         >
-            <a href="{{ route('home') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('home') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Home</a>
-            <a href="{{ route('about') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('about') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">About Us</a>
-            <a href="{{ route('projects.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('projects.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Projects & Activities</a>
-            <a href="{{ route('campaigns.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('campaigns.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Fundraising Campaigns</a>
-            <a href="{{ route('blog.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('blog.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">News & Blog</a>
-            <a href="{{ route('gallery.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('gallery.index') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Photo Gallery</a>
-            <a href="{{ route('contact') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('contact') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">Contact Us</a>
+            <!-- Mobile Language Switcher Row -->
+            <div class="flex items-center justify-between px-3.5 py-2.5 bg-slate-50 rounded-xl border border-slate-200/80 mb-2">
+                <span class="text-xs font-bold text-slate-700">{{ __('Language:') }}</span>
+                <div class="inline-flex items-center p-0.5 rounded-full bg-white border border-slate-200 text-xs font-bold">
+                    <a href="{{ route('locale.switch', 'bn') }}" 
+                       class="px-3 py-1 rounded-full transition {{ app()->getLocale() === 'bn' ? 'bg-emerald-600 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
+                        বাংলা
+                    </a>
+                    <a href="{{ route('locale.switch', 'en') }}" 
+                       class="px-3 py-1 rounded-full transition {{ app()->getLocale() === 'en' ? 'bg-emerald-600 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
+                        EN
+                    </a>
+                </div>
+            </div>
+
+            <a href="{{ route('home') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('home') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">{{ __('Home') }}</a>
+            <a href="{{ route('about') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('about') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">{{ __('About Us') }}</a>
+            <a href="{{ route('projects.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('projects.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">{{ __('Projects & Activities') }}</a>
+            <a href="{{ route('campaigns.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('campaigns.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">{{ __('Fundraising Campaigns') }}</a>
+            <a href="{{ route('blog.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('blog.*') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">{{ __('News & Blog') }}</a>
+            <a href="{{ route('gallery.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('gallery.index') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">{{ __('Photo Gallery') }}</a>
+            <a href="{{ route('contact') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-bold transition {{ request()->routeIs('contact') ? 'bg-emerald-50 text-emerald-700' : 'text-slate-700 hover:bg-slate-50' }}">{{ __('Contact Us') }}</a>
 
             @auth
                 <div class="pt-2 border-t border-slate-100 space-y-1.5">
@@ -171,22 +203,22 @@
                         <p class="text-[11px] text-slate-500">{{ auth()->user()->email }}</p>
                     </div>
                     <a href="/dashboard" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-emerald-700 bg-emerald-50">
-                        Access Dashboard
+                        {{ __('Access Dashboard') }}
                     </a>
                     <a href="/dashboard/profile" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
-                        My Profile
+                        {{ __('My Profile') }}
                     </a>
                     <form method="POST" action="/logout">
                         @csrf
                         <button type="submit" class="w-full text-left px-3.5 py-2 rounded-xl text-sm font-semibold text-rose-600 hover:bg-rose-50">
-                            Log Out
+                            {{ __('Log Out') }}
                         </button>
                     </form>
                 </div>
             @else
                 <div class="pt-2 border-t border-slate-100">
                     <a href="/login" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-50">
-                        Staff Portal (Sign In)
+                        {{ __('Staff Portal (Sign In)') }}
                     </a>
                 </div>
             @endauth
@@ -194,7 +226,7 @@
             <div class="pt-2">
                 <a href="{{ route('donate') }}" class="w-full text-center flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md shadow-emerald-600/20">
                     <svg class="w-4 h-4 text-emerald-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
-                    <span>Donate Now</span>
+                    <span>{{ __('Donate Now') }}</span>
                 </a>
             </div>
         </div>
@@ -213,10 +245,10 @@
                 <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
                         <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-10 w-auto object-contain rounded-lg bg-white/90 p-1" />
-                        <span class="text-xl font-bold text-white tracking-tight">ABHEDYA FOUNDATION</span>
+                        <span class="text-xl font-bold text-white tracking-tight">{{ __('ABHEDYA FOUNDATION') }}</span>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
-                        A non-profit foundation dedicated to education, healthcare, disaster response, and community resilience in Bangladesh. Building long-term human dignity through sustainable action.
+                        {{ __('A non-profit foundation dedicated to education, healthcare, disaster response, and community resilience in Bangladesh. Building long-term human dignity through sustainable action.') }}
                     </p>
                     <div class="flex items-center gap-3 pt-2">
                         <a href="https://facebook.com/abhedyafoundation" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white transition" aria-label="Facebook">
@@ -233,39 +265,39 @@
 
                 <!-- Col 2: Quick Links -->
                 <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">Foundation</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">{{ __('Quick Links') }}</h3>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="{{ route('about') }}" class="hover:text-emerald-400 transition">About Us</a></li>
-                        <li><a href="{{ route('projects.index') }}" class="hover:text-emerald-400 transition">Our Projects</a></li>
-                        <li><a href="{{ route('campaigns.index') }}" class="hover:text-emerald-400 transition">Active Campaigns</a></li>
-                        <li><a href="{{ route('blog.index') }}" class="hover:text-emerald-400 transition">Stories & News</a></li>
-                        <li><a href="{{ route('gallery.index') }}" class="hover:text-emerald-400 transition">Photo Gallery</a></li>
+                        <li><a href="{{ route('about') }}" class="hover:text-emerald-400 transition">{{ __('About Us') }}</a></li>
+                        <li><a href="{{ route('projects.index') }}" class="hover:text-emerald-400 transition">{{ __('Our Projects') }}</a></li>
+                        <li><a href="{{ route('campaigns.index') }}" class="hover:text-emerald-400 transition">{{ __('Active Campaigns') }}</a></li>
+                        <li><a href="{{ route('blog.index') }}" class="hover:text-emerald-400 transition">{{ __('Stories & News') }}</a></li>
+                        <li><a href="{{ route('gallery.index') }}" class="hover:text-emerald-400 transition">{{ __('Photo Gallery') }}</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 3: Support -->
                 <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">Support & Trust</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">{{ __('Support & Trust') }}</h3>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="{{ route('donate') }}" class="hover:text-emerald-400 transition">Donation Guide</a></li>
-                        <li><a href="{{ route('donate') }}#payment-methods" class="hover:text-emerald-400 transition">Payment Instructions</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-emerald-400 transition">Contact Us</a></li>
+                        <li><a href="{{ route('donate') }}" class="hover:text-emerald-400 transition">{{ __('Donation Guide') }}</a></li>
+                        <li><a href="{{ route('donate') }}#payment-methods" class="hover:text-emerald-400 transition">{{ __('Payment Instructions') }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="hover:text-emerald-400 transition">{{ __('Contact Us') }}</a></li>
                         @auth
-                            <li><a href="/dashboard" class="hover:text-emerald-400 transition">Management Dashboard</a></li>
+                            <li><a href="/dashboard" class="hover:text-emerald-400 transition">{{ __('Management Dashboard') }}</a></li>
                         @else
-                            <li><a href="/login" class="hover:text-emerald-400 transition">Staff Portal</a></li>
+                            <li><a href="/login" class="hover:text-emerald-400 transition">{{ __('Staff Portal') }}</a></li>
                         @endauth
-                        <li><a href="{{ route('sitemap') }}" class="hover:text-emerald-400 transition">XML Sitemap</a></li>
+                        <li><a href="{{ route('sitemap') }}" class="hover:text-emerald-400 transition">{{ __('XML Sitemap') }}</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 4: Contact Details -->
                 <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">Official Contact</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">{{ __('Official Contact') }}</h3>
                     <ul class="space-y-3 text-sm text-slate-400">
                         <li class="flex items-start gap-2">
                             <svg class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                            <span>House 12, Road 4, Sector 7, Uttara, Dhaka-1230</span>
+                            <span>{{ __('House 12, Road 4, Sector 7, Uttara, Dhaka-1230, Bangladesh') }}</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -273,7 +305,7 @@
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            <span>+880 1700-123456</span>
+                            <span>{{ bn_num('+880 1700-123456') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -281,8 +313,8 @@
 
             <!-- Bottom Sub-footer -->
             <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                <p>&copy; {{ date('Y') }} Abhedya Foundation. All rights reserved.</p>
-                <p class="text-slate-400">Website: <a href="https://abhedyafoundation.org" class="underline hover:text-white">abhedyafoundation.org</a></p>
+                <p>&copy; {{ bn_num(date('Y')) }} {{ __('Abhedya Foundation') }}. {{ __('All rights reserved.') }}</p>
+                <p class="text-slate-400">{{ __('Website:') }} <a href="https://abhedyafoundation.org" class="underline hover:text-white">abhedyafoundation.org</a></p>
             </div>
         </div>
     </footer>

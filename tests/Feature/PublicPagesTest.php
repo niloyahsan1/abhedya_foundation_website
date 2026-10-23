@@ -170,4 +170,89 @@ class PublicPagesTest extends TestCase
         $robotsResponse->assertHeader('Content-Type', 'text/plain; charset=UTF-8');
         $robotsResponse->assertSee('Disallow: /dashboard/');
     }
+
+    public function test_bangla_locale_renders_bengali_navigation_and_content(): void
+    {
+        // When session has locale 'bn'
+        $response = $this->withSession(['locale' => 'bn'])->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('আমাদের সম্পর্কে');
+        $response->assertSee('অনুদান দিন');
+        $response->assertSee('প্রকল্পসমূহ');
+    }
+
+    public function test_language_switch_route_updates_session_and_redirects(): void
+    {
+        $response = $this->get('/locale/bn');
+        $response->assertRedirect('/');
+        $response->assertSessionHas('locale', 'bn');
+
+        $switchEnglish = $this->get('/locale/en');
+        $switchEnglish->assertRedirect('/');
+        $switchEnglish->assertSessionHas('locale', 'en');
+    }
+
+    public function test_query_parameter_lang_sets_locale(): void
+    {
+        $response = $this->get('/?lang=bn');
+        $response->assertStatus(200);
+        $response->assertSessionHas('locale', 'bn');
+        $response->assertSee('আমাদের সম্পর্কে');
+    }
+
+    public function test_default_config_locale_bn_shows_bangla_without_session(): void
+    {
+        config(['app.locale' => 'bn']);
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('আমাদের সম্পর্কে');
+        $response->assertSee('অনুদান দিন');
+    }
+
+    public function test_mastul_fonts_are_included_in_response(): void
+    {
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('Bornomala-Regular.woff2');
+        $response->assertSee('UbuntuSans');
+        $response->assertSee('Bornomala');
+    }
+
+    public function test_bangla_helpers_convert_numbers_and_dates_accurately(): void
+    {
+        app()->setLocale('bn');
+        $this->assertEquals('০১২৩৪৫৬৭৮৯', bn_num('0123456789'));
+        $this->assertEquals('৩৫,০০০+', bn_num('35,000+'));
+        $this->assertEquals('৳৫০০,০০০', bn_taka(500000));
+        
+        $date = \Carbon\Carbon::parse('2026-08-15');
+        $this->assertStringContainsString('আগস্ট', bn_date($date, 'M Y'));
+        $this->assertStringContainsString('২০২৬', bn_date($date, 'M Y'));
+    }
+
+    public function test_all_database_content_translates_to_bangla_in_bn_locale(): void
+    {
+        $response = $this->withSession(['locale' => 'bn'])->get('/');
+        $response->assertStatus(200);
+        
+        // Brand logo
+        $response->assertSee('অভেদ্য');
+        $response->assertSee('ফাউন্ডেশন');
+        
+        // Navigation & Buttons
+        $response->assertSee('হোম');
+        $response->assertSee('আমাদের সম্পর্কে');
+        $response->assertSee('প্রকল্পসমূহ');
+        $response->assertSee('ক্যাম্পেইন');
+        $response->assertSee('সংবাদ ও ব্লগ');
+        $response->assertSee('ফটোগ্যালারি');
+        $response->assertSee('যোগাযোগ');
+        $response->assertSee('অনুদান দিন');
+        
+        // Bengali numerals
+        $response->assertSee('৪৮');
+        $response->assertSee('৩৫,০০০+');
+        $response->assertSee('৪৫০+');
+        $response->assertSee('১৪');
+    }
 }

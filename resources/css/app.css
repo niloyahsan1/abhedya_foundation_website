@@ -3,9 +3,61 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/* Mastul.net Exact Fonts: UbuntuSans & Bornomala */
+@font-face {
+    font-family: 'UbuntuSans';
+    src: url('/fonts/UbuntuSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UbuntuSans';
+    src: url('/fonts/UbuntuSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UbuntuSans';
+    src: url('/fonts/UbuntuSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UbuntuSans';
+    src: url('/fonts/UbuntuSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bornomala';
+    src: url('/fonts/Bornomala-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bornomala';
+    src: url('/fonts/Bornomala-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'UbuntuSans', 'Bornomala', sans-serif;
+}
+
+html, body {
+    font-family: 'UbuntuSans', 'Bornomala', sans-serif;
 }
 
 [x-cloak] {
