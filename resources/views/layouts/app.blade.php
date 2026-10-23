@@ -6,10 +6,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', 'Abhedya Foundation | Humanitarian Relief & Community Development')</title>
-    <meta name="description" content="@yield('meta_description', 'Abhedya Foundation is a dedicated non-profit organisation committed to education, healthcare, disaster relief, and community development across Bangladesh.')">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
 
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
@@ -52,7 +54,7 @@
             <div class="flex items-center justify-between h-18 sm:h-20">
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-                    <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition" />
+                    <img src="{{ asset('images/website_logo.png') }}" alt="Abhedya Foundation Logo" class="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition" />
                     <div>
                         <span class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">{{ __('ABHEDYA') }}</span>
                         <span class="text-[9px] sm:text-[10px] font-bold text-[#2375b8] tracking-widest uppercase block">{{ __('Foundation') }}</span>
@@ -250,7 +252,7 @@
                 <!-- Col 1: About & Identity -->
                 <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('images/website_logo.svg') }}" alt="Abhedya Foundation Logo" class="h-10 w-auto object-contain rounded-lg bg-white/90 p-1" />
+                        <img src="{{ asset('images/website_logo.png') }}" alt="Abhedya Foundation Logo" class="h-10 w-auto object-contain rounded-lg bg-white/90 p-1" />
                         <span class="text-xl font-bold text-white tracking-tight">{{ __('ABHEDYA FOUNDATION') }}</span>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
