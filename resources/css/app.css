@@ -54,6 +54,11 @@
 
 @theme {
     --font-sans: 'UbuntuSans', 'Bornomala', sans-serif;
+    --color-mastul-blue: #2375b8;
+    --color-mastul-hover: #1788bf;
+    --color-mastul-dark: #1771bf;
+    --color-mastul-ice: #f0f7fd;
+    --color-mastul-orange: #f97316;
 }
 
 html, body {
@@ -64,13 +69,35 @@ html, body {
     display: none !important;
 }
 
+/* Mastul Brand Utilities */
+.btn-mastul {
+    background-color: #2375b8;
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+.btn-mastul:hover {
+    background-color: #1788bf;
+    color: #ffffff;
+}
+
+.btn-mastul-orange {
+    background-color: #f97316;
+    color: #ffffff;
+    font-weight: 700;
+    transition: all 0.2s ease-in-out;
+}
+.btn-mastul-orange:hover {
+    background-color: #ea580c;
+    color: #ffffff;
+}
+
 /* Glass Capsule Navbar */
 .glass-capsule {
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    box-shadow: 0 10px 25px -5px rgba(35, 117, 184, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
 }
 
 .glass-capsule-scrolled {
@@ -78,7 +105,7 @@ html, body {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(226, 232, 240, 0.9);
-    box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 20px 25px -5px rgba(35, 117, 184, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
 }
 
 .mobile-nav-panel {
@@ -97,7 +124,7 @@ html, body {
     scrollbar-width: none;
 }
 
-/* Premium Card Hover & Elevation Micro-interactions */
+/* Premium Card Hover & Elevation Micro-interactions (Mastul Blue Theme) */
 .interactive-card {
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
@@ -109,9 +136,9 @@ html, body {
 
 .interactive-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.12),
-                0 10px 15px -5px rgba(15, 23, 42, 0.08);
-    border-color: rgba(16, 185, 129, 0.35);
+    box-shadow: 0 20px 30px -10px rgba(35, 117, 184, 0.16),
+                0 10px 15px -5px rgba(15, 23, 42, 0.06);
+    border-color: rgba(35, 117, 184, 0.35);
 }
 
 .interactive-card-subtle {
@@ -125,8 +152,8 @@ html, body {
 .interactive-card-subtle:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08),
-                0 4px 8px -2px rgba(16, 185, 129, 0.08);
-    border-color: rgba(16, 185, 129, 0.3);
+                0 4px 8px -2px rgba(35, 117, 184, 0.12);
+    border-color: rgba(35, 117, 184, 0.3);
 }
 
 .interactive-card-glow {
@@ -138,9 +165,9 @@ html, body {
 
 .interactive-card-glow:hover {
     transform: translateY(-5px);
-    box-shadow: 0 22px 35px -8px rgba(16, 185, 129, 0.2),
-                0 0 0 1px rgba(16, 185, 129, 0.25);
-    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 22px 35px -8px rgba(35, 117, 184, 0.25),
+                0 0 0 1px rgba(35, 117, 184, 0.3);
+    border-color: rgba(35, 117, 184, 0.5);
 }
 
 /* Card image zoom effect */
@@ -152,4 +179,5 @@ html, body {
 .group:hover .card-img-zoom {
     transform: scale(1.07);
 }
+
 

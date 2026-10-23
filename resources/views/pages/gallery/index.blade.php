@@ -6,14 +6,14 @@
 @section('content')
 
     <!-- Header Banner -->
-    <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-16">
+    <section class="bg-gradient-to-b from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
-                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">{{ __('Visual Field Reports') }}</span>
+                <span class="text-xs font-bold text-sky-300 uppercase tracking-widest">{{ __('Visual Field Reports') }}</span>
                 <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
                     {{ __('Photo Gallery') }}
                 </h1>
-                <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+                <p class="text-base sm:text-lg text-blue-100 leading-relaxed">
                     {{ __('Witness authentic moments of courage, education, and humanitarian relief across Bangladesh.') }}
                 </p>
             </div>
@@ -21,16 +21,16 @@
     </section>
 
     <!-- Gallery Section with Alpine.js Lightbox -->
-    <section class="py-16 bg-slate-50 min-h-[60vh]" x-data="{ selectedImage: null, selectedCaption: '', selectedTitle: '' }">
+    <section class="py-16 bg-[#f0f7fd]/30 min-h-[60vh]" x-data="{ selectedImage: null, selectedCaption: '', selectedTitle: '' }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Album Filter Pills -->
             <div class="flex items-center gap-2 mb-10 overflow-x-auto pb-2">
-                <a href="{{ route('gallery.index') }}" class="px-5 py-2 rounded-full text-xs font-bold transition {{ !$albumSlug ? 'bg-emerald-700 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200' }}">
+                <a href="{{ route('gallery.index') }}" class="px-5 py-2 rounded-full text-xs font-bold transition {{ !$albumSlug ? 'bg-[#2375b8] text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200' }}">
                     {{ __('All Photos') }}
                 </a>
                 @foreach($albums as $album)
-                    <a href="{{ route('gallery.index', ['album' => $album->slug]) }}" class="px-5 py-2 rounded-full text-xs font-bold transition whitespace-nowrap {{ $albumSlug === $album->slug ? 'bg-emerald-700 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200' }}">
+                    <a href="{{ route('gallery.index', ['album' => $album->slug]) }}" class="px-5 py-2 rounded-full text-xs font-bold transition whitespace-nowrap {{ $albumSlug === $album->slug ? 'bg-[#2375b8] text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200' }}">
                         {{ __($album->title) }} ({{ bn_num($album->images_count) }})
                     </a>
                 @endforeach
@@ -40,18 +40,18 @@
             @if($images->isNotEmpty())
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     @foreach($images as $img)
-                        <div class="group bg-white rounded-2xl border border-slate-100 shadow-sm cursor-pointer hover:shadow-md transition"
+                        <div class="group bg-white rounded-2xl border border-slate-200/80 shadow-sm cursor-pointer hover:shadow-md hover:border-[#2375b8] transition"
                              @click="selectedImage = '{{ $img->image }}'; selectedTitle = '{{ addslashes(__($img->title ?? 'Field Documentation')) }}'; selectedCaption = '{{ addslashes(__($img->caption ?? '')) }}'">
                             <div class="aspect-[4/3] bg-slate-100 overflow-hidden relative">
                                 <img src="{{ $img->image }}" alt="{{ __($img->title ?? 'Field Documentation') }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                                <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                    <div class="w-10 h-10 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow">
+                                <div class="absolute inset-0 bg-[#0c243c]/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                    <div class="w-10 h-10 rounded-full bg-white/95 text-[#2375b8] flex items-center justify-center shadow">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
                                     </div>
                                 </div>
                             </div>
                             <div class="p-4">
-                                <h3 class="font-bold text-sm text-slate-900 line-clamp-1">{{ __($img->title ?? 'Field Documentation') }}</h3>
+                                <h3 class="font-bold text-sm text-slate-900 group-hover:text-[#2375b8] transition line-clamp-1">{{ __($img->title ?? 'Field Documentation') }}</h3>
                                 @if($img->caption)
                                     <p class="text-xs text-slate-500 mt-1 line-clamp-2">{{ __($img->caption) }}</p>
                                 @endif
@@ -66,7 +66,7 @@
             @else
                 <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center max-w-md mx-auto">
                     <p class="text-slate-500 mb-4">{{ __('No images in this album yet.') }}</p>
-                    <a href="{{ route('gallery.index') }}" class="font-bold text-sm text-emerald-700">{{ __('View all photos') }}</a>
+                    <a href="{{ route('gallery.index') }}" class="font-bold text-sm text-[#2375b8] hover:underline">{{ __('View all photos') }}</a>
                 </div>
             @endif
 
