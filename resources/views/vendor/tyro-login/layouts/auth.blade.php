@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="color-scheme" content="light dark">
 
-    <title>{{ $branding['app_name'] ?? config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', __('Sign In') . ' - ' . ($branding['app_name'] ?? config('app.name', 'Abhedya Foundation')))</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon-32x32.png') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

@@ -362,15 +362,18 @@
     /* Main Content */
     .main-content {
         flex: 1;
+        min-width: 0;
+        max-width: calc(100vw - 280px);
         margin-left: 280px;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        transition: margin-left 0.3s ease;
+        transition: margin-left 0.3s ease, max-width 0.3s ease;
     }
 
     .sidebar.collapsed ~ .main-content {
         margin-left: 25px;
+        max-width: calc(100vw - 25px);
     }
 
     /* Top Bar - shadcn style */
@@ -832,6 +835,9 @@
     /* Tables - shadcn style */
     .table-container {
         overflow-x: auto;
+        width: 100%;
+        max-width: 100%;
+        -webkit-overflow-scrolling: touch;
     }
 
     .table {
@@ -2339,6 +2345,7 @@
 
         .main-content {
             margin-left: 0;
+            max-width: 100vw;
         }
 
         .mobile-menu-btn {

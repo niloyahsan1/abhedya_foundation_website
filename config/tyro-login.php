@@ -243,21 +243,21 @@ return [
     'branding' => [
         // Your application name shown on all auth pages
         // Defaults to APP_NAME from Laravel config, or 'Laravel' if not set
-        'app_name' => env('TYRO_LOGIN_APP_NAME', env('APP_NAME', 'Laravel')),
+        'app_name' => env('TYRO_LOGIN_APP_NAME', env('APP_NAME', 'Abhedya Foundation')),
 
         // Logo URL (recommended: SVG or high-res PNG)
         // Set to null to use text-based logo with app name
         // Example: 'https://yourapp.com/logo.svg' or '/images/logo.png'
-        'logo' => env('TYRO_LOGIN_LOGO', null),
+        'logo' => env('TYRO_LOGIN_LOGO', '/images/website_logo.png'),
 
         // Dark mode logo URL (falls back to the light logo when not set)
         // Example: 'https://yourapp.com/logo-dark.svg' or '/images/logo-dark.png'
-        'logo_dark' => env('TYRO_LOGIN_LOGO_DARK', null),
+        'logo_dark' => env('TYRO_LOGIN_LOGO_DARK', '/images/website_logo.png'),
 
         // Logo height for proper display scaling
         // Accepts any valid CSS height value (px, rem, etc.)
         // Common values: '32px', '48px', '3rem'
-        'logo_height' => env('TYRO_LOGIN_LOGO_HEIGHT', '48px'),
+        'logo_height' => env('TYRO_LOGIN_LOGO_HEIGHT', '54px'),
 
         // Logo border radius for rounded logos (e.g. '50%' for full circle, '8px' for rounded corners)
         // Default is '0' to maintain backward compatibility
@@ -299,7 +299,7 @@ return [
     */
     'registration' => [
         // Whether registration is enabled
-        'enabled' => env('TYRO_LOGIN_REGISTRATION_ENABLED', true),
+        'enabled' => env('TYRO_LOGIN_REGISTRATION_ENABLED', false),
 
         // Whether to automatically log in the user after registration
         'auto_login' => env('TYRO_LOGIN_REGISTRATION_AUTO_LOGIN', true),

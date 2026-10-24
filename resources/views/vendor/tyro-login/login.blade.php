@@ -1,277 +1,402 @@
-@extends('tyro-login::layouts.auth')
+@extends('layouts.app')
+
+@section('title', __('Sign In') . ' | ' . __('Abhedya Foundation'))
+@section('meta_description', __('Sign in to access your Abhedya Foundation account.'))
 
 @section('content')
-@php
-$passkeysEnabled = ($passkeysEnabled ?? false);
-$webauthnToken = $passkeysEnabled ? ' webauthn' : '';
-@endphp
-<div class="auth-container {{ $layout }}" @if($layout==='fullscreen' ) style="background-image: url('{{ $backgroundImage }}');" @endif @if($layout==='youtube-video') id="tyro-youtube-container" @endif>
-    @if(in_array($layout, ['split-left', 'split-right']))
-    <div class="background-panel" style="background-image: url('{{ $backgroundImage }}');">
-        <div class="background-panel-content">
-            <h1>{{ $pageContent['background_title'] ?? 'Welcome Back!' }}</h1>
-            <p>{{ $pageContent['background_description'] ?? 'Sign in to access your account and continue where you left off. We\'re glad to see you again.' }}</p>
+<div class="site-login-section">
+    <div class="site-login-card">
+        
+        <!-- Brand Header -->
+        <div class="site-login-header">
+            <a href="{{ route('home') }}" class="site-login-logo-link" title="Abhedya Foundation">
+                <img src="{{ asset('images/website_logo.png') }}" alt="Abhedya Foundation" class="site-login-logo" />
+            </a>
+            <h1 class="site-login-title">{{ __('Abhedya Foundation') }}</h1>
         </div>
-    </div>
-    @endif
 
-    <div class="form-panel">
-        <div class="form-card">
-            <!-- Logo -->
-            <div class="logo-container">
-                @if($branding['logo'] ?? false)
-                <img src="{{ $branding['logo'] }}" alt="{{ $branding['app_name'] ?? config('app.name') }}" class="logo-light">
-                @if($branding['logo_dark'] ?? false)
-                <img src="{{ $branding['logo_dark'] }}" alt="{{ $branding['app_name'] ?? config('app.name') }}" class="logo-dark">
-                @endif
-                @else
-                <div class="app-logo">
-                    <svg viewBox="0 0 50 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M49.626 11.564a.809.809 0 0 1 .028.209v10.972a.8.8 0 0 1-.402.694l-9.209 5.302V39.25c0 .286-.152.55-.4.694L20.42 51.01c-.044.025-.092.041-.14.058-.018.006-.035.017-.054.022a.805.805 0 0 1-.41 0c-.022-.006-.042-.018-.063-.026-.044-.016-.09-.03-.132-.054L.402 39.944A.801.801 0 0 1 0 39.25V6.334c0-.072.01-.142.028-.21.006-.023.02-.044.028-.067.015-.042.029-.085.051-.124.015-.026.037-.047.055-.071.023-.032.044-.065.071-.093.023-.023.053-.04.079-.06.029-.024.055-.05.088-.069h.001l9.61-5.533a.802.802 0 0 1 .8 0l9.61 5.533h.002c.032.02.059.045.088.068.026.02.055.038.078.06.028.029.048.062.072.094.017.024.04.045.054.071.023.04.036.082.052.124.008.023.022.044.028.068a.809.809 0 0 1 .028.209v20.559l8.008-4.611v-10.51c0-.07.01-.141.028-.208.007-.024.02-.045.028-.068.016-.042.03-.085.052-.124.015-.026.037-.047.054-.071.024-.032.044-.065.072-.093.023-.023.052-.04.078-.06.03-.024.056-.05.088-.069h.001l9.611-5.533a.801.801 0 0 1 .8 0l9.61 5.533c.034.02.06.045.09.068.025.02.054.038.077.06.028.029.048.062.072.094.018.024.04.045.054.071.023.039.036.082.052.124.009.023.022.044.028.068zm-1.574 10.718v-9.124l-3.363 1.936-4.646 2.675v9.124l8.01-4.611zm-9.61 16.505v-9.13l-4.57 2.61-13.05 7.448v9.216l17.62-10.144zM1.602 7.719v31.068L19.22 48.93v-9.214l-9.204-5.209-.003-.002-.004-.002c-.031-.018-.057-.044-.086-.066-.025-.02-.054-.036-.076-.058l-.002-.003c-.026-.025-.044-.056-.066-.084-.02-.027-.044-.05-.06-.078l-.001-.003c-.018-.03-.029-.066-.042-.1-.013-.03-.03-.058-.038-.09v-.001c-.01-.038-.012-.078-.016-.117-.004-.03-.012-.06-.012-.09v-.002-21.481L4.965 9.654 1.602 7.72zm8.81-5.994L2.405 6.334l8.005 4.609 8.006-4.61-8.006-4.608zm4.164 28.764l4.645-2.674V7.719l-3.363 1.936-4.646 2.675v20.096l3.364-1.937zM39.243 7.164l-8.006 4.609 8.006 4.609 8.005-4.61-8.005-4.608zm-.801 10.605l-4.646-2.675-3.363-1.936v9.124l4.645 2.674 3.364 1.937v-9.124zM20.02 38.33l11.743-6.704 5.87-3.35-8-4.606-9.211 5.303-8.395 4.833 7.993 4.524z" fill="currentColor" />
-                    </svg>
-                </div>
-                @endif
+        <!-- Success Alert -->
+        @if(session('success'))
+        <div class="site-login-alert alert-success">
+            <svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>{{ session('success') }}</span>
+        </div>
+        @endif
+
+        <!-- Error Alert -->
+        @if($errors->any())
+        <div class="site-login-alert alert-danger">
+            <svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>{{ $errors->first() }}</span>
+        </div>
+        @endif
+
+        <!-- Login Form -->
+        <form method="POST" action="{{ route('tyro-login.login.submit') }}" class="site-login-form">
+            @csrf
+
+            <!-- Email Field -->
+            <div class="site-field-group">
+                <label for="email" class="site-field-label">
+                    {{ __('Email Address') }} <span class="required-star">*</span>
+                </label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    required 
+                    value="{{ old('email') }}" 
+                    placeholder="example@gmail.com" 
+                    class="site-field-input @error('email') has-error @enderror"
+                >
             </div>
 
-            <!-- Header -->
-            <div class="form-header">
-                <h2>Log in to your account</h2>
-                @if($features['disable_password'] ?? false)
-                    @if(($loginField ?? 'email') === 'username')
-                    <p>Enter your username below to log in</p>
-                    @elseif(($loginField ?? 'email') === 'both')
-                    <p>Enter your email or username below to log in</p>
-                    @else
-                    <p>Enter your email below to log in</p>
-                    @endif
-                @else
-                    @if(($loginField ?? 'email') === 'both')
-                    <p>Enter your email or username and password below to log in</p>
-                    @elseif(($loginField ?? 'email') === 'username')
-                    <p>Enter your username and password below to log in</p>
-                    @else
-                    <p>Enter your email and password below to log in</p>
-                    @endif
-                @endif
+            <!-- Password Field with Embedded Eye Toggle -->
+            <div class="site-field-group">
+                <label for="password" class="site-field-label">
+                    {{ __('Password') }} <span class="required-star">*</span>
+                </label>
+                <div class="password-wrapper">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        placeholder="{{ __('Enter your password') }}" 
+                        class="site-field-input password-input @error('password') has-error @enderror"
+                    >
+                    <button 
+                        type="button" 
+                        id="togglePasswordBtn" 
+                        class="password-eye-btn" 
+                        tabindex="-1"
+                        aria-label="Toggle password visibility"
+                    >
+                        <!-- Eye Open Icon (default masked state) -->
+                        <svg id="eyeOpenIcon" class="eye-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                        <!-- Eye Slashed Icon (shown when unmasked) -->
+                        <svg id="eyeClosedIcon" class="eye-svg is-hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
-            <!-- Success Message -->
-            @if(session('success'))
-            <div class="alert alert-success" style="padding: 0.875rem 1rem; margin-bottom: 1.5rem; background-color: #d1fae5; border: 1px solid #6ee7b7; border-radius: 0.5rem; color: #065f46; font-size: 0.9375rem;">
-                {{ session('success') }}
+            <!-- Remember Me -->
+            <div class="site-remember-row">
+                <label class="site-remember-label">
+                    <input type="checkbox" id="remember" name="remember" class="site-remember-checkbox" {{ old('remember') ? 'checked' : '' }}>
+                    <span>{{ __('Remember me') }}</span>
+                </label>
             </div>
-            @endif
 
-            @if($errors->any())
-            <div class="alert alert-error" style="padding: 0.875rem 1rem; margin-bottom: 1.5rem; background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 0.5rem; color: #991b1b; font-size: 0.9375rem;">
-                {{ $errors->first() }}
-            </div>
-            <style>
-                html.dark .alert-error { background-color: #450a0a !important; border-color: #7f1d1d !important; color: #fca5a5 !important; }
-            </style>
-            @endif
+            <!-- Submit Button -->
+            <button type="submit" class="site-submit-btn">
+                {{ __('Sign In') }}
+            </button>
+        </form>
 
-            <!-- Passkey Login -->
-            @if($passkeysEnabled)
-            @include('tyro-login::partials.passkey-login', ['features' => $features ?? []])
-            @endif
-
-            <!-- Login Form -->
-            <form method="POST" action="{{ route('tyro-login.login.submit') }}">
-                @csrf
-
-                <!-- Login Field (Email, Username, or Both) -->
-                @if(($loginField ?? 'email') === 'both')
-                <div class="form-group">
-                    <label for="login" class="form-label">Email or Username</label>
-                    <input type="text" id="login" name="login" class="form-input @error('login') is-invalid @enderror" value="{{ old('login') }}" required autocomplete="username{{ $webauthnToken }}" autofocus placeholder="Email or username">
-                    @error('login')
-                    <span class="error-message">{{ $message }}</span>
-                    @enderror
-                </div>
-                @elseif(($loginField ?? 'email') === 'username')
-                <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" class="form-input @error('username') is-invalid @enderror" value="{{ old('username') }}" required autocomplete="username{{ $webauthnToken }}" autofocus placeholder="Username">
-                    @error('username')
-                    <span class="error-message">{{ $message }}</span>
-                    @enderror
-                </div>
-                @else
-                <div class="form-group">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-input @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email{{ $webauthnToken }}" autofocus placeholder="email@example.com">
-                    @error('email')
-                    <span class="error-message">{{ $message }}</span>
-                    @enderror
-                </div>
-                @endif
-
-                @if(!($features['disable_password'] ?? false))
-                <!-- Password Field -->
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-input @error('password') is-invalid @enderror" required autocomplete="current-password" placeholder="Password">
-                    @error('password')
-                    <span class="error-message">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <!-- Remember Me & Forgot Password -->
-                <div class="form-options">
-                    @if($features['remember_me'] ?? true)
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="remember" name="remember" class="checkbox-input" {{ old('remember') ? 'checked' : '' }}>
-                        <label for="remember" class="checkbox-label">Remember me</label>
-                    </div>
-                    @else
-                    <div></div>
-                    @endif
-
-                    @if($features['forgot_password'] ?? true)
-                    <a href="{{ route('tyro-login.password.request') }}" class="form-link">Forgot password?</a>
-                    @endif
-                </div>
-                @endif
-
-                <!-- Captcha -->
-                @if($captchaEnabled ?? false)
-                <div class="form-group captcha-group">
-                    <label for="captcha_answer" class="form-label">{{ $captchaConfig['label'] ?? 'Security Check' }}</label>
-                    <div class="captcha-container">
-                        <span class="captcha-question">{{ $captchaQuestion }}</span>
-                        <input type="number" id="captcha_answer" name="captcha_answer" class="form-input captcha-input @error('captcha_answer') is-invalid @enderror" required autocomplete="off" placeholder="{{ $captchaConfig['placeholder'] ?? 'Enter the answer' }}">
-                    </div>
-                    @error('captcha_answer')
-                    <span class="error-message">{{ $message }}</span>
-                    @enderror
-                </div>
-                @endif
-
-                @if(!($features['disable_password'] ?? false))
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">
-                    Log in
-                </button>
-                @endif
-            </form>
-
-            <!-- Magic Login Button -->
-            @if(config('tyro-login.features.magic_links_enabled', false))
-            @if(!($features['disable_password'] ?? false))
-            <div class="form-divider" style="margin: 1.5rem 0; text-align: center; position: relative;">
-                <span style="background-color: var(--background); padding: 0 1rem; position: relative; z-index: 1; color: #9ca3af; font-size: 0.875rem;">or</span>
-                <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background-color: #e5e7eb;"></div>
-            </div>
-            @endif
-
-            <form method="POST" action="{{ route('tyro-login.magic-link.request') }}" id="magic-link-form" @if(!($features['disable_password'] ?? false)) style="margin-top: 0;" @else style="margin-top: 0.5rem;" @endif>
-                @csrf
-                <input type="hidden" name="email" id="magic-email" value="">
-                <input type="hidden" name="username" id="magic-username" value="">
-                <input type="hidden" name="login" id="magic-login" value="">
-                
-                <button type="submit" class="btn btn-secondary" id="magic-login-btn" style="width: 100%; background-color: #f3f4f6; color: #374151; border: 1px solid #e5e7eb;">
-                    <svg style="width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; margin-right: 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                    Send Magic Login Link
-                </button>
-            </form>
-
-            <script>
-                (function() {
-                    var magicBtn = document.getElementById('magic-login-btn');
-                    var magicForm = document.getElementById('magic-link-form');
-
-                    magicBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-
-                        @if(($loginField ?? 'email') === 'both')
-                            var loginValue = document.getElementById('login')?.value || '';
-                            document.getElementById('magic-login').value = loginValue;
-                        @elseif(($loginField ?? 'email') === 'username')
-                            var usernameValue = document.getElementById('username')?.value || '';
-                            document.getElementById('magic-username').value = usernameValue;
-                        @else
-                            var emailValue = document.getElementById('email')?.value || '';
-                            document.getElementById('magic-email').value = emailValue;
-                        @endif
-
-                        magicBtn.disabled = true;
-                        magicBtn.classList.add('loading');
-                        magicBtn.innerHTML = '<svg style="width:1.25rem;height:1.25rem;display:inline-block;vertical-align:middle;margin-right:0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>Working...';
-
-                        magicForm.submit();
-                    });
-
-                    magicForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        magicBtn.click();
-                    });
-                })();
-            </script>
-            @endif
-            <!-- Register Link -->
-            @if($registrationEnabled ?? true)
-            <div class="form-footer">
-                <p>
-                    Don't have an account?
-                    <a href="{{ route('tyro-login.register') }}" class="form-link">Sign up</a>
-                </p>
-            </div>
-            @endif
-
-            <!-- Social Login -->
-            @include('tyro-login::partials.social-login', ['action' => 'login'])
+        <!-- Back Link -->
+        <div class="site-login-footer">
+            <a href="{{ route('home') }}" class="site-back-link">
+                &larr; {{ __('Back to website') }}
+            </a>
         </div>
     </div>
 </div>
 
-@include('tyro-login::partials.backgrounds')
-
 <style>
-    .captcha-group {
+    /* ========================================================
+       ABHEDYA FOUNDATION DEDICATED LOGIN STYLES
+       Seamlessly inherits site colors, fonts, and layout
+       ======================================================== */
+    .site-login-section {
+        min-height: calc(100vh - 350px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3.5rem 1.25rem;
+        background-color: #f8fafc;
+    }
+
+    .site-login-card {
+        width: 100%;
+        max-width: 420px;
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+        padding: 2.25rem 2rem 1.75rem;
+        box-sizing: border-box;
+    }
+
+    .site-login-header {
+        text-align: center;
+        margin-bottom: 1.75rem;
+    }
+
+    .site-login-logo-link {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        text-decoration: none;
+    }
+
+    .site-login-logo {
+        height: 48px;
+        width: auto;
+        max-width: 180px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .site-login-title {
+        font-size: 1.375rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0 0 0.25rem 0;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+    }
+
+
+    /* Alerts */
+    .site-login-alert {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.75rem 0.875rem;
+        border-radius: 10px;
+        font-size: 0.8125rem;
+        line-height: 1.4;
         margin-bottom: 1.25rem;
     }
 
-    .captcha-container {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+    .site-login-alert .alert-icon {
+        width: 18px;
+        height: 18px;
+        shrink: 0;
     }
 
-    .captcha-question {
+    .alert-danger {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #b91c1c;
+    }
+
+    .alert-success {
+        background-color: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        color: #15803d;
+    }
+
+    /* Form Fields */
+    .site-login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.125rem;
+    }
+
+    .site-field-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        text-align: left;
+    }
+
+    .site-field-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #334155;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .required-star {
+        color: #ef4444;
+    }
+
+    .site-field-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.6875rem 0.875rem;
+        font-size: 0.875rem;
+        color: #0f172a;
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        transition: all 0.15s ease-in-out;
+        outline: none !important;
+    }
+
+    .site-field-input:hover {
+        border-color: #94a3b8;
+    }
+
+    .site-field-input:focus {
+        background-color: #ffffff;
+        border-color: #2375b8;
+        box-shadow: 0 0 0 3px rgba(35, 117, 184, 0.15);
+    }
+
+    .site-field-input.has-error {
+        border-color: #ef4444;
+        background-color: #fff5f5;
+    }
+
+    /* Embedded Password Visibility Toggle */
+    .password-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .password-wrapper .password-input {
+        padding-right: 2.75rem !important;
+    }
+
+    .password-eye-btn {
+        position: absolute;
+        right: 0.625rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        padding: 0.375rem;
+        color: #94a3b8;
+        cursor: pointer;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        border-radius: 6px;
+        transition: color 0.15s ease, background-color 0.15s ease;
+        outline: none !important;
+    }
+
+    .password-eye-btn:hover {
+        color: #2375b8;
+        background-color: #f1f5f9;
+    }
+
+    .password-eye-btn .eye-svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+    }
+
+    .password-eye-btn .eye-svg.is-hidden {
+        display: none !important;
+    }
+
+    /* Remember Row */
+    .site-remember-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.125rem;
+    }
+
+    .site-remember-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8125rem;
+        color: #475569;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .site-remember-checkbox {
+        width: 16px;
+        height: 16px;
+        accent-color: #2375b8;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    /* Submit Button */
+    .site-submit-btn {
+        width: 100%;
+        box-sizing: border-box;
         padding: 0.75rem 1rem;
-        background-color: var(--muted);
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #ffffff;
+        background-color: #1771bf;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px -1px rgba(23, 113, 191, 0.25);
+        transition: all 0.15s ease-in-out;
+        margin-top: 0.375rem;
+    }
+
+    .site-submit-btn:hover {
+        background-color: #1565a8;
+        box-shadow: 0 6px 12px -2px rgba(23, 113, 191, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .site-submit-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Footer Back Link */
+    .site-login-footer {
+        margin-top: 1.5rem;
+        padding-top: 1.125rem;
+        border-top: 1px solid #f1f5f9;
+        text-align: center;
+    }
+
+    .site-back-link {
+        font-size: 0.8125rem;
         font-weight: 600;
-        font-size: 1rem;
-        color: var(--foreground);
-        white-space: nowrap;
-        min-width: 100px;
-        text-align: center;
+        color: #64748b;
+        text-decoration: none;
+        transition: color 0.15s ease;
     }
 
-    .captcha-input {
-        flex: 1;
-        text-align: center;
-        font-weight: 500;
-    }
-
-    /* Hide number input spinners */
-    .captcha-input::-webkit-outer-spin-button,
-    .captcha-input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    .captcha-input[type=number] {
-        -moz-appearance: textfield;
+    .site-back-link:hover {
+        color: #2375b8;
+        text-decoration: underline;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var pwd = document.getElementById('password');
+        var btn = document.getElementById('togglePasswordBtn');
+        var openIcon = document.getElementById('eyeOpenIcon');
+        var closedIcon = document.getElementById('eyeClosedIcon');
+
+        if (btn && pwd && openIcon && closedIcon) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var isMasked = pwd.getAttribute('type') === 'password';
+                pwd.setAttribute('type', isMasked ? 'text' : 'password');
+
+                if (isMasked) {
+                    openIcon.classList.add('is-hidden');
+                    closedIcon.classList.remove('is-hidden');
+                    btn.setAttribute('aria-label', 'Hide password');
+                } else {
+                    openIcon.classList.remove('is-hidden');
+                    closedIcon.classList.add('is-hidden');
+                    btn.setAttribute('aria-label', 'Show password');
+                }
+            });
+        }
+    });
+</script>
 @endsection
