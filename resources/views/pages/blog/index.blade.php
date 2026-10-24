@@ -39,7 +39,7 @@
                                 <article class="group interactive-card bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col md:flex-row">
                                     @if($post->featured_image)
                                         <div class="md:w-1/3 h-52 md:h-auto bg-slate-100 relative shrink-0 overflow-hidden">
-                                            <img src="{{ $post->featured_image }}" alt="{{ __($post->title) }}" class="w-full h-full object-cover card-img-zoom">
+                                            <img src="{{ $post->featured_image }}" alt="{{ $post->display_title }}" class="w-full h-full object-cover card-img-zoom">
                                         </div>
                                     @endif
                                     <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
@@ -54,11 +54,11 @@
                                             </div>
                                             <h2 class="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
                                                 <a href="{{ route('blog.show', $post->slug) }}" class="group-hover:text-[#2375b8] transition">
-                                                    {{ __($post->title) }}
+                                                    {{ $post->display_title }}
                                                 </a>
                                             </h2>
                                             <p class="text-sm text-slate-600 line-clamp-3">
-                                                {{ __($post->summary) }}
+                                                {{ $post->display_summary }}
                                             </p>
                                         </div>
                                         <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">

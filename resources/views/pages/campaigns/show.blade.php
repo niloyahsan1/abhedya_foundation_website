@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __($campaign->title) . ' | ' . __('Abhedya Foundation'))
-@section('meta_description', Str::limit(strip_tags(__($campaign->short_description ?? $campaign->description)), 160))
+@section('title', $campaign->display_title . ' | ' . __('Abhedya Foundation'))
+@section('meta_description', Str::limit(strip_tags($campaign->display_short_description ?: $campaign->display_description), 160))
 
 @section('content')
 
@@ -15,7 +15,7 @@
                     <span class="text-blue-200">{{ $campaign->status === 'active' ? __('Active') : __('Completed') }}</span>
                 </div>
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-                    {{ __($campaign->title) }}
+                    {{ $campaign->display_title }}
                 </h1>
                 <div class="flex flex-wrap items-center gap-4 text-xs text-slate-300 pt-2">
                     @if($campaign->start_date)
@@ -37,19 +37,19 @@
                 <div class="lg:col-span-8 space-y-10">
                     @if($campaign->featured_image)
                         <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-100">
-                            <img src="{{ $campaign->featured_image }}" alt="{{ __($campaign->title) }}" class="w-full max-h-[440px] object-cover">
+                            <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->display_title }}" class="w-full max-h-[440px] object-cover">
                         </div>
                     @endif
 
                     @if($campaign->short_description)
                         <div class="p-6 rounded-2xl bg-[#f0f7fd] border border-blue-100 text-slate-800 font-medium text-lg leading-relaxed">
-                            {{ __($campaign->short_description) }}
+                            {{ $campaign->display_short_description }}
                         </div>
                     @endif
 
                     <!-- Detailed Content -->
                     <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed text-base sm:text-lg space-y-6">
-                        {!! bn_content($campaign->description) !!}
+                        {!! $campaign->display_description !!}
                     </div>
 
                     <!-- Published Updates -->

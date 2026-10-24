@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __($project->title) . ' | ' . __('Abhedya Foundation'))
-@section('meta_description', Str::limit(strip_tags(__($project->summary ?? $project->description)), 160))
+@section('title', $project->display_title . ' | ' . __('Abhedya Foundation'))
+@section('meta_description', Str::limit(strip_tags($project->display_summary ?: $project->display_description), 160))
 
 @section('content')
 
@@ -14,13 +14,13 @@
                 <span class="text-blue-200">{{ $project->status === 'completed' ? __('Completed') : ($project->status === 'ongoing' ? __('Ongoing') : __('Planned')) }}</span>
             </div>
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-                {{ __($project->title) }}
+                {{ $project->display_title }}
             </h1>
             <div class="flex flex-wrap items-center gap-4 text-xs text-slate-300 pt-2">
                 @if($project->location)
                     <div class="flex items-center gap-1">
                         <svg class="w-4 h-4 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                        <span>{{ __($project->location) }}</span>
+                        <span>{{ $project->display_location }}</span>
                     </div>
                 @endif
                 @if($project->start_date)
@@ -41,19 +41,19 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($project->featured_image)
                 <div class="rounded-2xl overflow-hidden mb-10 shadow-sm border border-slate-100">
-                    <img src="{{ $project->featured_image }}" alt="{{ __($project->title) }}" class="w-full max-h-[480px] object-cover">
+                    <img src="{{ $project->featured_image }}" alt="{{ $project->display_title }}" class="w-full max-h-[480px] object-cover">
                 </div>
             @endif
 
             @if($project->summary)
                 <div class="p-6 rounded-2xl bg-[#f0f7fd] border border-blue-100 mb-10 text-slate-800 font-medium text-base sm:text-lg leading-relaxed">
-                    {{ __($project->summary) }}
+                    {{ $project->display_summary }}
                 </div>
             @endif
 
             <!-- Formatted Content -->
             <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6 text-base sm:text-lg">
-                {!! bn_content($project->description) !!}
+                {!! $project->display_description !!}
             </div>
 
             <!-- Share & CTA -->

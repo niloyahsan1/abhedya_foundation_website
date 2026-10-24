@@ -39,10 +39,10 @@
                         <div class="group interactive-card bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
                             <div class="h-48 bg-slate-200 relative overflow-hidden">
                                 @if($campaign->featured_image)
-                                    <img src="{{ $campaign->featured_image }}" alt="{{ __($campaign->title) }}" class="w-full h-full object-cover card-img-zoom">
+                                    <img src="{{ $campaign->featured_image }}" alt="{{ $campaign->display_title }}" class="w-full h-full object-cover card-img-zoom">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1771bf] to-[#0c243c] text-white font-bold text-base px-6 text-center">
-                                        {{ __($campaign->title) }}
+                                        {{ $campaign->display_title }}
                                     </div>
                                 @endif
                                 <div class="absolute top-3 right-3">
@@ -55,11 +55,11 @@
                                 <div class="space-y-3">
                                     <h2 class="text-xl font-bold text-slate-900 leading-snug">
                                         <a href="{{ route('campaigns.show', $campaign->slug) }}" class="group-hover:text-[#2375b8] transition">
-                                            {{ __($campaign->title) }}
+                                            {{ $campaign->display_title }}
                                         </a>
                                     </h2>
                                     <p class="text-sm text-slate-600 line-clamp-3">
-                                        {{ __($campaign->short_description) }}
+                                        {{ $campaign->display_short_description }}
                                     </p>
                                 </div>
 

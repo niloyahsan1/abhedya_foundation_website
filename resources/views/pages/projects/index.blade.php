@@ -46,10 +46,10 @@
                         <div class="group interactive-card bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
                             <div class="h-48 bg-slate-100 relative overflow-hidden">
                                 @if($project->featured_image)
-                                    <img src="{{ $project->featured_image }}" alt="{{ __($project->title) }}" class="w-full h-full object-cover card-img-zoom">
+                                    <img src="{{ $project->featured_image }}" alt="{{ $project->display_title }}" class="w-full h-full object-cover card-img-zoom">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f0f7fd] to-blue-100 text-[#2375b8] font-bold text-sm px-6 text-center">
-                                        {{ __($project->title) }}
+                                        {{ $project->display_title }}
                                     </div>
                                 @endif
                                 <div class="absolute top-3 right-3">
@@ -63,16 +63,16 @@
                                     @if($project->location)
                                         <div class="flex items-center gap-1 text-xs text-slate-500 font-medium">
                                             <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                                            {{ __($project->location) }}
+                                            {{ $project->display_location }}
                                         </div>
                                     @endif
                                     <h2 class="text-xl font-bold text-slate-900 leading-snug">
                                         <a href="{{ route('projects.show', $project->slug) }}" class="group-hover:text-[#2375b8] transition">
-                                            {{ __($project->title) }}
+                                            {{ $project->display_title }}
                                         </a>
                                     </h2>
                                     <p class="text-sm text-slate-600 line-clamp-3">
-                                        {{ __($project->summary) }}
+                                        {{ $project->display_summary }}
                                     </p>
                                 </div>
                                 <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">

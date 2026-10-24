@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __($post->title) . ' | ' . __('Abhedya Foundation'))
-@section('meta_description', Str::limit(strip_tags(__($post->summary ?? $post->content)), 160))
+@section('title', $post->display_title . ' | ' . __('Abhedya Foundation'))
+@section('meta_description', Str::limit(strip_tags($post->display_summary ?: $post->display_content), 160))
 
 @section('content')
 
@@ -16,7 +16,7 @@
                 @endif
             </div>
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-                {{ __($post->title) }}
+                {{ $post->display_title }}
             </h1>
             <div class="flex flex-wrap items-center gap-4 text-xs text-slate-300 pt-2">
                 <span>{{ __('Published:') }} {{ $post->published_at ? bn_date($post->published_at, 'F d, Y') : bn_date($post->created_at, 'F d, Y') }}</span>
@@ -31,18 +31,18 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($post->featured_image)
                 <div class="rounded-2xl overflow-hidden mb-10 shadow-sm border border-slate-100">
-                    <img src="{{ $post->featured_image }}" alt="{{ __($post->title) }}" class="w-full max-h-[480px] object-cover">
+                    <img src="{{ $post->featured_image }}" alt="{{ $post->display_title }}" class="w-full max-h-[480px] object-cover">
                 </div>
             @endif
 
             @if($post->summary)
                 <div class="p-6 rounded-2xl bg-[#f0f7fd] border border-blue-100 mb-10 text-slate-800 font-medium text-lg leading-relaxed">
-                    {{ __($post->summary) }}
+                    {{ $post->display_summary }}
                 </div>
             @endif
 
             <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6 text-base sm:text-lg">
-                {!! bn_content($post->content) !!}
+                {!! $post->display_content !!}
             </div>
 
             <!-- Tags -->
