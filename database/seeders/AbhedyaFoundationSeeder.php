@@ -50,10 +50,10 @@ class AbhedyaFoundationSeeder extends Seeder
             ['key' => 'social_youtube', 'label' => 'YouTube Channel', 'value' => 'https://youtube.com/@abhedyafoundation', 'group' => 'social', 'type' => 'text'],
 
             // Donation Instructions
-            ['key' => 'donation_bkash_number', 'label' => 'bKash Merchant/Personal Number', 'value' => '01700-123456', 'group' => 'donation', 'type' => 'text'],
-            ['key' => 'donation_nagad_number', 'label' => 'Nagad Number', 'value' => '01800-123456', 'group' => 'donation', 'type' => 'text'],
-            ['key' => 'donation_rocket_number', 'label' => 'Rocket Number', 'value' => '01900-123456-7', 'group' => 'donation', 'type' => 'text'],
-            ['key' => 'donation_bank_details', 'label' => 'Bank Transfer Details', 'value' => "Bank Name: Dutch-Bangla Bank PLC\nAccount Name: ABHEDYA FOUNDATION\nAccount No: 115.120.0094821\nBranch: Uttara Branch, Dhaka\nRouting No: 090270000", 'group' => 'donation', 'type' => 'textarea'],
+            ['key' => 'donation_bkash_number', 'label' => 'bKash Merchant/Personal Number', 'value' => '01518913960', 'group' => 'donation', 'type' => 'text'],
+            ['key' => 'donation_nagad_number', 'label' => 'Nagad Number', 'value' => '01518913960', 'group' => 'donation', 'type' => 'text'],
+            ['key' => 'donation_rocket_number', 'label' => 'Rocket Number', 'value' => '01518913960', 'group' => 'donation', 'type' => 'text'],
+            ['key' => 'donation_bank_details', 'label' => 'Bank Transfer Details', 'value' => "Bank Name: BRAC Bank PLC\r\nAccount Name: ABHEDYA FOUNDATION\r\nAccount No: 1054859470001\r\nBranch: MOHAKHALI BRANCH\r\nRouting No: 060261384", 'group' => 'donation', 'type' => 'textarea'],
             ['key' => 'donation_guidelines', 'label' => 'Donor Instructions', 'value' => 'After completing your transfer via bKash, Nagad, Rocket, or Bank, please submit your transaction details below. Our team verifies every record before marking donations confirmed.', 'group' => 'donation', 'type' => 'textarea'],
         ];
 
