@@ -50,8 +50,8 @@
             ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-md shadow-slate-900/5' 
             : 'bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs'"
     >
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-18 sm:h-20">
+        <div class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+            <div class="flex items-center justify-between h-18 sm:h-20 gap-2 xl:gap-4 flex-nowrap">
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
                     <img src="{{ asset('images/website_logo.png') }}" alt="Abhedya Foundation Logo" class="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition" />
@@ -62,24 +62,24 @@
                 </a>
 
                 <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
-                    <a href="{{ route('home') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('home') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Home') }}</a>
-                    <a href="{{ route('about') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('about') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('About Us') }}</a>
-                    <a href="{{ route('projects.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('projects.*') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Projects') }}</a>
-                    <a href="{{ route('campaigns.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('campaigns.*') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Campaigns') }}</a>
-                    <a href="{{ route('blog.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('blog.*') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('News & Blog') }}</a>
-                    <a href="{{ route('gallery.index') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('gallery.index') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Gallery') }}</a>
-                    <a href="{{ route('contact') }}" class="px-3 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold transition {{ request()->routeIs('contact') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Contact') }}</a>
+                <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1.5 2xl:gap-2 shrink-0 flex-nowrap">
+                    <a href="{{ route('home') }}" class="px-2.5 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold whitespace-nowrap transition {{ request()->routeIs('home') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Home') }}</a>
+                    <a href="{{ route('about') }}" class="px-2.5 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold whitespace-nowrap transition {{ request()->routeIs('about') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('About Us') }}</a>
+                    <a href="{{ route('projects.index') }}" class="px-2.5 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold whitespace-nowrap transition {{ request()->routeIs('projects.*') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Projects') }}</a>
+                    <a href="{{ route('campaigns.index') }}" class="px-2.5 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold whitespace-nowrap transition {{ request()->routeIs('campaigns.*') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Campaigns') }}</a>
+                    <a href="{{ route('blog.index') }}" class="px-2.5 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold whitespace-nowrap transition {{ request()->routeIs('blog.*') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('News & Blog') }}</a>
+                    <a href="{{ route('gallery.index') }}" class="px-2.5 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold whitespace-nowrap transition {{ request()->routeIs('gallery.index') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Gallery') }}</a>
+                    <a href="{{ route('contact') }}" class="px-2.5 xl:px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold whitespace-nowrap transition {{ request()->routeIs('contact') ? 'text-[#2375b8] bg-[#f0f7fd] font-bold border-b-2 border-[#2375b8]' : 'text-slate-700 hover:text-[#2375b8] hover:bg-[#f0f7fd]/60' }}">{{ __('Contact') }}</a>
                 </nav>
 
                 <!-- Header Actions -->
-                <div class="hidden lg:flex items-center gap-2.5 xl:gap-3 shrink-0">
+                <div class="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0 flex-nowrap">
                     <!-- Language Switcher (Segmented Capsule) -->
                     <div class="inline-flex items-center p-0.5 rounded-full bg-slate-100 border border-slate-200/90 text-xs font-bold shrink-0">
                         <a href="{{ route('locale.switch', 'bn') }}" 
                            class="px-2.5 py-1 rounded-full transition-all duration-200 {{ app()->getLocale() === 'bn' ? 'bg-[#2375b8] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-[#2375b8]' }}"
                            title="বাংলা ভাষায় পরিবর্তন করুন">
-                            বাংলা
+                            BN
                         </a>
                         <a href="{{ route('locale.switch', 'en') }}" 
                            class="px-2.5 py-1 rounded-full transition-all duration-200 {{ app()->getLocale() === 'en' ? 'bg-[#2375b8] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-[#2375b8]' }}"
@@ -88,9 +88,9 @@
                         </a>
                     </div>
 
-                    <a href="{{ route('donate') }}" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg text-xs xl:text-sm font-bold text-white bg-[#1771bf] hover:bg-[#1565a8] shadow-md shadow-blue-600/20 transition active:scale-95">
+                    <a href="{{ route('donate') }}" class="inline-flex items-center justify-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-lg text-xs xl:text-sm font-bold text-white bg-[#1771bf] hover:bg-[#1565a8] shadow-md shadow-blue-600/20 transition active:scale-95 whitespace-nowrap shrink-0">
                         <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
-                        <span>{{ __('Donate Now') }}</span>
+                        <span class="whitespace-nowrap">{{ __('Donate Now') }}</span>
                     </a>
 
                     @auth
@@ -138,10 +138,10 @@
                             </div>
                         </div>
                     @else
-                        <!-- Guest Portal Link -->
-                        <a href="/login" class="text-xs font-semibold text-slate-600 hover:text-[#2375b8] px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5" title="Sign In to Staff Portal">
-                            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                            <span>{{ __('Portal') }}</span>
+                        <!-- Guest Login Link -->
+                        <a href="/login" class="text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#2375b8] px-2.5 xl:px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap shrink-0" title="{{ __('Login') }}">
+                            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            <span class="whitespace-nowrap">{{ __('Login') }}</span>
                         </a>
                     @endauth
                 </div>
@@ -150,7 +150,7 @@
                 <div class="flex items-center gap-2 lg:hidden">
                     <a href="{{ route('locale.switch', app()->getLocale() === 'bn' ? 'en' : 'bn') }}" 
                        class="px-2.5 py-1 rounded-full text-xs font-bold border border-[#2375b8]/30 bg-[#f0f7fd] text-[#2375b8]">
-                        {{ app()->getLocale() === 'bn' ? 'EN' : 'বাংলা' }}
+                        {{ app()->getLocale() === 'bn' ? 'EN' : 'BN' }}
                     </a>
                     <button 
                         type="button" 
@@ -187,7 +187,7 @@
                 <div class="inline-flex items-center p-0.5 rounded-full bg-white border border-slate-200 text-xs font-bold">
                     <a href="{{ route('locale.switch', 'bn') }}" 
                        class="px-3 py-1 rounded-full transition {{ app()->getLocale() === 'bn' ? 'bg-[#2375b8] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-[#2375b8]' }}">
-                        বাংলা
+                        BN
                     </a>
                     <a href="{{ route('locale.switch', 'en') }}" 
                        class="px-3 py-1 rounded-full transition {{ app()->getLocale() === 'en' ? 'bg-[#2375b8] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-[#2375b8]' }}">
@@ -225,8 +225,9 @@
                 </div>
             @else
                 <div class="pt-2 border-t border-slate-100">
-                    <a href="/login" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-50">
-                        {{ __('Staff Portal (Sign In)') }}
+                    <a href="/login" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#2375b8]">
+                        <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        <span>{{ __('Login') }}</span>
                     </a>
                 </div>
             @endauth
@@ -293,7 +294,7 @@
                         @auth
                             <li><a href="/dashboard" class="hover:text-[#2375b8] transition">{{ __('Management Dashboard') }}</a></li>
                         @else
-                            <li><a href="/login" class="hover:text-[#2375b8] transition">{{ __('Staff Portal') }}</a></li>
+                            <li><a href="/login" class="hover:text-[#2375b8] transition">{{ __('Login') }}</a></li>
                         @endauth
                         <li><a href="{{ route('sitemap') }}" class="hover:text-[#2375b8] transition">{{ __('XML Sitemap') }}</a></li>
                     </ul>

@@ -3065,4 +3065,102 @@
             }
         }
     }
+
+    /* ========================================================
+       ADMIN PANEL DELETE & DANGER BUTTONS (Vibrant Red Styling)
+       ======================================================== */
+    /* Text Danger / Icon Buttons (e.g. table delete icons) */
+    .text-danger,
+    .btn.text-danger,
+    .action-btn.action-btn-danger,
+    button[title="Delete"],
+    a[title="Delete"],
+    .table-actions button[title="Delete"],
+    .table-actions .text-danger {
+        color: #ef4444 !important;
+    }
+
+    .text-danger svg,
+    .btn.text-danger svg,
+    .action-btn.action-btn-danger svg,
+    button[title="Delete"] svg,
+    a[title="Delete"] svg,
+    .table-actions button[title="Delete"] svg,
+    .table-actions .text-danger svg {
+        stroke: #ef4444 !important;
+        color: #ef4444 !important;
+        transition: stroke 0.15s ease, transform 0.15s ease;
+    }
+
+    /* Hover effect for danger icon buttons */
+    .btn-ghost.text-danger:hover,
+    .btn.text-danger:hover,
+    .action-btn.action-btn-danger:hover,
+    button[title="Delete"]:hover,
+    .table-actions button[title="Delete"]:hover {
+        background-color: #fee2e2 !important;
+        color: #dc2626 !important;
+    }
+
+    .btn-ghost.text-danger:hover svg,
+    .btn.text-danger:hover svg,
+    .action-btn.action-btn-danger:hover svg,
+    button[title="Delete"]:hover svg,
+    .table-actions button[title="Delete"]:hover svg {
+        stroke: #dc2626 !important;
+        color: #dc2626 !important;
+        transform: scale(1.08);
+    }
+
+    /* Solid Danger & Destructive Buttons */
+    .btn-danger,
+    .btn-destructive,
+    .btn-modal-danger {
+        background-color: #ef4444 !important;
+        border: 1px solid #ef4444 !important;
+        color: #ffffff !important;
+    }
+
+    .btn-danger svg,
+    .btn-destructive svg,
+    .btn-modal-danger svg {
+        stroke: #ffffff !important;
+        color: #ffffff !important;
+    }
+
+    .btn-danger:hover,
+    .btn-destructive:hover,
+    .btn-modal-danger:hover {
+        background-color: #dc2626 !important;
+        border-color: #dc2626 !important;
+        color: #ffffff !important;
+    }
+
+    /* Ghost button and icon button base support */
+    .btn-ghost {
+        background-color: transparent !important;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+        background-color: var(--muted, #f1f5f9);
+    }
+
+    .btn-icon {
+        padding: 0.4rem !important;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        line-height: 1;
+    }
+
+    .btn-icon svg {
+        width: 17px;
+        height: 17px;
+        display: block;
+    }
 </style>
