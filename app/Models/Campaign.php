@@ -9,13 +9,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Campaign extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\HasBanglaFields;
 
     protected $fillable = [
         'title',
+        'title_bn',
         'slug',
         'short_description',
+        'short_description_bn',
         'description',
+        'description_bn',
         'featured_image',
         'target_amount',
         'start_date',

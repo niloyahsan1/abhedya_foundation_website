@@ -8,18 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\HasBanglaFields;
 
     protected $fillable = [
         'title',
+        'title_bn',
         'slug',
         'summary',
+        'summary_bn',
         'description',
+        'description_bn',
         'featured_image',
         'status',
         'start_date',
         'end_date',
         'location',
+        'location_bn',
         'is_published',
         'is_featured',
     ];

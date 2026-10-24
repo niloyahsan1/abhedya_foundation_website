@@ -10,15 +10,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\HasBanglaFields;
 
     protected $fillable = [
         'user_id',
         'category_id',
         'title',
+        'title_bn',
         'slug',
         'summary',
+        'summary_bn',
         'content',
+        'content_bn',
         'featured_image',
         'is_published',
         'is_featured',

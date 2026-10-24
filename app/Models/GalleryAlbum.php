@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class GalleryAlbum extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\HasBanglaFields;
 
     protected $fillable = [
         'title',
+        'title_bn',
         'slug',
         'description',
+        'description_bn',
         'cover_image',
         'order',
         'is_published',
