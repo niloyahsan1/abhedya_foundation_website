@@ -30,9 +30,9 @@ class DonationController extends Controller
             ->get();
 
         $donationInfo = [
-            'bkash' => SiteSetting::get('donation_bkash_number', '01700-000000 [Placeholder]'),
-            'nagad' => SiteSetting::get('donation_nagad_number', '01800-000000 [Placeholder]'),
-            'rocket' => SiteSetting::get('donation_rocket_number', '01900-000000-0 [Placeholder]'),
+            'bkash' => SiteSetting::get('donation_bkash_number', '01710698540 [Placeholder]'),
+            'nagad' => SiteSetting::get('donation_nagad_number', '01710698540 [Placeholder]'),
+            'rocket' => SiteSetting::get('donation_rocket_number', '01710698540 [Placeholder]'),
             'bank' => SiteSetting::get('donation_bank_details', "Bank Name: Dutch-Bangla Bank PLC\nAccount: ABHEDYA FOUNDATION (Placeholder)\nAccount No: 115.120.0000000 [Placeholder]\nBranch: Uttara Branch, Dhaka"),
             'guidelines' => SiteSetting::get('donation_guidelines', 'Please note down your transaction ID after transferring your contribution and fill out the form below.'),
         ];

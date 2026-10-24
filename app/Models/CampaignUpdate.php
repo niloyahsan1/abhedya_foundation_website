@@ -25,6 +25,17 @@ class CampaignUpdate extends Model
         ];
     }
 
+    public function getImageAttribute($value): ?string
+    {
+        if (empty($value)) {
+            return null;
+        }
+        if (str_starts_with($value, 'http://') || str_starts_with($value, 'https://') || str_starts_with($value, '/')) {
+            return $value;
+        }
+        return \Illuminate\Support\Facades\Storage::url($value);
+    }
+
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);

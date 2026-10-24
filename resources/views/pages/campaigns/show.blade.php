@@ -7,22 +7,24 @@
 
     <!-- Header Section -->
     <section class="bg-gradient-to-b from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white py-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-            <div class="flex items-center gap-2 text-xs font-semibold text-sky-300">
-                <a href="{{ route('campaigns.index') }}" class="hover:underline">{{ __('Campaigns') }}</a>
-                <span>/</span>
-                <span class="text-blue-200">{{ $campaign->status === 'active' ? __('Active') : __('Completed') }}</span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-                {{ __($campaign->title) }}
-            </h1>
-            <div class="flex flex-wrap items-center gap-4 text-xs text-slate-300 pt-2">
-                @if($campaign->start_date)
-                    <span>{{ __('Launched:') }} {{ bn_date($campaign->start_date, 'M d, Y') }}</span>
-                @endif
-                <span class="px-2.5 py-0.5 rounded font-bold uppercase {{ $campaign->status === 'active' ? 'bg-sky-400/20 text-sky-200 border border-sky-400/30' : 'bg-slate-700 text-slate-300' }}">
-                    {{ $campaign->status === 'active' ? __('Active') : __('Completed') }}
-                </span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl space-y-4">
+                <div class="flex items-center gap-2 text-xs font-semibold text-sky-300">
+                    <a href="{{ route('campaigns.index') }}" class="hover:underline">{{ __('Campaigns') }}</a>
+                    <span>/</span>
+                    <span class="text-blue-200">{{ $campaign->status === 'active' ? __('Active') : __('Completed') }}</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+                    {{ __($campaign->title) }}
+                </h1>
+                <div class="flex flex-wrap items-center gap-4 text-xs text-slate-300 pt-2">
+                    @if($campaign->start_date)
+                        <span>{{ __('Launched:') }} {{ bn_date($campaign->start_date, 'M d, Y') }}</span>
+                    @endif
+                    <span class="px-2.5 py-0.5 rounded font-bold uppercase {{ $campaign->status === 'active' ? 'bg-sky-400/20 text-sky-200 border border-sky-400/30' : 'bg-slate-700 text-slate-300' }}">
+                        {{ $campaign->status === 'active' ? __('Active') : __('Completed') }}
+                    </span>
+                </div>
             </div>
         </div>
     </section>
@@ -47,7 +49,7 @@
 
                     <!-- Detailed Content -->
                     <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed text-base sm:text-lg space-y-6">
-                        {!! nl2br(e(__($campaign->description))) !!}
+                        {!! bn_content($campaign->description) !!}
                     </div>
 
                     <!-- Published Updates -->
@@ -63,7 +65,7 @@
                                         </div>
                                         <h3 class="text-lg font-bold text-slate-900">{{ __($update->title) }}</h3>
                                         <div class="text-sm text-slate-700 leading-relaxed">
-                                            {!! nl2br(e(__($update->content))) !!}
+                                            {!! bn_content($update->content) !!}
                                         </div>
                                     </div>
                                 @endforeach

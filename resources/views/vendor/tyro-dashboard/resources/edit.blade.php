@@ -216,25 +216,36 @@
                 @php
                     $displayImage = $field['display_image'] ?? false;
                     $displayImagePosition = $field['display_image_position'] ?? 'top';
-                    $isImage = !empty($item->$key) && $displayImage && preg_match('/\.(jpg|jpeg|png|gif|webp|svg)$/i', $item->$key);
+                    $rawVal = $item->$key;
+                    $imageUrl = null;
+                    if (!empty($rawVal)) {
+                        if (str_starts_with($rawVal, 'http://') || str_starts_with($rawVal, 'https://') || str_starts_with($rawVal, '/')) {
+                            $imageUrl = $rawVal;
+                        } else {
+                            $imageUrl = \Illuminate\Support\Facades\Storage::url($rawVal);
+                        }
+                    }
                 @endphp
                 
-                @if($isImage && $displayImagePosition === 'top')
-                <div style="margin-bottom: 0.5rem;">
-                    <img src="{{ Storage::url($item->$key) }}" alt="Current image" style="width: 200px; height: auto; border: 1px solid var(--border); border-radius: 4px;">
+                @if($imageUrl && $displayImage && $displayImagePosition === 'top')
+                <div style="margin-bottom: 0.75rem;">
+                    <img id="current-preview-{{ $key }}" src="{{ $imageUrl }}" alt="Current image" style="max-width: 260px; max-height: 180px; object-fit: cover; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: block;">
+                    <div style="margin-top: 0.35rem;">
+                        <small style="color: var(--text-secondary);">Current image: <a href="{{ $imageUrl }}" target="_blank" style="color: var(--primary); text-decoration: underline;">{{ basename(parse_url($imageUrl, PHP_URL_PATH) ?? $imageUrl) }}</a></small>
+                    </div>
                 </div>
                 @endif
                 
-                <input type="file" name="{{ $key }}" id="{{ $key }}" class="form-input @error($key) is-invalid @enderror" {{ ($field['readonly'] ?? false) ? 'readonly' : '' }} @if(isset($field['attributes'])) @foreach($field['attributes'] as $attr => $value) {{ $attr }}="{{ $value }}" @endforeach @endif>
-                @if(!empty($item->$key))
-                <div style="margin-top: 0.5rem;">
-                    <small>Current file: <a href="{{ Storage::url($item->$key) }}" target="_blank">{{ basename($item->$key) }}</a></small>
+                <div class="file-upload-wrapper">
+                    <input type="file" name="{{ $key }}" id="{{ $key }}" accept="image/*" class="form-input @error($key) is-invalid @enderror" onchange="const f = this.files[0]; if (f) { const r = new FileReader(); r.onload = e => { const cp = document.getElementById('current-preview-{{ $key }}'); if (cp) { cp.src = e.target.result; } else { const np = document.getElementById('new-preview-{{ $key }}'); if (np) { np.src = e.target.result; np.parentElement.style.display = 'block'; } } }; r.readAsDataURL(f); }" {{ ($field['readonly'] ?? false) ? 'readonly' : '' }} @if(isset($field['attributes'])) @foreach($field['attributes'] as $attr => $value) {{ $attr }}="{{ $value }}" @endforeach @endif>
+                    <div style="display: none; margin-top: 0.75rem;">
+                        <img id="new-preview-{{ $key }}" src="" alt="New image preview" style="max-width: 260px; max-height: 180px; object-fit: cover; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    </div>
                 </div>
-                @endif
                 
-                @if($isImage && $displayImagePosition === 'bottom')
-                <div style="margin-top: 0.5rem;">
-                    <img src="{{ Storage::url($item->$key) }}" alt="Current image" style="width: 200px; height: auto; border: 1px solid var(--border); border-radius: 4px;">
+                @if($imageUrl && $displayImage && $displayImagePosition === 'bottom')
+                <div style="margin-top: 0.75rem;">
+                    <img src="{{ $imageUrl }}" alt="Current image" style="max-width: 260px; max-height: 180px; object-fit: cover; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: block;">
                 </div>
                 @endif
 

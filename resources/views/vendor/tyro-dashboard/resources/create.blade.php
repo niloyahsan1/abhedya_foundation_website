@@ -191,7 +191,12 @@
                 </div>
 
                 @elseif($field['type'] === 'file')
-                <input type="file" name="{{ $key }}" id="{{ $key }}" class="form-input @error($key) is-invalid @enderror">
+                <div class="file-upload-wrapper">
+                    <input type="file" name="{{ $key }}" id="{{ $key }}" accept="image/*" class="form-input @error($key) is-invalid @enderror" onchange="const f = this.files[0]; if (f) { const r = new FileReader(); r.onload = e => { const p = document.getElementById('preview-{{ $key }}'); if (p) { p.src = e.target.result; p.parentElement.style.display = 'block'; } }; r.readAsDataURL(f); }">
+                    <div style="display: none; margin-top: 0.75rem;">
+                        <img id="preview-{{ $key }}" src="" alt="Preview" style="max-width: 240px; max-height: 160px; object-fit: cover; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
 
                 @elseif($field['type'] === 'boolean')
                 <div class="form-check">

@@ -62,6 +62,19 @@
                             <span class="badge {{ $item->$key ? 'badge-success' : 'badge-secondary' }}">
                                 {{ $item->$key ? 'Yes' : 'No' }}
                             </span>
+                        @elseif($field['type'] === 'file')
+                        @php
+                            $val = $item->$key;
+                            $src = $val ? (str_starts_with($val, 'http') || str_starts_with($val, '/') ? $val : \Illuminate\Support\Facades\Storage::url($val)) : null;
+                        @endphp
+                        @if($src)
+                            <div style="margin-top: 0.25rem;">
+                                <img src="{{ $src }}" alt="" style="max-width: 320px; max-height: 240px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: block; margin-bottom: 0.5rem;">
+                                <small><a href="{{ $src }}" target="_blank" style="color: var(--primary); text-decoration: underline;">View Full Image</a></small>
+                            </div>
+                        @else
+                            -
+                        @endif
                         @elseif($field['type'] === 'textarea')
                             <div style="white-space: pre-wrap;">{{ $item->$key }}</div>
                         @elseif($field['type'] === 'richtext')

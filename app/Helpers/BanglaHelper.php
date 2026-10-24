@@ -54,3 +54,118 @@ if (!function_exists('bn_taka')) {
         return '৳' . bn_num($num);
     }
 }
+
+if (!function_exists('bn_content')) {
+    /**
+     * Translate and format rich text / body content cleanly.
+     * Prevents escaping of valid HTML while guaranteeing translation lookup.
+     */
+    function bn_content(?string $content): string
+    {
+        if (empty($content)) {
+            return '';
+        }
+
+        // If English locale:
+        if (app()->getLocale() !== 'bn') {
+            if ($content !== strip_tags($content)) {
+                return $content;
+            }
+            return nl2br(e($content));
+        }
+
+        // Locale is Bangla:
+        // 1. Direct exact translation
+        $translated = __($content);
+        if ($translated !== $content) {
+            return $translated;
+        }
+
+        // 2. If content is wrapped in <p>...</p>, check inner text translation
+        $trimmed = trim($content);
+        if (preg_match('/^<p>(.*?)<\/p>$/s', $trimmed, $matches)) {
+            $inner = trim($matches[1]);
+            $innerTranslated = __($inner);
+            if ($innerTranslated !== $inner) {
+                return '<p>' . $innerTranslated . '</p>';
+            }
+        }
+
+        // 3. Check plain stripped text translation
+        $plain = trim(strip_tags($content));
+        $plainTranslated = __($plain);
+        if ($plainTranslated !== $plain) {
+            if ($content !== strip_tags($content)) {
+                return '<p>' . nl2br(e($plainTranslated)) . '</p>';
+            }
+            return nl2br(e($plainTranslated));
+        }
+
+        // If content already contains HTML tags, return as-is
+        if ($content !== strip_tags($content)) {
+            return $content;
+        }
+
+        return nl2br(e($content));
+    }
+}
+
+if (!function_exists('bn_bank_details')) {
+    /**
+     * Format and translate bank transfer details reliably.
+     * Supports full text matching, newline normalization, and line-by-line fallback.
+     */
+    function bn_bank_details(?string $details): string
+    {
+        if (empty($details)) {
+            return '';
+        }
+
+        if (app()->getLocale() !== 'bn') {
+            return $details;
+        }
+
+        // 1. Direct translation match
+        $translated = __($details);
+        if ($translated !== $details) {
+            return $translated;
+        }
+
+        // 2. Normalize newlines and check
+        $normalized = str_replace("\r\n", "\n", $details);
+        $normTranslated = __($normalized);
+        if ($normTranslated !== $normalized) {
+            return $normTranslated;
+        }
+
+        // 3. Fallback to line-by-line translation
+        $lines = explode("\n", $normalized);
+        $translatedLines = [];
+        foreach ($lines as $line) {
+            $trimmed = trim($line);
+            if ($trimmed === '') {
+                $translatedLines[] = '';
+                continue;
+            }
+            $lineTrans = __($trimmed);
+            if ($lineTrans !== $trimmed) {
+                $translatedLines[] = $lineTrans;
+            } else {
+                if (str_contains($trimmed, ':')) {
+                    [$k, $v] = explode(':', $trimmed, 2);
+                    $kTrans = __(trim($k));
+                    $vTrans = __(trim($v));
+                    if ($vTrans === trim($v)) {
+                        $vTrans = bn_num($vTrans);
+                    }
+                    $translatedLines[] = $kTrans . ': ' . $vTrans;
+                } else {
+                    $translatedLines[] = bn_num($trimmed);
+                }
+            }
+        }
+
+        return implode("\n", $translatedLines);
+    }
+}
+

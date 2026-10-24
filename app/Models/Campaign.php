@@ -52,6 +52,20 @@ class Campaign extends Model
     }
 
     /**
+     * Resolve featured image to a public URL (storage disk or external link).
+     */
+    public function getFeaturedImageAttribute($value): ?string
+    {
+        if (empty($value)) {
+            return null;
+        }
+        if (str_starts_with($value, 'http://') || str_starts_with($value, 'https://') || str_starts_with($value, '/')) {
+            return $value;
+        }
+        return \Illuminate\Support\Facades\Storage::url($value);
+    }
+
+    /**
      * Confirmed raised amount strictly based on verified donations.
      */
     public function getRaisedAmountAttribute(): float

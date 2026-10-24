@@ -249,10 +249,13 @@ class PublicPagesTest extends TestCase
         $response->assertSee('যোগাযোগ');
         $response->assertSee('অনুদান দিন');
         
-        // Bengali numerals
-        $response->assertSee('৪৮');
-        $response->assertSee('৩৫,০০০+');
-        $response->assertSee('৪৫০+');
-        $response->assertSee('১৪');
+        // Bengali numerals on home (e.g. copyright year)
+        $response->assertSee('২০২৬');
+
+        // Bengali numerals on about page
+        $aboutResponse = $this->withSession(['locale' => 'bn'])->get('/about');
+        $aboutResponse->assertSee('৪৮');
+        $aboutResponse->assertSee('৩৫,০০০+');
+        $aboutResponse->assertSee('১০০%');
     }
 }

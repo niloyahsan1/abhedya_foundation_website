@@ -80,84 +80,7 @@
         </div>
     </section>
 
-    <!-- 2. Impact Statistics Bar -->
-    <section class="bg-white border-b border-slate-100 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center">
-                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/80 border border-slate-200/70 shadow-sm cursor-default">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-[#2375b8] block mb-1">{{ bn_num('48') }}</span>
-                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">{{ __('Projects Completed') }}</span>
-                </div>
-                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/80 border border-slate-200/70 shadow-sm cursor-default">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-[#2375b8] block mb-1">{{ bn_num('35,000+') }}</span>
-                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">{{ __('Lives Impacted') }}</span>
-                </div>
-                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/80 border border-slate-200/70 shadow-sm cursor-default">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-[#2375b8] block mb-1">{{ bn_num('450+') }}</span>
-                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">{{ __('Active Volunteers') }}</span>
-                </div>
-                <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/80 border border-slate-200/70 shadow-sm cursor-default">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-[#2375b8] block mb-1">{{ bn_num('14') }}</span>
-                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">{{ __('Districts Reached') }}</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Foundation Introduction & Mission/Vision -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest">{{ __('About Our Foundation') }}</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
-                        {{ __('Rooted in Community, Driven by Unwavering Purpose') }}
-                    </h2>
-                    <p class="text-base text-slate-600 leading-relaxed">
-                        {{ __('Abhedya Foundation was established with the conviction that no community should remain isolated from basic human necessities, educational resources, and emergency assistance.') }}
-                    </p>
-                    <p class="text-base text-slate-600 leading-relaxed">
-                        {{ __('Through close grassroots collaboration with community elders and teachers, we implement sustainable, measurable initiatives that empower beneficiaries to take charge of their own future.') }}
-                    </p>
-                    <div class="pt-2">
-                        <a href="{{ route('about') }}" class="inline-flex items-center gap-2 font-bold text-[#2375b8] hover:text-[#1788bf]">
-                            {{ __('Learn more about our background & team') }}
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Mission & Vision Cards -->
-                <div class="space-y-6">
-                    <div class="interactive-card bg-white p-7 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-5 cursor-default">
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-[#2375b8] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-1">{{ __('Our Mission') }}</h3>
-                            <p class="text-sm text-slate-600 leading-relaxed">
-                                {{ __('To uplift marginalized communities by delivering high-impact educational initiatives, essential healthcare access, emergency relief, and sustainable livelihood opportunities.') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="interactive-card bg-white p-7 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-5 cursor-default">
-                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-1">{{ __('Our Vision') }}</h3>
-                            <p class="text-sm text-slate-600 leading-relaxed">
-                                {{ __('A just, compassionate society where every individual has equal opportunities to thrive with self-reliance, security, and human dignity.') }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. Featured Projects -->
+    <!-- 2. Featured Projects (Our Work) -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -221,7 +144,84 @@
         </div>
     </section>
 
-    <!-- 5. Active Fundraising Campaigns -->
+    <!-- 3. News & Stories Preview (Field Reports & Insights) -->
+    <section class="py-20 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Field Reports & Insights') }}</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Latest News & Articles') }}</h2>
+                </div>
+                <a href="{{ route('blog.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
+                    {{ __('All Stories') }}
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($latestPosts as $post)
+                    <article class="group interactive-card bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2">
+                                    @if($post->category)
+                                        <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-[#f0f7fd] text-[#2375b8] border border-blue-200/50">
+                                            {{ __($post->category->name) }}
+                                        </span>
+                                    @endif
+                                    <span class="text-xs text-slate-400">
+                                        {{ $post->published_at ? bn_date($post->published_at, 'M d, Y') : '' }}
+                                    </span>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 leading-snug">
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="group-hover:text-[#2375b8] transition">
+                                        {{ __($post->title) }}
+                                    </a>
+                                </h3>
+                                <p class="text-sm text-slate-600 line-clamp-3">
+                                    {{ __($post->summary) }}
+                                </p>
+                            </div>
+                            <div class="pt-6 border-t border-slate-100 mt-6">
+                                <a href="{{ route('blog.show', $post->slug) }}" class="text-sm font-bold text-[#2375b8] group-hover:text-[#1788bf] flex items-center gap-1">
+                                    {{ __('Read Article') }}
+                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Photo Gallery Preview (Photo Moments) -->
+    <section class="py-20 bg-slate-950 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block">{{ __('Photo Moments') }}</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">{{ __('Impact in Pictures') }}</h2>
+                </div>
+                <a href="{{ route('gallery.index') }}" class="font-bold text-sm text-sky-400 hover:text-sky-300 flex items-center gap-1">
+                    {{ __('Visit Photo Gallery') }} &rarr;
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                @foreach($galleryPreview as $img)
+                    <div class="group relative aspect-square rounded-xl overflow-hidden bg-slate-800">
+                        <img src="{{ $img->image }}" alt="{{ __($img->title) }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition p-3 flex items-end">
+                            <span class="text-xs text-white line-clamp-2 leading-tight">{{ __($img->title) }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Active Fundraising Campaigns (Make an Immediate Difference) -->
     <section class="py-20 bg-slate-50 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -282,83 +282,6 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. News & Stories Preview -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-                <div>
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Field Reports & Insights') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Latest News & Articles') }}</h2>
-                </div>
-                <a href="{{ route('blog.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
-                    {{ __('All Stories') }}
-                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($latestPosts as $post)
-                    <article class="group interactive-card bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-2">
-                                    @if($post->category)
-                                        <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-[#f0f7fd] text-[#2375b8] border border-blue-200/50">
-                                            {{ __($post->category->name) }}
-                                        </span>
-                                    @endif
-                                    <span class="text-xs text-slate-400">
-                                        {{ $post->published_at ? bn_date($post->published_at, 'M d, Y') : '' }}
-                                    </span>
-                                </div>
-                                <h3 class="text-xl font-bold text-slate-900 leading-snug">
-                                    <a href="{{ route('blog.show', $post->slug) }}" class="group-hover:text-[#2375b8] transition">
-                                        {{ __($post->title) }}
-                                    </a>
-                                </h3>
-                                <p class="text-sm text-slate-600 line-clamp-3">
-                                    {{ __($post->summary) }}
-                                </p>
-                            </div>
-                            <div class="pt-6 border-t border-slate-100 mt-6">
-                                <a href="{{ route('blog.show', $post->slug) }}" class="text-sm font-bold text-[#2375b8] group-hover:text-[#1788bf] flex items-center gap-1">
-                                    {{ __('Read Article') }}
-                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. Photo Gallery Preview -->
-    <section class="py-20 bg-slate-950 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-                <div>
-                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block">{{ __('Photo Moments') }}</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">{{ __('Impact in Pictures') }}</h2>
-                </div>
-                <a href="{{ route('gallery.index') }}" class="font-bold text-sm text-sky-400 hover:text-sky-300 flex items-center gap-1">
-                    {{ __('Visit Photo Gallery') }} &rarr;
-                </a>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                @foreach($galleryPreview as $img)
-                    <div class="group relative aspect-square rounded-xl overflow-hidden bg-slate-800">
-                        <img src="{{ $img->image }}" alt="{{ __($img->title) }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition p-3 flex items-end">
-                            <span class="text-xs text-white line-clamp-2 leading-tight">{{ __($img->title) }}</span>
                         </div>
                     </div>
                 @endforeach

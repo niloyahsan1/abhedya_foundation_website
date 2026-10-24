@@ -42,7 +42,7 @@
             @endif
 
             <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6 text-base sm:text-lg">
-                {!! nl2br(e(__($post->content))) !!}
+                {!! bn_content($post->content) !!}
             </div>
 
             <!-- Tags -->

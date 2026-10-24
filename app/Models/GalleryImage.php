@@ -28,6 +28,17 @@ class GalleryImage extends Model
         ];
     }
 
+    public function getImageAttribute($value): ?string
+    {
+        if (empty($value)) {
+            return null;
+        }
+        if (str_starts_with($value, 'http://') || str_starts_with($value, 'https://') || str_starts_with($value, '/')) {
+            return $value;
+        }
+        return \Illuminate\Support\Facades\Storage::url($value);
+    }
+
     public function album(): BelongsTo
     {
         return $this->belongsTo(GalleryAlbum::class, 'gallery_album_id');

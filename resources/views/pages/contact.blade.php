@@ -29,7 +29,7 @@
                     <div class="w-10 h-10 rounded-full bg-[#2375b8] text-white flex items-center justify-center font-bold text-lg shrink-0">
                         ✓
                     </div>
-                    <p class="text-sm font-medium">{{ session('contact_success') }}</p>
+                    <p class="text-sm font-medium">{{ __(session('contact_success')) }}</p>
                 </div>
             @endif
 

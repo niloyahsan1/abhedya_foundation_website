@@ -77,7 +77,7 @@
                                         <span class="text-xs text-slate-500">{{ __('Send Money / Merchant Payment') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-200">MFS</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-200">{{ __('MFS') }}</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800 flex items-center justify-between">
@@ -105,7 +105,7 @@
                                         <span class="text-xs text-slate-500">{{ __('Send Money / Merchant Payment') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 text-orange-700 border border-orange-200">MFS</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 text-orange-700 border border-orange-200">{{ __('MFS') }}</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800 flex items-center justify-between">
@@ -132,7 +132,7 @@
                                         <span class="text-xs text-slate-500">{{ __('DBBL Mobile Banking') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200">MFS</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200">{{ __('MFS') }}</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800">
@@ -152,11 +152,11 @@
                                         <span class="text-xs text-slate-500">{{ __('Corporate & Institutional Donations') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#f0f7fd] text-[#2375b8] border border-blue-200">Bank</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#f0f7fd] text-[#2375b8] border border-blue-200">{{ __('Bank') }}</span>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-xs text-slate-800 whitespace-pre-line leading-relaxed">
-{{ __($donationInfo['bank']) }}
+{{ bn_bank_details($donationInfo['bank']) }}
                             </div>
                         </div>
                     </div>

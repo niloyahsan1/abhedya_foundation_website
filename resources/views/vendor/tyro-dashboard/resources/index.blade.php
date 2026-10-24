@@ -112,6 +112,16 @@
                         <span class="badge {{ $item->$key ? 'badge-success' : 'badge-secondary' }}">
                             {{ $item->$key ? 'Yes' : 'No' }}
                         </span>
+                        @elseif($field['type'] === 'file' && ($field['display_image'] ?? false))
+                        @php
+                            $val = $item->$key;
+                            $src = $val ? (str_starts_with($val, 'http') || str_starts_with($val, '/') ? $val : \Illuminate\Support\Facades\Storage::url($val)) : null;
+                        @endphp
+                        @if($src)
+                            <img src="{{ $src }}" alt="" style="width: 44px; height: 32px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border); display: inline-block;">
+                        @else
+                            <span style="color: var(--text-secondary);">-</span>
+                        @endif
                         @elseif($field['type'] === 'richtext')
                         {{ Str::limit(strip_tags($item->$key), 50) }}
                         @elseif($field['type'] === 'markdown')
