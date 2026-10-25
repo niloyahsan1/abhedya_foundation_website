@@ -123,4 +123,18 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Staff / Admin Portal Subdomain Configuration
+    |--------------------------------------------------------------------------
+    |
+    | When running the staff/admin portal on a dedicated subdomain
+    | (e.g. portal.abhedyafoundation.org), configure the URL and domain here.
+    |
+    */
+
+    'portal_url' => env('PORTAL_URL', null),
+
+    'portal_domain' => env('PORTAL_DOMAIN', null),
+
 ];

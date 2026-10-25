@@ -119,11 +119,12 @@
                                     <p class="text-xs font-bold text-slate-900 truncate">{{ auth()->user()->name }}</p>
                                     <p class="text-[11px] text-slate-500 truncate">{{ auth()->user()->email }}</p>
                                 </div>
-                                <a href="/dashboard" class="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-[#f0f7fd] hover:text-[#2375b8] transition">
+                                @php $portalBase = config('app.portal_url') ? rtrim(config('app.portal_url'), '/') : ''; @endphp
+                                <a href="{{ $portalBase }}/dashboard" class="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-[#f0f7fd] hover:text-[#2375b8] transition">
                                     <svg class="w-4 h-4 text-[#2375b8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
                                     {{ __('Dashboard') }}
                                 </a>
-                                <a href="/dashboard/profile" class="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-[#f0f7fd] hover:text-[#2375b8] transition">
+                                <a href="{{ $portalBase }}/dashboard/profile" class="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-[#f0f7fd] hover:text-[#2375b8] transition">
                                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                                     {{ __('My Profile') }}
                                 </a>
@@ -139,7 +140,8 @@
                         </div>
                     @else
                         <!-- Guest Login Link -->
-                        <a href="/login" class="text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#2375b8] px-2.5 xl:px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap shrink-0" title="{{ __('Login') }}">
+                        @php $portalBase = config('app.portal_url') ? rtrim(config('app.portal_url'), '/') : ''; @endphp
+                        <a href="{{ $portalBase }}/login" class="text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#2375b8] px-2.5 xl:px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap shrink-0" title="{{ __('Login') }}">
                             <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                             <span class="whitespace-nowrap">{{ __('Login') }}</span>
                         </a>
@@ -210,10 +212,11 @@
                         <p class="text-xs font-bold text-slate-900">{{ auth()->user()->name }}</p>
                         <p class="text-[11px] text-slate-500">{{ auth()->user()->email }}</p>
                     </div>
-                    <a href="/dashboard" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-[#2375b8] bg-[#f0f7fd]">
+                    @php $portalBase = config('app.portal_url') ? rtrim(config('app.portal_url'), '/') : ''; @endphp
+                    <a href="{{ $portalBase }}/dashboard" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-[#2375b8] bg-[#f0f7fd]">
                         {{ __('Access Dashboard') }}
                     </a>
-                    <a href="/dashboard/profile" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                    <a href="{{ $portalBase }}/dashboard/profile" class="block px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
                         {{ __('My Profile') }}
                     </a>
                     <form method="POST" action="/logout">
@@ -225,7 +228,8 @@
                 </div>
             @else
                 <div class="pt-2 border-t border-slate-100">
-                    <a href="/login" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#2375b8]">
+                    @php $portalBase = config('app.portal_url') ? rtrim(config('app.portal_url'), '/') : ''; @endphp
+                    <a href="{{ $portalBase }}/login" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#2375b8]">
                         <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                         <span>{{ __('Login') }}</span>
                     </a>
