@@ -99,15 +99,11 @@
     --color-mastul-orange: #f97316;
 }
 
-html, body {
+html,
+body {
     font-family: 'UbuntuSans', 'Bornomala', sans-serif;
 }
 
-/* ========================================================
-   BANGLA TYPOGRAPHY & LEGIBILITY (Bornomala)
-   Keeps English & Bangla font sizes identical and fitted,
-   with proper Bengali ligature connection & contrast
-   ======================================================== */
 html[lang="bn"] {
     font-family: 'Bornomala', 'UbuntuSans', sans-serif !important;
 }
@@ -144,38 +140,7 @@ html[lang="bn"] .tracking-tighter {
     letter-spacing: normal !important;
 }
 
-/* Natural line-height for Bengali matras (no clipping) */
-html[lang="bn"] .leading-tight {
-    line-height: 1.35 !important;
-}
-
-html[lang="bn"] .leading-none {
-    line-height: 1.25 !important;
-}
-
-/* Ensure clean contrast for light text so it is easily visible without size ballooning */
-html[lang="bn"] .text-slate-400 {
-    color: #475569 !important; /* slate-600 */
-}
-
-html[lang="bn"] .text-slate-500 {
-    color: #334155 !important; /* slate-700 */
-}
-
-/* For dark backgrounds (like footer and hero), ensure text stays clear and readable */
-html[lang="bn"] footer .text-slate-400,
-html[lang="bn"] .bg-slate-900 .text-slate-400,
-html[lang="bn"] .bg-slate-950 .text-slate-400 {
-    color: #cbd5e1 !important; /* slate-300 */
-}
-
-html[lang="bn"] footer .text-slate-500,
-html[lang="bn"] .bg-slate-900 .text-slate-500,
-html[lang="bn"] .bg-slate-950 .text-slate-500 {
-    color: #94a3b8 !important; /* slate-400 */
-}
-
-/* Line-height safety for Bangla */
+/* Natural line-height for Bengali matras */
 html[lang="bn"] .leading-tight {
     line-height: 1.35 !important;
 }
@@ -198,6 +163,7 @@ html[lang="bn"] .leading-none {
     color: #ffffff;
     transition: all 0.2s ease-in-out;
 }
+
 .btn-mastul:hover {
     background-color: #1788bf;
     color: #ffffff;
@@ -209,6 +175,7 @@ html[lang="bn"] .leading-none {
     font-weight: 700;
     transition: all 0.2s ease-in-out;
 }
+
 .btn-mastul-orange:hover {
     background-color: #ea580c;
     color: #ffffff;
@@ -242,6 +209,7 @@ html[lang="bn"] .leading-none {
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -250,9 +218,9 @@ html[lang="bn"] .leading-none {
 /* Premium Card Hover & Elevation Micro-interactions (Mastul Blue Theme) */
 .interactive-card {
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.3s ease,
-                background-color 0.3s ease;
+        box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        background-color 0.3s ease;
     will-change: transform, box-shadow;
     position: relative;
 }
@@ -260,36 +228,36 @@ html[lang="bn"] .leading-none {
 .interactive-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 20px 30px -10px rgba(35, 117, 184, 0.16),
-                0 10px 15px -5px rgba(15, 23, 42, 0.06);
+        0 10px 15px -5px rgba(15, 23, 42, 0.06);
     border-color: rgba(35, 117, 184, 0.35);
 }
 
 .interactive-card-subtle {
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.25s ease,
-                background-color 0.25s ease;
+        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.25s ease,
+        background-color 0.25s ease;
     will-change: transform, box-shadow;
 }
 
 .interactive-card-subtle:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08),
-                0 4px 8px -2px rgba(35, 117, 184, 0.12);
+        0 4px 8px -2px rgba(35, 117, 184, 0.12);
     border-color: rgba(35, 117, 184, 0.3);
 }
 
 .interactive-card-glow {
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.3s ease;
+        box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease;
     will-change: transform, box-shadow;
 }
 
 .interactive-card-glow:hover {
     transform: translateY(-5px);
     box-shadow: 0 22px 35px -8px rgba(35, 117, 184, 0.25),
-                0 0 0 1px rgba(35, 117, 184, 0.3);
+        0 0 0 1px rgba(35, 117, 184, 0.3);
     border-color: rgba(35, 117, 184, 0.5);
 }
 
@@ -302,5 +270,3 @@ html[lang="bn"] .leading-none {
 .group:hover .card-img-zoom {
     transform: scale(1.07);
 }
-
-
