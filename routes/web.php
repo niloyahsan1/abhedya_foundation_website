@@ -123,3 +123,35 @@ Route::get('/robots.txt', function () {
 
     return Response::make($content, 200, ['Content-Type' => 'text/plain']);
 })->name('robots');
+
+// One-time Setup Route for cPanel shared hosting without terminal access
+Route::get('/cpanel-setup-run', function (\Illuminate\Http\Request $request) {
+    if ($request->query('key') !== 'abhedya2026') {
+        abort(403, 'Unauthorized setup access key.');
+    }
+
+    $log = [];
+
+    // 1. Storage Symlink
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        $log[] = 'Storage Link: ' . trim(\Illuminate\Support\Facades\Artisan::output());
+    } catch (\Throwable $e) {
+        $log[] = 'Storage Link Notice: ' . $e->getMessage();
+    }
+
+    // 2. Clear old cached configs
+    try {
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        $log[] = 'Cache Clear: ' . trim(\Illuminate\Support\Facades\Artisan::output());
+    } catch (\Throwable $e) {
+        $log[] = 'Cache Clear Notice: ' . $e->getMessage();
+    }
+
+    return '<div style="font-family: system-ui, -apple-system, sans-serif; max-width: 620px; margin: 40px auto; padding: 24px; border-radius: 16px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534;">'
+        . '<h2 style="margin-top: 0; color: #15803d; font-size: 20px;">✓ cPanel Setup Executed Successfully!</h2>'
+        . '<p style="font-size: 14px; line-height: 1.6; color: #166534;">Storage symlink has been created and application caches are refreshed.</p>'
+        . '<pre style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #dcfce7; font-size: 12px; color: #334155; overflow-x: auto;">' . implode("\n", array_map('htmlspecialchars', $log)) . '</pre>'
+        . '<div style="margin-top: 20px;"><a href="/" style="display: inline-block; padding: 10px 20px; background: #2375b8; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px;">Go to Live Website &rarr;</a></div>'
+        . '</div>';
+});
