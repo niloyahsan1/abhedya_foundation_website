@@ -123,33 +123,6 @@ php artisan serve
 ### 7. Accessing Local Endpoints
 - **Public Website**: [http://localhost:8000](http://localhost:8000)
 - **Staff / Admin Portal**: [http://portal.localhost:8000](http://portal.localhost:8000)  
-  *(Modern browsers automatically resolve `*.localhost` to 127.0.0.1 without needing `hosts` file modification)*
-
-
-## Production Deployment (cPanel Shared Hosting)
-### Server Architecture
-- **Production URL**: `https://abhedyafoundation.org`
-- **Staff Portal URL**: `https://portal.abhedyafoundation.org`
-- **PHP Version**: 8.3 (ea-php83)
-
-### Updating Production
-1. **Compile Assets Locally**:
-   ```powershell
-   npm run build
-   ```
-2. **Upload Updates**:
-   Upload modified files via cPanel File Manager or upload an update zip (excluding `.git`, `node_modules`, and local `.env`).
-3. **Clear Caches on Live Server**:
-   Visit your secure setup route in your browser:
-   ```text
-   https://abhedyafoundation.org/cpanel-setup-run?key=abhedya2026
-   ```
-
-
-## Security Best Practices
-- **Environment Protection**: Local `.env` files and deployment zips are strictly ignored via `.gitignore`.
-- **Debugging**: Ensure `APP_DEBUG=false` in the live production `.env`.
-- **Directory Permissions**: Keep `storage/` and `bootstrap/cache/` writable (`775`).
 
 
 ## License & Organization
