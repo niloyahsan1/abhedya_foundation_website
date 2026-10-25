@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/images/website_logo.png" alt="Abhedya Foundation Logo" width="220" />
+  <img src="public/images/image.png" alt="Abhedya Foundation Logo" width="220" />
   
   # Abhedya Foundation Web Application
   ### অভেদ্য ফাউন্ডেশন - অফিসিয়াল ওয়েবসাইট ও পোর্টাল
