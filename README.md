@@ -14,11 +14,9 @@
   [![License](https://img.shields.io/badge/License-Proprietary-blue.svg)](LICENSE)
 </div>
 
----
 
-## 🌟 Key Features
-
-### 🌐 Public Portal
+## Key Features
+### Public Portal
 - **Bilingual Interface**: Full bilingual support for **বাংলা (Bangla - Default)** and **English**, complete with a dynamic language switch toggle.
 - **Projects & Activities**: Showcases ongoing and completed initiatives categorized by status (*Planning*, *Ongoing*, *Completed*) with district locations and detailed progress.
 - **Fundraising Campaigns**: Goal-oriented donation drives with financial targets (BDT), real-time progress bars, and timeline updates.
@@ -28,17 +26,15 @@
 - **Contact Center**: Interactive contact forms with spam throttling and admin dashboard integration.
 - **SEO & Discoverability**: Dynamic XML Sitemap (`/sitemap.xml`), custom `robots.txt`, and social OpenGraph meta tags.
 
-### 🛡️ Admin & Staff Portal (`portal.abhedyafoundation.org`)
+### Admin & Staff Portal (`portal.abhedyafoundation.org`)
 - **Subdomain Routing**: Dedicated staff portal isolated on a dedicated subdomain (`portal.*`) with automatic redirect guards.
 - **Role-Based Access Control (RBAC)**: Fine-grained permissions powered by Tyro Dashboard (`super-admin`, `admin`, `editor`, `user`).
 - **Donation Verification**: Verification workflow to confirm donor transaction IDs, approve amounts, and attach funds to specific campaigns.
 - **Dynamic Content Management (CRUD)**: User-friendly web management for projects, campaigns, blogs, albums, and site parameters.
 - **Security & Authentication**: Two-Factor Authentication (2FA), OTP login, audit logs, and brute-force lockout safeguards.
 
----
 
-## 👥 User Roles & Access Matrix
-
+## User Roles & Access Matrix
 | Role | Slug | Capabilities | Access Area |
 | :--- | :--- | :--- | :--- |
 | **Super Admin** | `super-admin` | Full control: Manage staff, role assignments, system settings, mail servers, and reports. | Complete Portal |
@@ -46,20 +42,16 @@
 | **Editor** | `editor` | Publish and edit blog articles, campaigns, projects, gallery photos, and view donation records. | Content Modules |
 | **User / Member**| `user` | Standard member account with view-only access. | Public / Member Area |
 
----
 
-## 🛠️ Technology Stack
-
+## Technology Stack
 - **Backend**: Laravel 11.x (PHP 8.3)
 - **Database**: MySQL 8.0 / MariaDB (InnoDB, UTF-8 mb4)
 - **Frontend**: Blade Templating, Tailwind CSS, Alpine.js / Vanilla JavaScript, Vite
 - **Administration**: Tyro Dashboard & Tyro Login
 - **Web Server**: LiteSpeed / Nginx / Apache with mod_rewrite
 
----
 
-## 🚀 Local Development Setup
-
+## Local Development Setup
 Follow these steps to run the application on your local machine:
 
 ### 1. Prerequisites
@@ -133,10 +125,8 @@ php artisan serve
 - **Staff / Admin Portal**: [http://portal.localhost:8000](http://portal.localhost:8000)  
   *(Modern browsers automatically resolve `*.localhost` to 127.0.0.1 without needing `hosts` file modification)*
 
----
 
-## 🚢 Production Deployment (cPanel Shared Hosting)
-
+## Production Deployment (cPanel Shared Hosting)
 ### Server Architecture
 - **Production URL**: `https://abhedyafoundation.org`
 - **Staff Portal URL**: `https://portal.abhedyafoundation.org`
@@ -155,17 +145,13 @@ php artisan serve
    https://abhedyafoundation.org/cpanel-setup-run?key=abhedya2026
    ```
 
----
 
-## 🔒 Security Best Practices
-
+## Security Best Practices
 - **Environment Protection**: Local `.env` files and deployment zips are strictly ignored via `.gitignore`.
 - **Debugging**: Ensure `APP_DEBUG=false` in the live production `.env`.
 - **Directory Permissions**: Keep `storage/` and `bootstrap/cache/` writable (`775`).
 
----
 
-## 📄 License & Organization
-
-This web application is developed for **Abhedya Foundation (অভেদ্য ফাউন্ডেশন)**.  
+## License & Organization
+This web application is developed for **Abhedya Foundation (অভেদ্য ফাউন্ডেশন)**.
 All intellectual property and operational rights belong to the organization.
