@@ -9,11 +9,11 @@
     <section class="bg-gradient-to-b from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
-                <span class="text-xs font-bold text-amber-300 uppercase tracking-widest">{{ __('Support Our Mission') }}</span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                <span class="text-sm font-semibold text-amber-300 uppercase tracking-wider block">{{ __('Support Our Mission') }}</span>
+                <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
                     {{ __('Donate to Abhedya Foundation') }}
                 </h1>
-                <p class="text-base sm:text-lg text-blue-100 leading-relaxed">
+                <p class="text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
                     {{ __('Transparent, accountable humanitarian aid. Every contribution empowers rural education, delivers life-saving flood relief, and sustains emergency healthcare.') }}
                 </p>
             </div>
@@ -32,11 +32,11 @@
                             ✓
                         </div>
                         <div>
-                            <h2 class="text-xl font-extrabold">{{ __('Transaction Report Submitted (Pending Verification)') }}</h2>
-                            <p class="text-xs text-amber-800">{{ __('Tracking Reference ID:') }} #{{ session('tracking_id') }} • {{ session('donor_name') }} • ৳{{ bn_num(number_format(session('amount'))) }}</p>
+                            <h2 class="text-xl font-bold">{{ __('Transaction Report Submitted (Pending Verification)') }}</h2>
+                            <p class="text-sm text-amber-800 font-normal">{{ __('Tracking Reference ID:') }} #{{ session('tracking_id') }} • {{ session('donor_name') }} • ৳{{ bn_num(number_format(session('amount'))) }}</p>
                         </div>
                     </div>
-                    <div class="text-sm leading-relaxed space-y-2 border-t border-amber-200 pt-4">
+                    <div class="text-sm leading-relaxed space-y-2 border-t border-amber-200 pt-4 font-normal">
                         <p>
                             <strong>{{ __('Important Verification Policy:') }}</strong> {{ __('Your submission has been entered into our financial queue with status') }} <em>"{{ __('Pending Verification') }}"</em>.
                         </p>
@@ -52,39 +52,28 @@
                 <!-- Left Column: Step-by-Step Payment Instructions -->
                 <div class="lg:col-span-7 space-y-8" id="payment-methods">
 
-                    <!-- Important Disclaimer Alert Box -->
-                    <div class="p-6 rounded-2xl bg-slate-900 text-white space-y-2">
-                        <div class="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                            {{ __('Payment Governance Notice') }}
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            {{ __('Numbers and account details below are verified official foundation accounts. Never disclose your personal bKash/Nagad PIN, OTP, or passwords to anyone.') }}
-                        </p>
-                    </div>
-
                     <!-- MFS Options (bKash, Nagad, Rocket) -->
                     <div class="space-y-6">
                         <!-- bKash -->
                         <div class="interactive-card bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4 hover:border-pink-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-extrabold flex items-center justify-center text-sm shadow-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-bold flex items-center justify-center text-sm shadow-sm">
                                         bK
                                     </div>
                                     <div>
                                         <h3 class="text-lg font-bold text-slate-900">{{ __('bKash Payment') }}</h3>
-                                        <span class="text-xs text-slate-500">{{ __('Send Money / Merchant Payment') }}</span>
+                                        <span class="text-sm text-slate-500 font-normal">{{ __('Send Money / Merchant Payment') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-200">{{ __('MFS') }}</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-pink-50 text-pink-700 border border-pink-200">{{ __('MFS') }}</span>
                             </div>
 
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800 flex items-center justify-between">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-base font-semibold text-slate-800 flex items-center justify-between">
                                 <span>{{ bn_num($donationInfo['bkash']) }}</span>
                             </div>
 
-                            <ol class="text-xs text-slate-600 space-y-1.5 list-decimal pl-4 leading-relaxed">
+                            <ol class="text-sm text-slate-600 space-y-1.5 list-decimal pl-5 leading-relaxed font-normal">
                                 <li>{{ __('Open your bKash App or dial *247#.') }}</li>
                                 <li>{{ __('Select Send Money or Make Payment.') }}</li>
                                 <li>{{ __('Enter the foundation number above and your contribution amount.') }}</li>
@@ -97,22 +86,22 @@
                         <div class="interactive-card bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4 hover:border-orange-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-extrabold flex items-center justify-center text-sm shadow-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-bold flex items-center justify-center text-sm shadow-sm">
                                         Ng
                                     </div>
                                     <div>
                                         <h3 class="text-lg font-bold text-slate-900">{{ __('Nagad Payment') }}</h3>
-                                        <span class="text-xs text-slate-500">{{ __('Send Money / Merchant Payment') }}</span>
+                                        <span class="text-sm text-slate-500 font-normal">{{ __('Send Money / Merchant Payment') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 text-orange-700 border border-orange-200">{{ __('MFS') }}</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-orange-50 text-orange-700 border border-orange-200">{{ __('MFS') }}</span>
                             </div>
 
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800 flex items-center justify-between">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-base font-semibold text-slate-800 flex items-center justify-between">
                                 <span>{{ bn_num($donationInfo['nagad']) }}</span>
                             </div>
 
-                            <ol class="text-xs text-slate-600 space-y-1.5 list-decimal pl-4 leading-relaxed">
+                            <ol class="text-sm text-slate-600 space-y-1.5 list-decimal pl-5 leading-relaxed font-normal">
                                 <li>{{ __('Open your Nagad App or dial *167#.') }}</li>
                                 <li>{{ __('Select Send Money.') }}</li>
                                 <li>{{ __('Enter the number above and your amount.') }}</li>
@@ -124,18 +113,18 @@
                         <div class="interactive-card bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4 hover:border-purple-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-extrabold flex items-center justify-center text-sm shadow-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-bold flex items-center justify-center text-sm shadow-sm">
                                         Rk
                                     </div>
                                     <div>
                                         <h3 class="text-lg font-bold text-slate-900">{{ __('Rocket Payment') }}</h3>
-                                        <span class="text-xs text-slate-500">{{ __('DBBL Mobile Banking') }}</span>
+                                        <span class="text-sm text-slate-500 font-normal">{{ __('DBBL Mobile Banking') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200">{{ __('MFS') }}</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">{{ __('MFS') }}</span>
                             </div>
 
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-base font-semibold text-slate-800">
                                 <span>{{ bn_num($donationInfo['rocket']) }}</span>
                             </div>
                         </div>
@@ -144,18 +133,18 @@
                         <div class="interactive-card bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4 hover:border-blue-300">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-[#2375b8] font-extrabold flex items-center justify-center text-sm shadow-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-[#2375b8] font-bold flex items-center justify-center text-sm shadow-sm">
                                         BK
                                     </div>
                                     <div>
                                         <h3 class="text-lg font-bold text-slate-900">{{ __('Direct Bank Transfer (NPSB / BEFTN)') }}</h3>
-                                        <span class="text-xs text-slate-500">{{ __('Corporate & Institutional Donations') }}</span>
+                                        <span class="text-sm text-slate-500 font-normal">{{ __('Corporate & Institutional Donations') }}</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#f0f7fd] text-[#2375b8] border border-blue-200">{{ __('Bank') }}</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-[#f0f7fd] text-[#2375b8] border border-blue-200">{{ __('Bank') }}</span>
                             </div>
 
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-xs text-slate-800 whitespace-pre-line leading-relaxed">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-700 whitespace-pre-line leading-relaxed font-normal">
 {{ bn_bank_details($donationInfo['bank']) }}
                             </div>
                         </div>
@@ -164,8 +153,8 @@
 
                 <!-- Right Column: Donation Verification Reporting Form -->
                 <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm sticky top-28">
-                    <h2 class="text-xl font-bold text-slate-900 mb-2">{{ __('Submit Donation Details') }}</h2>
-                    <p class="text-xs text-slate-500 mb-6 leading-relaxed">
+                    <h2 class="text-xl font-bold text-slate-900 mb-1.5">{{ __('Submit Donation Details') }}</h2>
+                    <p class="text-sm text-slate-500 mb-5 leading-relaxed font-normal">
                         {{ __('After transferring your donation via bKash, Nagad, Rocket, or Bank, please record your transaction information below for verification.') }}
                     </p>
 
@@ -190,10 +179,10 @@
 
                         <!-- Target Campaign -->
                         <div>
-                            <label for="campaign_id" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                            <label for="campaign_id" class="block text-sm font-medium text-slate-700 mb-1">
                                 {{ __('Designated Purpose') }}
                             </label>
-                            <select name="campaign_id" id="campaign_id" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none">
+                            <select name="campaign_id" id="campaign_id" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none text-slate-800 font-normal">
                                 <option value="">{{ __('General Foundation Fund (Where Needed Most)') }}</option>
                                 @foreach($activeCampaigns as $c)
                                     <option value="{{ $c->id }}" {{ (old('campaign_id') == $c->id || (isset($selectedCampaign) && $selectedCampaign->id == $c->id)) ? 'selected' : '' }}>
@@ -205,37 +194,37 @@
 
                         <!-- Donor Name -->
                         <div>
-                            <label for="donor_name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                            <label for="donor_name" class="block text-sm font-medium text-slate-700 mb-1">
                                 {{ __('Donor Full Name') }} <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" name="donor_name" id="donor_name" required value="{{ old('donor_name') }}" placeholder="{{ __('e.g. Mohammad Rahman / Anonymous') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none">
+                            <input type="text" name="donor_name" id="donor_name" required value="{{ old('donor_name') }}" placeholder="{{ __('e.g. Mohammad Rahman / Anonymous') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none text-slate-800 font-normal">
                         </div>
 
                         <!-- Email & Phone -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label for="donor_email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">{{ __('Email') }}</label>
-                                <input type="email" name="donor_email" id="donor_email" value="{{ old('donor_email') }}" placeholder="donor@example.com" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none">
+                                <label for="donor_email" class="block text-sm font-medium text-slate-700 mb-1">{{ __('Email') }}</label>
+                                <input type="email" name="donor_email" id="donor_email" value="{{ old('donor_email') }}" placeholder="donor@example.com" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none text-slate-800 font-normal">
                             </div>
                             <div>
-                                <label for="donor_phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">{{ __('Phone') }}</label>
-                                <input type="text" name="donor_phone" id="donor_phone" value="{{ old('donor_phone') }}" placeholder="017XXXXXXXX" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none">
+                                <label for="donor_phone" class="block text-sm font-medium text-slate-700 mb-1">{{ __('Phone') }}</label>
+                                <input type="text" name="donor_phone" id="donor_phone" value="{{ old('donor_phone') }}" placeholder="017XXXXXXXX" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none text-slate-800 font-normal">
                             </div>
                         </div>
 
                         <!-- Amount & Payment Method -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label for="amount" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                                <label for="amount" class="block text-sm font-medium text-slate-700 mb-1">
                                     {{ __('Amount (BDT)') }} <span class="text-red-500">*</span>
                                 </label>
-                                <input type="number" step="0.01" min="10" name="amount" id="amount" required value="{{ old('amount') }}" placeholder="{{ __('e.g. 5000') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none">
+                                <input type="number" step="0.01" min="10" name="amount" id="amount" required value="{{ old('amount') }}" placeholder="{{ __('e.g. 5000') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none text-slate-800 font-normal">
                             </div>
                             <div>
-                                <label for="payment_method" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                                <label for="payment_method" class="block text-sm font-medium text-slate-700 mb-1">
                                     {{ __('Method') }} <span class="text-red-500">*</span>
                                 </label>
-                                <select name="payment_method" id="payment_method" required class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none">
+                                <select name="payment_method" id="payment_method" required class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none text-slate-800 font-normal">
                                     <option value="bkash" {{ old('payment_method') === 'bkash' ? 'selected' : '' }}>{{ __('bKash') }}</option>
                                     <option value="nagad" {{ old('payment_method') === 'nagad' ? 'selected' : '' }}>{{ __('Nagad') }}</option>
                                     <option value="rocket" {{ old('payment_method') === 'rocket' ? 'selected' : '' }}>{{ __('Rocket') }}</option>
@@ -246,23 +235,23 @@
 
                         <!-- Transaction ID -->
                         <div>
-                            <label for="transaction_id" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                            <label for="transaction_id" class="block text-sm font-medium text-slate-700 mb-1">
                                 {{ __('Transaction ID (TrxID)') }} <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" name="transaction_id" id="transaction_id" required value="{{ old('transaction_id') }}" placeholder="{{ __('e.g. BKS982341ABC or Bank Slip No.') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none font-mono">
+                            <input type="text" name="transaction_id" id="transaction_id" required value="{{ old('transaction_id') }}" placeholder="{{ __('e.g. BKS982341ABC or Bank Slip No.') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none font-mono text-slate-800 font-normal">
                         </div>
 
                         <!-- Notes -->
                         <div>
-                            <label for="notes" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                            <label for="notes" class="block text-sm font-medium text-slate-700 mb-1">
                                 {{ __('Message or Reference (Optional)') }}
                             </label>
-                            <textarea name="notes" id="notes" rows="2" placeholder="{{ __('Any dedication or note for the foundation...') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none">{{ old('notes') }}</textarea>
-                            <span class="text-[10px] text-slate-400 block mt-1">{{ __('Never write PINs or passwords in notes.') }}</span>
+                            <textarea name="notes" id="notes" rows="2" placeholder="{{ __('Any dedication or note for the foundation...') }}" class="w-full text-sm rounded-xl border-slate-200 p-2.5 bg-slate-50 border focus:bg-white focus:ring-2 focus:ring-[#2375b8] focus:outline-none text-slate-800 font-normal">{{ old('notes') }}</textarea>
+                            <span class="text-xs text-slate-400 font-normal block mt-1">{{ __('Never write PINs or passwords in notes.') }}</span>
                         </div>
 
                         <div class="pt-2">
-                            <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-sm text-white bg-orange-500 hover:bg-orange-600 shadow-md shadow-orange-500/25 transition">
+                            <button type="submit" class="w-full py-3.5 rounded-xl font-semibold text-base text-white bg-orange-500 hover:bg-orange-600 shadow-md shadow-orange-500/25 transition">
                                 {{ __('Submit Record for Verification') }}
                             </button>
                         </div>

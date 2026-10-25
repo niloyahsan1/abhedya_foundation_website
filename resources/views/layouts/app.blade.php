@@ -56,8 +56,8 @@
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
                     <img src="{{ asset('images/website_logo.png') }}" alt="Abhedya Foundation Logo" class="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition" />
                     <div>
-                        <span class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">{{ __('ABHEDYA') }}</span>
-                        <span class="text-[9px] sm:text-[10px] font-bold text-[#2375b8] tracking-widest uppercase block">{{ __('Foundation') }}</span>
+                        <span class="text-base sm:text-xl font-bold text-slate-900 tracking-tight block leading-tight">{{ __('ABHEDYA') }}</span>
+                        <span class="text-xs sm:text-sm font-semibold text-[#1771bf] tracking-wide uppercase block leading-tight">{{ __('Foundation') }}</span>
                     </div>
                 </a>
 

@@ -85,10 +85,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Our Work') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Featured Projects & Activities') }}</h2>
+                    <span class="text-sm font-semibold text-[#2375b8] uppercase tracking-wider block">{{ __('Our Work') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">{{ __('Featured Projects & Activities') }}</h2>
                 </div>
-                <a href="{{ route('projects.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
+                <a href="{{ route('projects.index') }}" class="font-semibold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
                     {{ __('View All Projects') }}
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
@@ -149,10 +149,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Field Reports & Insights') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Latest News & Articles') }}</h2>
+                    <span class="text-sm font-semibold text-[#2375b8] uppercase tracking-wider block">{{ __('Field Reports & Insights') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">{{ __('Latest News & Articles') }}</h2>
                 </div>
-                <a href="{{ route('blog.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
+                <a href="{{ route('blog.index') }}" class="font-semibold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
                     {{ __('All Stories') }}
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
@@ -200,10 +200,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block">{{ __('Photo Moments') }}</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">{{ __('Impact in Pictures') }}</h2>
+                    <span class="text-sm font-semibold text-sky-400 uppercase tracking-wider block">{{ __('Photo Moments') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">{{ __('Impact in Pictures') }}</h2>
                 </div>
-                <a href="{{ route('gallery.index') }}" class="font-bold text-sm text-sky-400 hover:text-sky-300 flex items-center gap-1">
+                <a href="{{ route('gallery.index') }}" class="font-semibold text-sm text-sky-400 hover:text-sky-300 flex items-center gap-1">
                     {{ __('Visit Photo Gallery') }} &rarr;
                 </a>
             </div>
@@ -226,10 +226,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Make an Immediate Difference') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">{{ __('Active Humanitarian Campaigns') }}</h2>
+                    <span class="text-sm font-semibold text-[#2375b8] uppercase tracking-wider block">{{ __('Make an Immediate Difference') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">{{ __('Active Humanitarian Campaigns') }}</h2>
                 </div>
-                <a href="{{ route('campaigns.index') }}" class="font-bold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
+                <a href="{{ route('campaigns.index') }}" class="font-semibold text-sm text-[#2375b8] hover:text-[#1788bf] flex items-center gap-1 group">
                     {{ __('All Campaigns') }}
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>

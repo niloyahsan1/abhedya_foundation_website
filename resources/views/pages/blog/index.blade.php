@@ -9,11 +9,11 @@
     <section class="bg-gradient-to-b from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
-                <span class="text-xs font-bold text-sky-300 uppercase tracking-widest">{{ __('Stories & Reports') }}</span>
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+                <span class="text-sm font-semibold text-sky-300 uppercase tracking-wider block">{{ __('Stories & Reports') }}</span>
+                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
                     {{ __('News & Foundation Updates') }}
                 </h1>
-                <p class="text-base sm:text-lg text-blue-100 leading-relaxed">
+                <p class="text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
                     {{ __('Insights from the ground: how your support creates lasting educational and humanitarian impact across Bangladesh.') }}
                 </p>
             </div>

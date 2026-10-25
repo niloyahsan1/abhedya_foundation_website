@@ -9,11 +9,11 @@
     <section class="bg-gradient-to-b from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white py-16 sm:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
-                <span class="text-xs font-bold text-sky-300 uppercase tracking-widest">{{ __('Who We Are') }}</span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                <span class="text-sm font-semibold text-sky-300 uppercase tracking-wider">{{ __('Who We Are') }}</span>
+                <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
                     {{ __('About Abhedya Foundation') }}
                 </h1>
-                <p class="text-lg text-blue-100 leading-relaxed">
+                <p class="text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
                     {{ __('A grassroots non-profit dedicated to uplifting marginalized communities, expanding educational opportunity, and providing rapid humanitarian aid.') }}
                 </p>
             </div>
@@ -25,8 +25,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-6">
-                    <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest">{{ __('Our Foundation Story') }}</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">
+                    <span class="text-sm font-semibold text-[#2375b8] uppercase tracking-wider">{{ __('Our Foundation Story') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
                         {{ __('Built from Compassion, Sustained by Dedicated Action') }}
                     </h2>
                     <p class="text-base text-slate-600 leading-relaxed">
@@ -61,8 +61,8 @@
     <section class="py-20 bg-[#f0f7fd]/40 border-t border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-                <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Guiding Principles') }}</span>
-                <h2 class="text-3xl font-extrabold text-slate-900">{{ __('Mission, Vision & Core Values') }}</h2>
+                <span class="text-sm font-semibold text-[#2375b8] uppercase tracking-wider block">{{ __('Guiding Principles') }}</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">{{ __('Mission, Vision & Core Values') }}</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -112,30 +112,30 @@
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-                <span class="text-xs font-bold text-[#2375b8] uppercase tracking-widest block">{{ __('Our Strategic Focus') }}</span>
-                <h2 class="text-3xl font-extrabold text-slate-900">{{ __('Key Pillars of Action') }}</h2>
+                <span class="text-sm font-semibold text-[#2375b8] uppercase tracking-wider block">{{ __('Our Strategic Focus') }}</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">{{ __('Key Pillars of Action') }}</h2>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/40 border border-slate-200/80 space-y-3 shadow-sm cursor-default">
                     <span class="text-3xl block transition-transform group-hover:scale-125">📚</span>
                     <h3 class="font-bold text-slate-900">{{ __('Education & Digital Literacy') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">{{ __('Modernizing rural classrooms, solar power integration, and merit-based secondary scholarships.') }}</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ __('Modernizing rural classrooms, solar power integration, and merit-based secondary scholarships.') }}</p>
                 </div>
                 <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/40 border border-slate-200/80 space-y-3 shadow-sm cursor-default">
                     <span class="text-3xl block transition-transform group-hover:scale-125">🩺</span>
                     <h3 class="font-bold text-slate-900">{{ __('Healthcare & Hygiene') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">{{ __('Mobile diagnostic camps, free doctor visits, maternal healthcare counseling, and clean drinking water tubewells.') }}</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ __('Mobile diagnostic camps, free doctor visits, maternal healthcare counseling, and clean drinking water tubewells.') }}</p>
                 </div>
                 <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/40 border border-slate-200/80 space-y-3 shadow-sm cursor-default">
                     <span class="text-3xl block transition-transform group-hover:scale-125">🌊</span>
                     <h3 class="font-bold text-slate-900">{{ __('Disaster & Winter Relief') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">{{ __('Rapid emergency distribution of dry rations, water purifiers, shelter kits, and winter thermal clothing.') }}</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ __('Rapid emergency distribution of dry rations, water purifiers, shelter kits, and winter thermal clothing.') }}</p>
                 </div>
                 <div class="interactive-card p-6 rounded-2xl bg-gradient-to-b from-white to-[#f0f7fd]/40 border border-slate-200/80 space-y-3 shadow-sm cursor-default">
                     <span class="text-3xl block transition-transform group-hover:scale-125">🧵</span>
                     <h3 class="font-bold text-slate-900">{{ __('Livelihood & Skills') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">{{ __('Tailoring and vocational trade boot camps equipping widows and low-income families with tools to earn independently.') }}</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ __('Tailoring and vocational trade boot camps equipping widows and low-income families with tools to earn independently.') }}</p>
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
     <!-- Call to Action Banner -->
     <section class="py-16 bg-gradient-to-br from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <h2 class="text-3xl font-extrabold text-white">{{ __('Partner with Abhedya Foundation') }}</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white">{{ __('Partner with Abhedya Foundation') }}</h2>
             <p class="text-blue-100 max-w-2xl mx-auto text-base">
                 {{ __('Whether you want to sponsor an educational project, volunteer your professional skills, or support emergency relief, your involvement creates lasting change.') }}
             </p>

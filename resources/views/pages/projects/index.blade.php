@@ -9,11 +9,11 @@
     <section class="bg-gradient-to-b from-[#1771bf] via-[#1565a8] to-[#0c243c] text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl space-y-4">
-                <span class="text-xs font-bold text-sky-300 uppercase tracking-widest">{{ __('Our Direct Impact') }}</span>
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+                <span class="text-sm font-semibold text-sky-300 uppercase tracking-wider block">{{ __('Our Direct Impact') }}</span>
+                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
                     {{ __('Projects & Activities') }}
                 </h1>
-                <p class="text-base sm:text-lg text-blue-100 leading-relaxed">
+                <p class="text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
                     {{ __('Explore our ground initiatives designed to create sustainable, long-term impact across vulnerable and remote rural areas.') }}
                 </p>
             </div>
