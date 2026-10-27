@@ -55,10 +55,48 @@ if (!function_exists('bn_taka')) {
     }
 }
 
+if (!function_exists('clean_html_content')) {
+    /**
+     * Clean and normalize rich text / body content.
+     * - Removes empty paragraphs like <p><br></p> and <p>&nbsp;</p> that cause double spacing.
+     * - Collapses redundant line breaks.
+     * - Formats plain text into semantic <p> paragraphs.
+     */
+    function clean_html_content(?string $content): string
+    {
+        if (empty($content)) {
+            return '';
+        }
+
+        $trimmed = trim($content);
+
+        // Check if content already contains HTML tags (e.g. from rich editor)
+        if ($trimmed !== strip_tags($trimmed)) {
+            // 1. Remove empty/whitespace paragraphs often inserted by rich text editors
+            $cleaned = preg_replace('/<p\b[^>]*>(\s*|<br\s*\/?>|&nbsp;)*<\/p>/i', '', $trimmed);
+            // 2. Collapse consecutive <br> tags
+            $cleaned = preg_replace('/(<br\s*\/?>\s*){2,}/i', '<br />', $cleaned);
+            return trim($cleaned);
+        }
+
+        // It is plain text: split on double newlines to form clean paragraphs without double spacing
+        $paragraphs = preg_split('/\r\n\r\n|\n\n|\r\r/', $trimmed);
+        $html = '';
+        foreach ($paragraphs as $para) {
+            $p = trim($para);
+            if ($p !== '') {
+                $html .= '<p>' . nl2br(e($p)) . '</p>';
+            }
+        }
+
+        return $html ?: nl2br(e($trimmed));
+    }
+}
+
 if (!function_exists('bn_content')) {
     /**
      * Translate and format rich text / body content cleanly.
-     * Prevents escaping of valid HTML while guaranteeing translation lookup.
+     * Prevents escaping of valid HTML while guaranteeing translation lookup and proper paragraph spacing.
      */
     function bn_content(?string $content): string
     {
@@ -66,19 +104,19 @@ if (!function_exists('bn_content')) {
             return '';
         }
 
+        // Clean redundant empty lines / paragraphs first
+        $cleaned = clean_html_content($content);
+
         // If English locale:
         if (app()->getLocale() !== 'bn') {
-            if ($content !== strip_tags($content)) {
-                return $content;
-            }
-            return nl2br(e($content));
+            return $cleaned;
         }
 
         // Locale is Bangla:
         // 1. Direct exact translation
         $translated = __($content);
         if ($translated !== $content) {
-            return $translated;
+            return clean_html_content($translated);
         }
 
         // 2. If content is wrapped in <p>...</p>, check inner text translation
@@ -87,7 +125,7 @@ if (!function_exists('bn_content')) {
             $inner = trim($matches[1]);
             $innerTranslated = __($inner);
             if ($innerTranslated !== $inner) {
-                return '<p>' . $innerTranslated . '</p>';
+                return '<p>' . clean_html_content($innerTranslated) . '</p>';
             }
         }
 
@@ -95,18 +133,10 @@ if (!function_exists('bn_content')) {
         $plain = trim(strip_tags($content));
         $plainTranslated = __($plain);
         if ($plainTranslated !== $plain) {
-            if ($content !== strip_tags($content)) {
-                return '<p>' . nl2br(e($plainTranslated)) . '</p>';
-            }
-            return nl2br(e($plainTranslated));
+            return clean_html_content($plainTranslated);
         }
 
-        // If content already contains HTML tags, return as-is
-        if ($content !== strip_tags($content)) {
-            return $content;
-        }
-
-        return nl2br(e($content));
+        return $cleaned;
     }
 }
 

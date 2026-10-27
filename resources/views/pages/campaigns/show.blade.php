@@ -48,7 +48,7 @@
                     @endif
 
                     <!-- Detailed Content -->
-                    <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed text-base sm:text-lg space-y-6">
+                    <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed text-base sm:text-lg">
                         {!! $campaign->display_description !!}
                     </div>
 

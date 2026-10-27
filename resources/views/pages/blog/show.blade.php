@@ -41,7 +41,7 @@
                 </div>
             @endif
 
-            <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6 text-base sm:text-lg">
+            <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed text-base sm:text-lg">
                 {!! $post->display_content !!}
             </div>
 

@@ -41,6 +41,45 @@
         @endif
         @endforeach
     });
+
+    function handleImageFileSelect(input, key) {
+        const file = input.files && input.files[0];
+        if (!file) return;
+
+        const previewCard = document.getElementById('preview-card-' + key);
+        const previewImg = document.getElementById('new-preview-' + key);
+        const previewName = document.getElementById('preview-name-' + key);
+        const previewSize = document.getElementById('preview-size-' + key);
+        const dropzoneLabel = document.getElementById('dropzone-label-' + key);
+
+        if (previewName) previewName.textContent = file.name;
+        if (previewSize) {
+            const kb = (file.size / 1024).toFixed(1);
+            previewSize.textContent = kb > 1024 ? (kb / 1024).toFixed(2) + ' MB' : kb + ' KB';
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            if (previewImg) previewImg.src = e.target.result;
+            if (previewCard) previewCard.style.display = 'block';
+            if (dropzoneLabel) dropzoneLabel.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function clearSelectedImage(key) {
+        const input = document.getElementById(key);
+        if (input) input.value = '';
+
+        const previewCard = document.getElementById('preview-card-' + key);
+        if (previewCard) previewCard.style.display = 'none';
+
+        const dropzoneLabel = document.getElementById('dropzone-label-' + key);
+        if (dropzoneLabel) dropzoneLabel.style.display = 'block';
+
+        const previewImg = document.getElementById('new-preview-' + key);
+        if (previewImg) previewImg.src = '';
+    }
 </script>
 @endpush
 
@@ -94,7 +133,7 @@
 
                 @elseif($field['type'] === 'richtext')
                 <div class="richtext-wrapper">
-                    <div id="editor-{{ $key }}" style="height: 200px; background: #fff;"></div>
+                    <div id="editor-{{ $key }}" style="min-height: 220px;"></div>
                     <textarea name="{{ $key }}" id="{{ $key }}" style="display:none">{{ old($key, $item->$key) }}</textarea>
                 </div>
 
@@ -227,27 +266,70 @@
                     }
                 @endphp
                 
-                @if($imageUrl && $displayImage && $displayImagePosition === 'top')
-                <div style="margin-bottom: 0.75rem;">
-                    <img id="current-preview-{{ $key }}" src="{{ $imageUrl }}" alt="Current image" style="max-width: 260px; max-height: 180px; object-fit: cover; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: block;">
-                    <div style="margin-top: 0.35rem;">
-                        <small style="color: var(--text-secondary);">Current image: <a href="{{ $imageUrl }}" target="_blank" style="color: var(--primary); text-decoration: underline;">{{ basename(parse_url($imageUrl, PHP_URL_PATH) ?? $imageUrl) }}</a></small>
+                @if($imageUrl)
+                <div class="current-image-card" id="current-image-card-{{ $key }}">
+                    <div class="current-image-badge">Current Saved Image</div>
+                    <div class="current-image-inner">
+                        <img id="current-preview-{{ $key }}" src="{{ $imageUrl }}" alt="Current image" class="current-image-thumb">
+                        <div class="current-image-meta">
+                            <span class="preview-file-name">{{ basename(parse_url($imageUrl, PHP_URL_PATH) ?? $imageUrl) }}</span>
+                            <a href="{{ $imageUrl }}" target="_blank" class="current-image-link">
+                                View Full Size &rarr;
+                            </a>
+                            <span class="current-image-note">Upload below to replace this image</span>
+                        </div>
                     </div>
                 </div>
                 @endif
                 
-                <div class="file-upload-wrapper">
-                    <input type="file" name="{{ $key }}" id="{{ $key }}" accept="image/*" class="form-input @error($key) is-invalid @enderror" onchange="const f = this.files[0]; if (f) { const r = new FileReader(); r.onload = e => { const cp = document.getElementById('current-preview-{{ $key }}'); if (cp) { cp.src = e.target.result; } else { const np = document.getElementById('new-preview-{{ $key }}'); if (np) { np.src = e.target.result; np.parentElement.style.display = 'block'; } } }; r.readAsDataURL(f); }" {{ ($field['readonly'] ?? false) ? 'readonly' : '' }} @if(isset($field['attributes'])) @foreach($field['attributes'] as $attr => $value) {{ $attr }}="{{ $value }}" @endforeach @endif>
-                    <div style="display: none; margin-top: 0.75rem;">
-                        <img id="new-preview-{{ $key }}" src="" alt="New image preview" style="max-width: 260px; max-height: 180px; object-fit: cover; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <div class="custom-file-dropzone" id="dropzone-container-{{ $key }}">
+                    <input type="file" 
+                           name="{{ $key }}" 
+                           id="{{ $key }}" 
+                           accept="image/*" 
+                           class="custom-file-input"
+                           onchange="handleImageFileSelect(this, '{{ $key }}')">
+                    
+                    <label for="{{ $key }}" class="dropzone-label" id="dropzone-label-{{ $key }}">
+                        <div class="dropzone-content">
+                            <div class="dropzone-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                                    <circle cx="9" cy="9" r="2"/>
+                                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                </svg>
+                            </div>
+                            <div class="dropzone-text">
+                                <span class="dropzone-title">Click to upload new image or drag & drop</span>
+                                <span class="dropzone-sub">PNG, JPG, WEBP, GIF up to 10MB</span>
+                            </div>
+                            <button type="button" class="dropzone-browse-btn" onclick="document.getElementById('{{ $key }}').click()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" x2="12" y1="3" y2="15"/>
+                                </svg>
+                                Browse Image
+                            </button>
+                        </div>
+                    </label>
+
+                    {{-- New Selected Image Preview Card --}}
+                    <div id="preview-card-{{ $key }}" class="dropzone-preview-card" style="display: none;">
+                        <div class="preview-card-inner">
+                            <img id="new-preview-{{ $key }}" src="" alt="New image preview" class="dropzone-preview-img">
+                            <div class="preview-card-info">
+                                <span class="preview-file-name" id="preview-name-{{ $key }}">image.jpg</span>
+                                <span class="preview-file-size" id="preview-size-{{ $key }}">0 KB</span>
+                                <div>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="clearSelectedImage('{{ $key }}')">
+                                        Cancel New Selection
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                @if($imageUrl && $displayImage && $displayImagePosition === 'bottom')
-                <div style="margin-top: 0.75rem;">
-                    <img src="{{ $imageUrl }}" alt="Current image" style="max-width: 260px; max-height: 180px; object-fit: cover; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: block;">
-                </div>
-                @endif
 
                 @elseif($field['type'] === 'boolean')
                 <div class="form-check">

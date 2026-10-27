@@ -3163,4 +3163,314 @@
         height: 17px;
         display: block;
     }
+
+    .richtext-wrapper {
+        border-radius: var(--radius, 0.625rem);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        background: var(--background);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .richtext-wrapper:focus-within {
+        border-color: var(--ring);
+        box-shadow: 0 0 0 1px var(--ring);
+    }
+
+    .richtext-wrapper .ql-toolbar.ql-snow {
+        background: var(--muted);
+        border: none;
+        border-bottom: 1px solid var(--border);
+        padding: 8px 12px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .richtext-wrapper .ql-container.ql-snow {
+        background: var(--background);
+        border: none;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--foreground);
+    }
+
+    .richtext-wrapper .ql-editor {
+        min-height: 220px;
+        color: var(--foreground) !important;
+        line-height: 1.65;
+        padding: 14px 16px;
+    }
+
+    .richtext-wrapper .ql-editor.ql-blank::before {
+        color: var(--muted-foreground);
+        font-style: normal;
+        left: 16px;
+    }
+
+    /* Dark Mode Quill overrides */
+    .dark .richtext-wrapper {
+        border-color: var(--border) !important;
+        background: var(--background) !important;
+    }
+
+    .dark .richtext-wrapper .ql-toolbar.ql-snow {
+        background: var(--card) !important;
+        border-bottom: 1px solid var(--border) !important;
+    }
+
+    .dark .richtext-wrapper .ql-container.ql-snow,
+    .dark .richtext-wrapper .ql-editor {
+        background: var(--background) !important;
+        color: var(--foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-editor * {
+        color: var(--foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-editor.ql-blank::before {
+        color: var(--muted-foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow .ql-stroke {
+        stroke: var(--foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow .ql-fill {
+        fill: var(--foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow .ql-picker {
+        color: var(--foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow .ql-picker-label {
+        color: var(--foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow .ql-picker-options {
+        background: var(--popover) !important;
+        border: 1px solid var(--border) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow .ql-picker-item {
+        color: var(--foreground) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow .ql-picker-item:hover {
+        color: var(--primary) !important;
+        background: var(--accent) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow.ql-toolbar button:hover,
+    .dark .richtext-wrapper .ql-snow.ql-toolbar button:focus,
+    .dark .richtext-wrapper .ql-snow.ql-toolbar button.ql-active {
+        background: var(--accent) !important;
+        border-radius: 4px;
+    }
+
+    .dark .richtext-wrapper .ql-snow.ql-toolbar button:hover .ql-stroke,
+    .dark .richtext-wrapper .ql-snow.ql-toolbar button.ql-active .ql-stroke {
+        stroke: var(--primary) !important;
+    }
+
+    .dark .richtext-wrapper .ql-snow.ql-toolbar button:hover .ql-fill,
+    .dark .richtext-wrapper .ql-snow.ql-toolbar button.ql-active .ql-fill {
+        fill: var(--primary) !important;
+    }
+
+    /* ==========================================================================
+       Custom File & Image Upload Dropzone (Light & Dark Mode)
+       ========================================================================== */
+    .custom-file-dropzone {
+        position: relative;
+        margin-top: 0.5rem;
+    }
+
+    .custom-file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .dropzone-label {
+        display: block;
+        padding: 2.25rem 1.5rem;
+        background: var(--muted);
+        border: 2px dashed var(--border);
+        border-radius: var(--radius, 0.625rem);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .dropzone-label:hover,
+    .custom-file-dropzone.dragover .dropzone-label {
+        border-color: var(--primary);
+        background: var(--accent);
+    }
+
+    .dropzone-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        pointer-events: none;
+    }
+
+    .dropzone-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .dropzone-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .dropzone-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--foreground);
+    }
+
+    .dropzone-sub {
+        font-size: 0.8rem;
+        color: var(--muted-foreground);
+    }
+
+    .dropzone-browse-btn {
+        pointer-events: auto;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border-radius: 6px;
+        background: var(--primary);
+        color: var(--primary-foreground) !important;
+        border: 1px solid var(--primary);
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.15s ease;
+        margin-top: 0.25rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .dropzone-browse-btn:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
+    }
+
+    .dropzone-preview-card,
+    .current-image-card {
+        margin-top: 0.75rem;
+        padding: 0.85rem;
+        border-radius: var(--radius, 0.625rem);
+        background: var(--card);
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .preview-card-inner,
+    .current-image-inner {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .dropzone-preview-img,
+    .current-image-thumb {
+        width: 110px;
+        height: 75px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: var(--muted);
+        flex-shrink: 0;
+    }
+
+    .preview-card-info,
+    .current-image-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .preview-file-name {
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: var(--foreground);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .preview-file-size {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+    }
+
+    .current-image-badge {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .current-image-link {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--primary);
+        text-decoration: underline;
+    }
+
+    .current-image-note {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+    }
+
+    /* Dark Mode Dropzone overrides */
+    .dark .dropzone-label {
+        background: var(--card);
+        border-color: var(--border);
+    }
+
+    .dark .dropzone-label:hover {
+        background: var(--accent);
+        border-color: var(--primary);
+    }
+
+    .dark .dropzone-icon {
+        background: var(--secondary);
+        border-color: var(--border);
+        color: var(--primary);
+    }
+
+    .dark .dropzone-preview-card,
+    .dark .current-image-card {
+        background: var(--card);
+        border-color: var(--border);
+    }
 </style>

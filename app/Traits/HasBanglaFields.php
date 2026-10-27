@@ -86,9 +86,9 @@ trait HasBanglaFields
     public function getDisplayDescriptionAttribute(): string
     {
         if (app()->getLocale() === 'bn') {
-            return !empty($this->description_bn) ? $this->description_bn : bn_content($this->description);
+            return !empty($this->description_bn) ? clean_html_content($this->description_bn) : bn_content($this->description);
         }
-        return (string) ($this->description ?? '');
+        return clean_html_content($this->description);
     }
 
     /**
@@ -97,9 +97,9 @@ trait HasBanglaFields
     public function getDisplayContentAttribute(): string
     {
         if (app()->getLocale() === 'bn') {
-            return !empty($this->content_bn) ? $this->content_bn : bn_content($this->content);
+            return !empty($this->content_bn) ? clean_html_content($this->content_bn) : bn_content($this->content);
         }
-        return (string) ($this->content ?? '');
+        return clean_html_content($this->content);
     }
 
     /**
