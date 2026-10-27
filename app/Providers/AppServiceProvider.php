@@ -11,7 +11,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            \HasinHayder\TyroDashboard\Http\Controllers\ResourceController::class,
+            \App\Http\Controllers\Admin\ResourceController::class
+        );
     }
 
     /**

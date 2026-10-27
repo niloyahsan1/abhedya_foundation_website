@@ -43,11 +43,24 @@
                     <div class="detail-label" style="font-weight: 500; color: var(--text-secondary); margin-bottom: 0.25rem;">{{ $field['label'] }}</div>
                     <div class="detail-value" style="font-size: 1rem; color: var(--text-primary);">
                         @if($field['type'] === 'file')
-                            @if($item->$key)
-                                <a href="{{ Storage::url($item->$key) }}" target="_blank" style="color: var(--primary); text-decoration: none;">View File</a>
-                            @else
-                                -
-                            @endif
+                        @php
+                            $val = $item->$key;
+                            $src = $val ? (str_starts_with($val, 'http') || str_starts_with($val, '/') ? $val : \Illuminate\Support\Facades\Storage::url($val)) : null;
+                            if ($src) {
+                                $src = str_replace('/storage//storage/', '/storage/', $src);
+                            }
+                            $isImg = $src && preg_match('/\.(jpg|jpeg|png|webp|gif|svg|avif)($|\?)/i', $src);
+                        @endphp
+                        @if($src)
+                            <div style="margin-top: 0.25rem;">
+                                @if($isImg)
+                                    <img src="{{ $src }}" alt="" style="max-width: 320px; max-height: 240px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: block; margin-bottom: 0.5rem;">
+                                @endif
+                                <small><a href="{{ $src }}" target="_blank" style="color: var(--primary); text-decoration: underline;">View Full {{ $isImg ? 'Image' : 'File' }} &rarr;</a></small>
+                            </div>
+                        @else
+                            -
+                        @endif
                         @elseif($field['type'] === 'multiselect' || ($field['type'] === 'checkbox' && isset($field['relationship'])) || ($field['type'] === 'select' && ($field['multiple'] ?? false)))
                              @if(isset($field['relationship']))
                                  {{ $item->{$field['relationship']}->pluck($field['option_label'] ?? 'name')->implode(', ') ?: '-' }}
@@ -62,19 +75,6 @@
                             <span class="badge {{ $item->$key ? 'badge-success' : 'badge-secondary' }}">
                                 {{ $item->$key ? 'Yes' : 'No' }}
                             </span>
-                        @elseif($field['type'] === 'file')
-                        @php
-                            $val = $item->$key;
-                            $src = $val ? (str_starts_with($val, 'http') || str_starts_with($val, '/') ? $val : \Illuminate\Support\Facades\Storage::url($val)) : null;
-                        @endphp
-                        @if($src)
-                            <div style="margin-top: 0.25rem;">
-                                <img src="{{ $src }}" alt="" style="max-width: 320px; max-height: 240px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: block; margin-bottom: 0.5rem;">
-                                <small><a href="{{ $src }}" target="_blank" style="color: var(--primary); text-decoration: underline;">View Full Image</a></small>
-                            </div>
-                        @else
-                            -
-                        @endif
                         @elseif($field['type'] === 'textarea')
                             <div style="white-space: pre-wrap;">{{ $item->$key }}</div>
                         @elseif($field['type'] === 'richtext')

@@ -103,8 +103,15 @@
                             <span style="color: var(--muted-foreground);">-</span>
                         @endif
                         @elseif($field['type'] === 'file')
-                        @if($item->$key)
-                        <a href="{{ Storage::url($item->$key) }}" target="_blank" style="color: var(--primary); text-decoration: none;" onclick="event.stopPropagation()">View</a>
+                        @php
+                            $val = $item->$key;
+                            $src = $val ? (str_starts_with($val, 'http') || str_starts_with($val, '/') ? $val : \Illuminate\Support\Facades\Storage::url($val)) : null;
+                            if ($src) {
+                                $src = str_replace('/storage//storage/', '/storage/', $src);
+                            }
+                        @endphp
+                        @if($src)
+                        <a href="{{ $src }}" target="_blank" style="color: var(--primary); text-decoration: none;" onclick="event.stopPropagation()">View</a>
                         @else
                         -
                         @endif

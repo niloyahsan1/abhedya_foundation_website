@@ -46,6 +46,12 @@
         const file = input.files && input.files[0];
         if (!file) return;
 
+        // If an image was marked for removal, reset it because a new image is now selected
+        const removeInput = document.getElementById('remove_' + key);
+        if (removeInput && removeInput.value === '1') {
+            toggleRemoveImage(key);
+        }
+
         const previewCard = document.getElementById('preview-card-' + key);
         const previewImg = document.getElementById('new-preview-' + key);
         const previewName = document.getElementById('preview-name-' + key);
@@ -79,6 +85,56 @@
 
         const previewImg = document.getElementById('new-preview-' + key);
         if (previewImg) previewImg.src = '';
+    }
+
+    function toggleRemoveImage(key) {
+        const removeInput = document.getElementById('remove_' + key);
+        const preview = document.getElementById('current-preview-' + key);
+        const badge = document.getElementById('badge-' + key);
+        const btn = document.getElementById('btn-remove-' + key);
+        const btnText = document.getElementById('btn-remove-text-' + key);
+        const note = document.getElementById('note-' + key);
+
+        if (!removeInput) return;
+
+        if (removeInput.value === '0') {
+            removeInput.value = '1';
+            if (preview) {
+                preview.style.opacity = '0.25';
+                preview.style.filter = 'grayscale(100%)';
+            }
+            if (badge) {
+                badge.textContent = 'Marked for Removal on Save';
+                badge.style.background = '#ef4444';
+                badge.style.color = '#ffffff';
+            }
+            if (btn) {
+                btn.style.background = '#f1f5f9';
+                btn.style.color = '#475569';
+                btn.style.borderColor = '#cbd5e1';
+            }
+            if (btnText) btnText.textContent = 'Undo (Keep Image)';
+            if (note) note.innerHTML = '<span style="color:#dc2626;font-weight:600;">Image will be permanently removed when you click Update below.</span>';
+            clearSelectedImage(key);
+        } else {
+            removeInput.value = '0';
+            if (preview) {
+                preview.style.opacity = '1';
+                preview.style.filter = 'none';
+            }
+            if (badge) {
+                badge.textContent = 'Current Saved Image';
+                badge.style.background = '';
+                badge.style.color = '';
+            }
+            if (btn) {
+                btn.style.background = '#fee2e2';
+                btn.style.color = '#dc2626';
+                btn.style.borderColor = '#fca5a5';
+            }
+            if (btnText) btnText.textContent = 'Remove Image';
+            if (note) note.textContent = 'Upload below to replace, or click Remove Image to delete it';
+        }
     }
 </script>
 @endpush
@@ -263,20 +319,35 @@
                         } else {
                             $imageUrl = \Illuminate\Support\Facades\Storage::url($rawVal);
                         }
+                        $imageUrl = str_replace('/storage//storage/', '/storage/', $imageUrl);
                     }
                 @endphp
                 
                 @if($imageUrl)
                 <div class="current-image-card" id="current-image-card-{{ $key }}">
-                    <div class="current-image-badge">Current Saved Image</div>
+                    <input type="hidden" name="remove_{{ $key }}" id="remove_{{ $key }}" value="0">
+                    <div class="current-image-badge" id="badge-{{ $key }}">Current Saved Image</div>
                     <div class="current-image-inner">
-                        <img id="current-preview-{{ $key }}" src="{{ $imageUrl }}" alt="Current image" class="current-image-thumb">
+                        <img id="current-preview-{{ $key }}" src="{{ $imageUrl }}" alt="Current image" class="current-image-thumb" style="transition: all 0.2s ease;">
                         <div class="current-image-meta">
                             <span class="preview-file-name">{{ basename(parse_url($imageUrl, PHP_URL_PATH) ?? $imageUrl) }}</span>
-                            <a href="{{ $imageUrl }}" target="_blank" class="current-image-link">
-                                View Full Size &rarr;
-                            </a>
-                            <span class="current-image-note">Upload below to replace this image</span>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem; flex-wrap: wrap;">
+                                <a href="{{ $imageUrl }}" target="_blank" class="current-image-link" style="font-size: 0.8125rem; font-weight: 500; color: var(--primary); text-decoration: none;">
+                                    View Full Size &rarr;
+                                </a>
+                                <button type="button" 
+                                        id="btn-remove-{{ $key }}" 
+                                        onclick="toggleRemoveImage('{{ $key }}')"
+                                        style="display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.65rem; font-size: 0.75rem; font-weight: 600; color: #dc2626; background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; cursor: pointer; transition: all 0.15s ease;">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    <span id="btn-remove-text-{{ $key }}">Remove Image</span>
+                                </button>
+                            </div>
+                            <span class="current-image-note" id="note-{{ $key }}" style="margin-top: 0.35rem; font-size: 0.75rem; color: var(--muted-foreground); display: block;">
+                                Upload below to replace, or click Remove Image to delete it
+                            </span>
                         </div>
                     </div>
                 </div>

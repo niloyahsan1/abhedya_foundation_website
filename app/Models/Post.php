@@ -42,10 +42,12 @@ class Post extends Model
         if (empty($value)) {
             return null;
         }
+        $value = str_replace('/storage//storage/', '/storage/', $value);
         if (str_starts_with($value, 'http://') || str_starts_with($value, 'https://') || str_starts_with($value, '/')) {
             return $value;
         }
-        return \Illuminate\Support\Facades\Storage::url($value);
+        $url = \Illuminate\Support\Facades\Storage::url($value);
+        return str_replace('/storage//storage/', '/storage/', $url);
     }
 
     public function user(): BelongsTo
