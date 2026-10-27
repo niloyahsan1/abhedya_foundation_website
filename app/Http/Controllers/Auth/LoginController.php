@@ -105,11 +105,12 @@ class LoginController extends BaseLoginController
 
             // 4. Strict Enforcement: Member Login MUST reject anyone with admin-related roles
             if (! $isPortal && $hasAdminRole) {
+                $locale = $request->input('locale', app()->getLocale());
                 Auth::logout();
-                $request->session()->invalidate();
                 $request->session()->regenerateToken();
+                $request->session()->put('locale', $locale);
 
-                $message = app()->getLocale() === 'bn'
+                $message = $locale === 'bn'
                     ? 'অ্যাডমিন অ্যাকাউন্ট দিয়ে সাধারণ সদস্য লগইন করা যাবে না। অনুগ্রহ করে অ্যাডমিন পোর্টাল ব্যবহার করুন।'
                     : 'Administrator accounts cannot log in through the member portal. Please use the Admin Portal.';
 
@@ -120,9 +121,10 @@ class LoginController extends BaseLoginController
 
             // 5. Strict Enforcement: Admin Portal MUST reject anyone without an admin role
             if ($isPortal && ! $hasAdminRole) {
+                $locale = $request->input('locale', app()->getLocale());
                 Auth::logout();
-                $request->session()->invalidate();
                 $request->session()->regenerateToken();
+                $request->session()->put('locale', $locale);
 
                 throw ValidationException::withMessages([
                     $errorField => 'Access denied. Only authorized administrators can access the Admin Portal.',
