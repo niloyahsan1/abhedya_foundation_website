@@ -140,8 +140,7 @@
                         </div>
                     @else
                         <!-- Guest Login Link -->
-                        @php $portalBase = config('app.portal_url') ? rtrim(config('app.portal_url'), '/') : ''; @endphp
-                        <a href="{{ $portalBase }}/login" class="text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#2375b8] px-2.5 xl:px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap shrink-0" title="{{ __('Login') }}">
+                        <a href="{{ route('tyro-login.login') }}" class="text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#2375b8] px-2.5 xl:px-3 py-2 rounded-xl hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap shrink-0" title="{{ __('Login') }}">
                             <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                             <span class="whitespace-nowrap">{{ __('Login') }}</span>
                         </a>
@@ -228,8 +227,7 @@
                 </div>
             @else
                 <div class="pt-2 border-t border-slate-100">
-                    @php $portalBase = config('app.portal_url') ? rtrim(config('app.portal_url'), '/') : ''; @endphp
-                    <a href="{{ $portalBase }}/login" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#2375b8]">
+                    <a href="{{ route('tyro-login.login') }}" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#2375b8]">
                         <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                         <span>{{ __('Login') }}</span>
                     </a>

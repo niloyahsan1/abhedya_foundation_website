@@ -10,32 +10,28 @@
 @endphp
 @extends($isAdminPortal ? 'tyro-login::layouts.auth' : 'layouts.app')
 
-@if(!$isAdminPortal)
-@section('title', __('Sign In') . ' | ' . __('Abhedya Foundation'))
-@section('meta_description', __('Sign in to access your Abhedya Foundation account.'))
+@if($isAdminPortal)
+@section('title', 'Admin Portal | ' . config('app.name', 'Abhedya Foundation'))
+@else
+@section('title', (app()->getLocale() === 'bn' ? 'সদস্য লগইন' : 'Member Sign In') . ' | ' . (app()->getLocale() === 'bn' ? 'অভেদ্য ফাউন্ডেশন' : 'Abhedya Foundation'))
+@section('meta_description', (app()->getLocale() === 'bn' ? 'আপনার অভেদ্য ফাউন্ডেশন অ্যাকাউন্টে প্রবেশ করতে লগইন করুন।' : 'Sign in to access your Abhedya Foundation member account.'))
 @endif
 
 @section('content')
 @if($isAdminPortal)
 {{-- =========================================================================
-     ADMIN / STAFF PORTAL LOGIN (Clean Default Laravel / Tyro Auth UI)
+     ADMIN PORTAL LOGIN (Clean, Minimalist, No Logo, 100% English)
      Rendered on portal subdomain: portal.abhedyafoundation.org/login
+     or locally via: /admin/login or ?admin=1
      ========================================================================= --}}
 <div class="auth-container centered" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:var(--background);">
     <div class="form-panel" style="width:100%;max-width:440px;">
-        <div class="form-card" style="background:var(--card, var(--background));border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.06), 0 8px 10px -6px rgba(0,0,0,0.04);padding:2.25rem 2rem;">
-            
-            <!-- Logo -->
-            <div class="logo-container" style="text-align:center;margin-bottom:1.5rem;">
-                <a href="{{ config('app.url', '/') }}" title="Abhedya Foundation" style="display:inline-block;text-decoration:none;">
-                    <img src="{{ asset('images/website_logo.png') }}" alt="Abhedya Foundation" style="height:48px;width:auto;max-width:180px;object-fit:contain;margin:0 auto;display:block;" />
-                </a>
-            </div>
+        <div class="form-card" style="background:var(--card, var(--background));border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.06), 0 8px 10px -6px rgba(0,0,0,0.04);padding:2.5rem 2.25rem;">
 
-            <!-- Header -->
-            <div class="form-header" style="text-align:center;margin-bottom:1.75rem;">
-                <h2 style="font-size:1.45rem;font-weight:700;letter-spacing:-0.02em;color:var(--foreground);margin:0 0 0.35rem 0;">{{ __('Staff Portal') }}</h2>
-                <p style="font-size:0.875rem;color:var(--muted-foreground);margin:0;">{{ __('Sign in with your administrative credentials') }}</p>
+            <!-- Header (Admin Portal, strictly English, NO logo) -->
+            <div class="form-header" style="text-align:center;margin-bottom:2rem;">
+                <h2 style="font-size:1.55rem;font-weight:700;letter-spacing:-0.025em;color:var(--foreground);margin:0 0 0.4rem 0;">Admin Portal</h2>
+                <p style="font-size:0.875rem;color:var(--muted-foreground);margin:0;">Sign in with your administrator credentials</p>
             </div>
 
             <!-- Success Alert -->
@@ -59,7 +55,7 @@
                 <!-- Email Field -->
                 <div class="form-group" style="display:flex;flex-direction:column;gap:0.375rem;">
                     <label for="admin_email" class="form-label" style="font-size:0.8125rem;font-weight:600;color:var(--foreground);">
-                        {{ __('Email Address') }} <span style="color:#ef4444;">*</span>
+                        Email Address <span style="color:#ef4444;">*</span>
                     </label>
                     <input 
                         type="email" 
@@ -68,7 +64,7 @@
                         required 
                         autofocus
                         value="{{ old('email') }}" 
-                        placeholder="admin@abhedyafoundation.org" 
+                        placeholder="Enter email" 
                         class="form-input"
                         style="width:100%;box-sizing:border-box;padding:0.625rem 0.875rem;font-size:0.875rem;border-radius:8px;border:1px solid var(--border);background:var(--background);color:var(--foreground);outline:none;transition:border-color 0.15s, box-shadow 0.15s;"
                     >
@@ -77,7 +73,7 @@
                 <!-- Password Field with Embedded Eye Toggle -->
                 <div class="form-group" style="display:flex;flex-direction:column;gap:0.375rem;">
                     <label for="admin_password" class="form-label" style="font-size:0.8125rem;font-weight:600;color:var(--foreground);">
-                        {{ __('Password') }} <span style="color:#ef4444;">*</span>
+                        Password <span style="color:#ef4444;">*</span>
                     </label>
                     <div style="position:relative;display:flex;align-items:center;width:100%;">
                         <input 
@@ -85,7 +81,7 @@
                             id="admin_password" 
                             name="password" 
                             required 
-                            placeholder="{{ __('Enter password') }}" 
+                            placeholder="Enter password" 
                             class="form-input"
                             style="width:100%;box-sizing:border-box;padding:0.625rem 2.65rem 0.625rem 0.875rem;font-size:0.875rem;border-radius:8px;border:1px solid var(--border);background:var(--background);color:var(--foreground);outline:none;transition:border-color 0.15s, box-shadow 0.15s;"
                         >
@@ -111,20 +107,20 @@
                 <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.25rem;">
                     <label style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8125rem;color:var(--muted-foreground);cursor:pointer;user-select:none;">
                         <input type="checkbox" id="admin_remember" name="remember" {{ old('remember') ? 'checked' : '' }} style="width:15px;height:15px;border-radius:4px;accent-color:var(--primary);cursor:pointer;">
-                        <span>{{ __('Remember me') }}</span>
+                        <span>Remember me</span>
                     </label>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary" style="width:100%;box-sizing:border-box;padding:0.6875rem 1rem;font-size:0.875rem;font-weight:600;color:var(--primary-foreground);background:var(--primary);border:none;border-radius:8px;cursor:pointer;transition:all 0.15s ease-in-out;margin-top:0.25rem;">
-                    {{ __('Sign in to Portal') }}
+                    Sign in to Admin Portal
                 </button>
             </form>
 
             <!-- Back Link -->
             <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);text-align:center;">
                 <a href="{{ config('app.url', '/') }}" style="font-size:0.8125rem;color:var(--muted-foreground);text-decoration:none;font-weight:500;transition:color 0.15s ease;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--muted-foreground)'">
-                    &larr; {{ __('Return to main website') }}
+                    &larr; Return to main website
                 </a>
             </div>
         </div>
@@ -159,7 +155,7 @@
 
 @else
 {{-- =========================================================================
-     USER / MEMBER LOGIN (Website Theme Layout, Strictly NO Registration)
+     USER / MEMBER LOGIN (Website Theme Layout, Full BN Translation Support)
      Rendered on main domain: abhedyafoundation.org/login
      ========================================================================= --}}
 <div class="site-login-section">
@@ -167,11 +163,11 @@
         
         <!-- Brand Header -->
         <div class="site-login-header">
-            <a href="{{ route('home') }}" class="site-login-logo-link" title="Abhedya Foundation">
+            <a href="{{ route('home') }}" class="site-login-logo-link" title="{{ app()->getLocale() === 'bn' ? 'অভেদ্য ফাউন্ডেশন' : 'Abhedya Foundation' }}">
                 <img src="{{ asset('images/website_logo.png') }}" alt="Abhedya Foundation" class="site-login-logo" />
             </a>
-            <h1 class="site-login-title">{{ __('Abhedya Foundation') }}</h1>
-            <p class="site-login-subtitle">{{ __('Member Sign In') }}</p>
+            <h1 class="site-login-title">{{ app()->getLocale() === 'bn' ? 'অভেদ্য ফাউন্ডেশন' : 'Abhedya Foundation' }}</h1>
+            <p class="site-login-subtitle">{{ app()->getLocale() === 'bn' ? 'সদস্য লগইন' : 'Member Sign In' }}</p>
         </div>
 
         <!-- Success Alert -->
@@ -201,7 +197,7 @@
             <!-- Email Field -->
             <div class="site-field-group">
                 <label for="email" class="site-field-label">
-                    {{ __('Email Address') }} <span class="required-star">*</span>
+                    {{ app()->getLocale() === 'bn' ? 'ইমেইল ঠিকানা' : 'Email Address' }} <span class="required-star">*</span>
                 </label>
                 <input 
                     type="email" 
@@ -218,7 +214,7 @@
             <!-- Password Field with Embedded Eye Toggle -->
             <div class="site-field-group">
                 <label for="password" class="site-field-label">
-                    {{ __('Password') }} <span class="required-star">*</span>
+                    {{ app()->getLocale() === 'bn' ? 'পাসওয়ার্ড' : 'Password' }} <span class="required-star">*</span>
                 </label>
                 <div class="password-wrapper">
                     <input 
@@ -226,7 +222,7 @@
                         id="password" 
                         name="password" 
                         required 
-                        placeholder="{{ __('Enter your password') }}" 
+                        placeholder="{{ app()->getLocale() === 'bn' ? 'আপনার পাসওয়ার্ড লিখুন' : 'Enter your password' }}" 
                         class="site-field-input password-input @error('password') has-error @enderror"
                     >
                     <button 
@@ -253,28 +249,28 @@
             <div class="site-remember-row">
                 <label class="site-remember-label">
                     <input type="checkbox" id="remember" name="remember" class="site-remember-checkbox" {{ old('remember') ? 'checked' : '' }}>
-                    <span>{{ __('Remember me') }}</span>
+                    <span>{{ app()->getLocale() === 'bn' ? 'মনে রাখুন' : 'Remember me' }}</span>
                 </label>
             </div>
 
-            <!-- Notice: No Public Registration -->
+            <!-- Notice: No Public Registration (BN / EN) -->
             <div class="site-auth-notice">
                 <svg class="notice-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <span>{{ __('Member accounts are provisioned by administration. Public registration is not available.') }}</span>
+                <span>{{ app()->getLocale() === 'bn' ? 'সদস্য অ্যাকাউন্টগুলো প্রশাসন কর্তৃক পরিচালিত হয়।' : 'Member accounts are managed by administration.' }}</span>
             </div>
 
             <!-- Submit Button -->
             <button type="submit" class="site-submit-btn">
-                {{ __('Sign In') }}
+                {{ app()->getLocale() === 'bn' ? 'লগইন করুন' : 'Sign In' }}
             </button>
         </form>
 
         <!-- Back Link -->
         <div class="site-login-footer">
             <a href="{{ route('home') }}" class="site-back-link">
-                &larr; {{ __('Back to website') }}
+                &larr; {{ app()->getLocale() === 'bn' ? 'ওয়েবসাইটে ফিরে যান' : 'Back to website' }}
             </a>
         </div>
     </div>
@@ -338,7 +334,7 @@
         font-size: 0.875rem;
         color: #64748b;
         margin: 0;
-        font-weight: 500;
+        font-weight: 600;
     }
 
     /* Alerts */
