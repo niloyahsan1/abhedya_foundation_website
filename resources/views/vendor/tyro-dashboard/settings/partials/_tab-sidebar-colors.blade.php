@@ -1,11 +1,13 @@
         {{-- Sidebar Colors Tab --}}
         @php
-            $sbBg   = old('TYRO_DASHBOARD_SIDEBAR_BG', $settings['TYRO_DASHBOARD_SIDEBAR_BG'] ?? '#0e0e0e');
-            $sbText = old('TYRO_DASHBOARD_SIDEBAR_TEXT', $settings['TYRO_DASHBOARD_SIDEBAR_TEXT'] ?? '#f8fafc');
-            $sbPrimary = old('TYRO_DASHBOARD_SIDEBAR_PRIMARY', $settings['TYRO_DASHBOARD_SIDEBAR_PRIMARY'] ?? '#333333');
-            $sbAccent = old('TYRO_DASHBOARD_SIDEBAR_ACCENT', $settings['TYRO_DASHBOARD_SIDEBAR_ACCENT'] ?? '#f5f5f5');
-            $sbAccentFg = old('TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND', $settings['TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND'] ?? '#171717');
-            $sbHeaderBorder = old('TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER', $settings['TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER'] ?? '#333c56');
+            $rawSbBg = $settings['TYRO_DASHBOARD_SIDEBAR_BG'] ?? null;
+            $hasCustomSb = !empty($rawSbBg) && $rawSbBg !== '#0e0e0e' && $rawSbBg !== '#000000';
+            $sbBg   = old('TYRO_DASHBOARD_SIDEBAR_BG', $hasCustomSb ? $rawSbBg : '#0e0e0e');
+            $sbText = old('TYRO_DASHBOARD_SIDEBAR_TEXT', $hasCustomSb ? ($settings['TYRO_DASHBOARD_SIDEBAR_TEXT'] ?? '#f8fafc') : '#f8fafc');
+            $sbPrimary = old('TYRO_DASHBOARD_SIDEBAR_PRIMARY', $hasCustomSb ? ($settings['TYRO_DASHBOARD_SIDEBAR_PRIMARY'] ?? '#333333') : '#333333');
+            $sbAccent = old('TYRO_DASHBOARD_SIDEBAR_ACCENT', $hasCustomSb ? ($settings['TYRO_DASHBOARD_SIDEBAR_ACCENT'] ?? '#f5f5f5') : '#f5f5f5');
+            $sbAccentFg = old('TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND', $hasCustomSb ? ($settings['TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND'] ?? '#171717') : '#171717');
+            $sbHeaderBorder = old('TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER', $hasCustomSb ? ($settings['TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER'] ?? '#333c56') : '#333c56');
             $sbAccordionCompact = filter_var(old('TYRO_DASHBOARD_SIDEBAR_ACCORDION_COMPACT', $settings['TYRO_DASHBOARD_SIDEBAR_ACCORDION_COMPACT'] ?? false), FILTER_VALIDATE_BOOLEAN);
             $sbOpenSections = old('TYRO_DASHBOARD_SIDEBAR_ACCORDION_OPEN_SECTIONS', $settings['TYRO_DASHBOARD_SIDEBAR_ACCORDION_OPEN_SECTIONS'] ?? 1);
             $sbLogo = old('TYRO_DASHBOARD_SIDEBAR_LOGO', $settings['TYRO_DASHBOARD_SIDEBAR_LOGO'] ?? null);
@@ -23,7 +25,7 @@
                     <div class="sys-settings-section-intro">
                         <div class="sys-settings-section-copy">
                             <h4 class="sys-settings-section-heading">Customize the admin sidebar appearance</h4>
-                            <p class="sys-settings-section-description">Choose the background, text, highlight, hover, and separator colors for the dashboard sidebar. These values are stored in your <code>.env</code> file and take effect immediately after saving.</p>
+                            <p class="sys-settings-section-description">Choose the background, text, highlight, hover, and separator colors for the dashboard sidebar. When custom colors are disabled, the sidebar follows your Light/Dark mode theme automatically.</p>
                         </div>
                         <span class="sys-settings-section-badge">Sidebar</span>
                     </div>
@@ -79,146 +81,177 @@
                     </div>
 
                     <div class="sys-settings-surface">
-                        <h4 class="sys-settings-surface-title">Sidebar Colors</h4>
-                        <p class="sys-settings-surface-description">Customize the sidebar color scheme.</p>
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding:0.875rem 1rem;background:var(--muted);border-radius:8px;border:1px solid var(--border);">
+                            <div>
+                                <h4 class="sys-settings-surface-title" style="margin:0 0 0.25rem 0;">Enable Custom Sidebar Colors</h4>
+                                <p class="sys-settings-surface-description" style="margin:0;font-size:0.8rem;">When disabled (default), the sidebar automatically matches your Light / Dark mode theme perfectly.</p>
+                            </div>
+                            <label class="toggle-label" style="margin:0;">
+                                <input type="checkbox" id="toggle_custom_sb_colors" class="toggle-input" {{ $hasCustomSb ? 'checked' : '' }} onchange="toggleCustomSbColors(this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
 
-                        <div style="display:flex; gap:2rem; align-items:flex-start;">
-                            <div style="flex:1; min-width:0;">
-                                <div class="branding-theme-grid">
-                                    <div class="branding-theme-color">
-                                        <input type="color"
-                                            name="TYRO_DASHBOARD_SIDEBAR_BG"
-                                            id="sb_bg_picker"
-                                            value="{{ $sbBg }}"
-                                            data-default="#0e0e0e"
-                                            style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
-                                            oninput="document.getElementById('sb_bg_text').value=this.value;updateSbPreview()">
-                                        <div class="branding-theme-color-meta">
-                                            <div class="branding-theme-color-name">Background</div>
-                                            <div class="branding-theme-color-var">--sidebar</div>
+                        {{-- Hidden inputs: when custom colors are OFF, submit empty values so controller deletes TYRO_DASHBOARD_SIDEBAR_* from .env --}}
+                        <div id="sb_empty_fallbacks" style="{{ $hasCustomSb ? 'display:none;' : '' }}">
+                            <input type="hidden" name="TYRO_DASHBOARD_SIDEBAR_BG" value="" id="h_sb_bg" {{ $hasCustomSb ? 'disabled' : '' }}>
+                            <input type="hidden" name="TYRO_DASHBOARD_SIDEBAR_TEXT" value="" id="h_sb_text" {{ $hasCustomSb ? 'disabled' : '' }}>
+                            <input type="hidden" name="TYRO_DASHBOARD_SIDEBAR_PRIMARY" value="" id="h_sb_pri" {{ $hasCustomSb ? 'disabled' : '' }}>
+                            <input type="hidden" name="TYRO_DASHBOARD_SIDEBAR_ACCENT" value="" id="h_sb_acc" {{ $hasCustomSb ? 'disabled' : '' }}>
+                            <input type="hidden" name="TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND" value="" id="h_sb_accfg" {{ $hasCustomSb ? 'disabled' : '' }}>
+                            <input type="hidden" name="TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER" value="" id="h_sb_hb" {{ $hasCustomSb ? 'disabled' : '' }}>
+                        </div>
+
+                        <div id="sb_pickers_wrapper" style="{{ $hasCustomSb ? '' : 'opacity:0.4;pointer-events:none;' }}">
+                            <div style="display:flex; gap:2rem; align-items:flex-start;">
+                                <div style="flex:1; min-width:0;">
+                                    <div class="branding-theme-grid">
+                                        <div class="branding-theme-color">
+                                            <input type="color"
+                                                name="TYRO_DASHBOARD_SIDEBAR_BG"
+                                                id="sb_bg_picker"
+                                                value="{{ $sbBg }}"
+                                                data-default="#0e0e0e"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
+                                                oninput="document.getElementById('sb_bg_text').value=this.value;updateSbPreview()">
+                                            <div class="branding-theme-color-meta">
+                                                <div class="branding-theme-color-name">Background</div>
+                                                <div class="branding-theme-color-var">--sidebar</div>
+                                            </div>
+                                            <input type="text"
+                                                id="sb_bg_text"
+                                                value="{{ $sbBg }}"
+                                                maxlength="7"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                class="branding-theme-color-text"
+                                                oninput="syncSbPicker(this,'sb_bg_picker');updateSbPreview()">
+                                            <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                            </button>
                                         </div>
-                                        <input type="text"
-                                            id="sb_bg_text"
-                                            value="{{ $sbBg }}"
-                                            maxlength="7"
-                                            class="branding-theme-color-text"
-                                            oninput="syncSbPicker(this,'sb_bg_picker');updateSbPreview()">
-                                        <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-                                        </button>
-                                    </div>
-                                    <div class="branding-theme-color">
-                                        <input type="color"
-                                            name="TYRO_DASHBOARD_SIDEBAR_TEXT"
-                                            id="sb_text_picker"
-                                            value="{{ $sbText }}"
-                                            data-default="#f8fafc"
-                                            style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
-                                            oninput="document.getElementById('sb_text_text').value=this.value;updateSbPreview()">
-                                        <div class="branding-theme-color-meta">
-                                            <div class="branding-theme-color-name">Text</div>
-                                            <div class="branding-theme-color-var">--sidebar-foreground</div>
+                                        <div class="branding-theme-color">
+                                            <input type="color"
+                                                name="TYRO_DASHBOARD_SIDEBAR_TEXT"
+                                                id="sb_text_picker"
+                                                value="{{ $sbText }}"
+                                                data-default="#f8fafc"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
+                                                oninput="document.getElementById('sb_text_text').value=this.value;updateSbPreview()">
+                                            <div class="branding-theme-color-meta">
+                                                <div class="branding-theme-color-name">Text</div>
+                                                <div class="branding-theme-color-var">--sidebar-foreground</div>
+                                            </div>
+                                            <input type="text"
+                                                id="sb_text_text"
+                                                value="{{ $sbText }}"
+                                                maxlength="7"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                class="branding-theme-color-text"
+                                                oninput="syncSbPicker(this,'sb_text_picker');updateSbPreview()">
+                                            <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                            </button>
                                         </div>
-                                        <input type="text"
-                                            id="sb_text_text"
-                                            value="{{ $sbText }}"
-                                            maxlength="7"
-                                            class="branding-theme-color-text"
-                                            oninput="syncSbPicker(this,'sb_text_picker');updateSbPreview()">
-                                        <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-                                        </button>
-                                    </div>
-                                    <div class="branding-theme-color">
-                                        <input type="color"
-                                            name="TYRO_DASHBOARD_SIDEBAR_PRIMARY"
-                                            id="sb_primary_picker"
-                                            value="{{ $sbPrimary }}"
-                                            data-default="#333333"
-                                            style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
-                                            oninput="document.getElementById('sb_primary_text').value=this.value;updateSbPreview()">
-                                        <div class="branding-theme-color-meta">
-                                            <div class="branding-theme-color-name">Highlight</div>
-                                            <div class="branding-theme-color-var">--sidebar-primary</div>
+                                        <div class="branding-theme-color">
+                                            <input type="color"
+                                                name="TYRO_DASHBOARD_SIDEBAR_PRIMARY"
+                                                id="sb_primary_picker"
+                                                value="{{ $sbPrimary }}"
+                                                data-default="#333333"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
+                                                oninput="document.getElementById('sb_primary_text').value=this.value;updateSbPreview()">
+                                            <div class="branding-theme-color-meta">
+                                                <div class="branding-theme-color-name">Highlight</div>
+                                                <div class="branding-theme-color-var">--sidebar-primary</div>
+                                            </div>
+                                            <input type="text"
+                                                id="sb_primary_text"
+                                                value="{{ $sbPrimary }}"
+                                                maxlength="7"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                class="branding-theme-color-text"
+                                                oninput="syncSbPicker(this,'sb_primary_picker');updateSbPreview()">
+                                            <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                            </button>
                                         </div>
-                                        <input type="text"
-                                            id="sb_primary_text"
-                                            value="{{ $sbPrimary }}"
-                                            maxlength="7"
-                                            class="branding-theme-color-text"
-                                            oninput="syncSbPicker(this,'sb_primary_picker');updateSbPreview()">
-                                        <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-                                        </button>
-                                    </div>
-                                    <div class="branding-theme-color">
-                                        <input type="color"
-                                            name="TYRO_DASHBOARD_SIDEBAR_ACCENT"
-                                            id="sb_accent_picker"
-                                            value="{{ $sbAccent }}"
-                                            data-default="#f5f5f5"
-                                            style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
-                                            oninput="document.getElementById('sb_accent_text').value=this.value;updateSbPreview()">
-                                        <div class="branding-theme-color-meta">
-                                            <div class="branding-theme-color-name">Hover</div>
-                                            <div class="branding-theme-color-var">--sidebar-accent</div>
+                                        <div class="branding-theme-color">
+                                            <input type="color"
+                                                name="TYRO_DASHBOARD_SIDEBAR_ACCENT"
+                                                id="sb_accent_picker"
+                                                value="{{ $sbAccent }}"
+                                                data-default="#f5f5f5"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
+                                                oninput="document.getElementById('sb_accent_text').value=this.value;updateSbPreview()">
+                                            <div class="branding-theme-color-meta">
+                                                <div class="branding-theme-color-name">Hover</div>
+                                                <div class="branding-theme-color-var">--sidebar-accent</div>
+                                            </div>
+                                            <input type="text"
+                                                id="sb_accent_text"
+                                                value="{{ $sbAccent }}"
+                                                maxlength="7"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                class="branding-theme-color-text"
+                                                oninput="syncSbPicker(this,'sb_accent_picker');updateSbPreview()">
+                                            <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                            </button>
                                         </div>
-                                        <input type="text"
-                                            id="sb_accent_text"
-                                            value="{{ $sbAccent }}"
-                                            maxlength="7"
-                                            class="branding-theme-color-text"
-                                            oninput="syncSbPicker(this,'sb_accent_picker');updateSbPreview()">
-                                        <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-                                        </button>
-                                    </div>
-                                    <div class="branding-theme-color">
-                                        <input type="color"
-                                            name="TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND"
-                                            id="sb_accent_fg_picker"
-                                            value="{{ $sbAccentFg }}"
-                                            data-default="#171717"
-                                            style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
-                                            oninput="document.getElementById('sb_accent_fg_text').value=this.value;updateSbPreview()">
-                                        <div class="branding-theme-color-meta">
-                                            <div class="branding-theme-color-name">Hover Text</div>
-                                            <div class="branding-theme-color-var">--sidebar-accent-foreground</div>
+                                        <div class="branding-theme-color">
+                                            <input type="color"
+                                                name="TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND"
+                                                id="sb_accent_fg_picker"
+                                                value="{{ $sbAccentFg }}"
+                                                data-default="#171717"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
+                                                oninput="document.getElementById('sb_accent_fg_text').value=this.value;updateSbPreview()">
+                                            <div class="branding-theme-color-meta">
+                                                <div class="branding-theme-color-name">Hover Text</div>
+                                                <div class="branding-theme-color-var">--sidebar-accent-foreground</div>
+                                            </div>
+                                            <input type="text"
+                                                id="sb_accent_fg_text"
+                                                value="{{ $sbAccentFg }}"
+                                                maxlength="7"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                class="branding-theme-color-text"
+                                                oninput="syncSbPicker(this,'sb_accent_fg_picker');updateSbPreview()">
+                                            <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                            </button>
                                         </div>
-                                        <input type="text"
-                                            id="sb_accent_fg_text"
-                                            value="{{ $sbAccentFg }}"
-                                            maxlength="7"
-                                            class="branding-theme-color-text"
-                                            oninput="syncSbPicker(this,'sb_accent_fg_picker');updateSbPreview()">
-                                        <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-                                        </button>
-                                    </div>
-                                    <div class="branding-theme-color">
-                                        <input type="color"
-                                            name="TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER"
-                                            id="sb_header_border_picker"
-                                            value="{{ $sbHeaderBorder }}"
-                                            data-default="#333c56"
-                                            style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
-                                            oninput="document.getElementById('sb_header_border_text').value=this.value;updateSbPreview()">
-                                        <div class="branding-theme-color-meta">
-                                            <div class="branding-theme-color-name">Separator</div>
-                                            <div class="branding-theme-color-var">--sidebar-header-border</div>
+                                        <div class="branding-theme-color">
+                                            <input type="color"
+                                                name="TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER"
+                                                id="sb_header_border_picker"
+                                                value="{{ $sbHeaderBorder }}"
+                                                data-default="#333c56"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                style="width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--background);flex-shrink:0;"
+                                                oninput="document.getElementById('sb_header_border_text').value=this.value;updateSbPreview()">
+                                            <div class="branding-theme-color-meta">
+                                                <div class="branding-theme-color-name">Separator</div>
+                                                <div class="branding-theme-color-var">--sidebar-header-border</div>
+                                            </div>
+                                            <input type="text"
+                                                id="sb_header_border_text"
+                                                value="{{ $sbHeaderBorder }}"
+                                                maxlength="7"
+                                                {{ $hasCustomSb ? '' : 'disabled' }}
+                                                class="branding-theme-color-text"
+                                                oninput="syncSbPicker(this,'sb_header_border_picker');updateSbPreview()">
+                                            <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                            </button>
                                         </div>
-                                        <input type="text"
-                                            id="sb_header_border_text"
-                                            value="{{ $sbHeaderBorder }}"
-                                            maxlength="7"
-                                            class="branding-theme-color-text"
-                                            oninput="syncSbPicker(this,'sb_header_border_picker');updateSbPreview()">
-                                        <button type="button" onclick="resetSingleSbColor(this)" class="branding-color-reset" title="Reset to default">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M1 4v6h6M23 20v-6h-6"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-                                        </button>
                                     </div>
                                 </div>
-                            </div>
 
                             <div style="flex-shrink:0; position:sticky; top:1rem; align-self:flex-start;">
                                 <h4 class="branding-surface-title" style="margin:0 0 0.75rem;">Sidebar Preview</h4>

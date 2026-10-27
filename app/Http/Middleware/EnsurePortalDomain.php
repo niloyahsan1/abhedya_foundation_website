@@ -34,8 +34,8 @@ class EnsurePortalDomain
             return $next($request);
         }
 
-        // 2. If accessing via the main domain, redirect dashboard and auth paths to the portal
-        if ($request->is('dashboard*') || $request->is('login*') || $request->is('two-factor*') || $request->is('otp*')) {
+        // 2. If accessing via the main domain, redirect dashboard to the portal
+        if ($request->is('dashboard*')) {
             $targetUrl = rtrim($portalUrl, '/').$request->getRequestUri();
 
             return redirect()->to($targetUrl);

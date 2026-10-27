@@ -2,30 +2,32 @@
 @include('tyro-dashboard::partials.shadcn-theme')
 
 <style>
+    @php
+        $sbCustomBg = config('tyro-dashboard.branding.sidebar_bg');
+        $sbCustomText = config('tyro-dashboard.branding.sidebar_text');
+        // Ignore the package's accidental hardcoded '#0e0e0e' fallback so light/dark mode theme works cleanly
+        $hasCustomSb = !empty($sbCustomBg) && $sbCustomBg !== '#0e0e0e';
+    @endphp
+    @if($hasCustomSb)
     :root {
-        @if($sidebar_bg = config('tyro-dashboard.branding.sidebar_bg'))
-            --sidebar: {{ $sidebar_bg }} !important;
+        --sidebar: {{ $sbCustomBg }} !important;
+        @if($sbCustomText && $sbCustomText !== '#f8fafc')
+            --sidebar-foreground: {{ $sbCustomText }} !important;
         @endif
-        @if($sidebar_text = config('tyro-dashboard.branding.sidebar_text'))
-            --sidebar-foreground: {{ $sidebar_text }} !important;
-        @endif
-        /* --sidebar-primary */
         @if($primary = config('tyro-dashboard.branding.sidebar_primary'))
             --sidebar-primary: {{ $primary }} !important;
         @endif
-        /* --sidebar-header-border */
         @if($headerBorder = config('tyro-dashboard.branding.sidebar_header_border'))
             --sidebar-header-border: {{ $headerBorder }} !important;
         @endif
-        /* --sidebar-accent */
         @if($accent = config('tyro-dashboard.branding.sidebar_accent'))
             --sidebar-accent: {{ $accent }} !important;
         @endif
-        /* --sidebar-accent-foreground */
-        @if($accent = config('tyro-dashboard.branding.sidebar_accent_foreground'))
-            --sidebar-accent-foreground: {{ $accent }} !important;
+        @if($accentFg = config('tyro-dashboard.branding.sidebar_accent_foreground'))
+            --sidebar-accent-foreground: {{ $accentFg }} !important;
         @endif
     }
+    @endif
 
     *,
     *::before,

@@ -20,5 +20,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         require_once app_path('Helpers/BanglaHelper.php');
+
+        \Illuminate\Support\Facades\View::composer(['tyro-login::login', 'vendor.tyro-login.login'], function ($view) {
+            $request = request();
+            $host = $request->getHost();
+            $portalDomain = config('app.portal_domain');
+            $isAdminPortal = ($portalDomain && $host === $portalDomain) 
+                || str_starts_with($host, 'portal.') 
+                || $request->boolean('admin') 
+                || $request->is('admin/*');
+
+            $view->with('isAdminPortal', $isAdminPortal);
+        });
     }
 }

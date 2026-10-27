@@ -87,6 +87,32 @@ function updateAbPreview() {
 })();
 
 // ── Sidebar Colors Reset ──────────────────────────────────────
+function toggleCustomSbColors(enabled) {
+    var pickersWrap = document.getElementById('sb_pickers_wrapper');
+    var emptyFallbacks = document.getElementById('sb_empty_fallbacks');
+    var pickerInputs = pickersWrap ? pickersWrap.querySelectorAll('input') : [];
+    var fallbackInputs = emptyFallbacks ? emptyFallbacks.querySelectorAll('input') : [];
+
+    if (enabled) {
+        if (pickersWrap) {
+            pickersWrap.style.opacity = '1';
+            pickersWrap.style.pointerEvents = 'auto';
+        }
+        if (emptyFallbacks) emptyFallbacks.style.display = 'none';
+        pickerInputs.forEach(function(input) { input.disabled = false; });
+        fallbackInputs.forEach(function(input) { input.disabled = true; });
+    } else {
+        if (pickersWrap) {
+            pickersWrap.style.opacity = '0.4';
+            pickersWrap.style.pointerEvents = 'none';
+        }
+        if (emptyFallbacks) emptyFallbacks.style.display = 'block';
+        pickerInputs.forEach(function(input) { input.disabled = true; });
+        fallbackInputs.forEach(function(input) { input.disabled = false; });
+    }
+    updateSbPreview();
+}
+
 function resetSingleSbColor(btn) {
     var card = btn.closest('.branding-theme-color');
     if (!card) return;
@@ -99,24 +125,11 @@ function resetSingleSbColor(btn) {
 }
 
 function resetSbColors() {
-    var defaults = {
-        sb_bg_picker: '#0e0e0e',
-        sb_text_picker: '#f8fafc',
-        sb_primary_picker: '#333333',
-        sb_accent_picker: '#f5f5f5',
-        sb_accent_fg_picker: '#171717',
-        sb_header_border_picker: '#333c56'
-    };
-    Object.keys(defaults).forEach(function(id) {
-        var picker = document.getElementById(id);
-        if (!picker) return;
-        var def = picker.dataset.default || defaults[id];
-        picker.value = def;
-        var textId = id.replace('_picker', '_text');
-        var textInput = document.getElementById(textId);
-        if (textInput) textInput.value = def;
-    });
-    updateSbPreview();
+    var toggle = document.getElementById('toggle_custom_sb_colors');
+    if (toggle) {
+        toggle.checked = false;
+        toggleCustomSbColors(false);
+    }
 }
 
 function saveForm() {

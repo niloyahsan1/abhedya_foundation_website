@@ -182,3 +182,9 @@ Route::get('/cpanel-setup-run', function (\Illuminate\Http\Request $request) {
         . '<div style="margin-top: 20px;"><a href="/" style="display: inline-block; padding: 10px 20px; background: #2375b8; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px;">Go to Live Website &rarr;</a></div>'
         . '</div>';
 });
+
+// Admin / Staff Portal Login (Direct access and local development testing)
+Route::get('/admin/login', [\HasinHayder\TyroLogin\Http\Controllers\LoginController::class, 'showLoginForm'])
+    ->middleware('web')
+    ->name('admin.login');
+
