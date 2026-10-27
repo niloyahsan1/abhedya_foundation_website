@@ -41,7 +41,7 @@ class Campaign extends Model
 
     public function updates(): HasMany
     {
-        return $this->hasMany(CampaignUpdate::class)->orderBy('published_at', 'desc');
+        return $this->hasMany(CampaignUpdate::class)->orderBy('published_at', 'desc')->latest('id');
     }
 
     public function donations(): HasMany

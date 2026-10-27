@@ -124,6 +124,15 @@ Route::get('/robots.txt', function () {
     return Response::make($content, 200, ['Content-Type' => 'text/plain']);
 })->name('robots');
 
+// Direct Fallback Route for Uploaded Media (ensures images always work even if cPanel symlinks fail)
+Route::get('/storage/{path}', function (string $path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    return response()->file($filePath);
+})->where('path', '.*')->name('public.storage.fallback');
+
 // One-time Setup Route for cPanel shared hosting without terminal access
 Route::get('/cpanel-setup-run', function (\Illuminate\Http\Request $request) {
     if ($request->query('key') !== 'abhedya2026') {
@@ -132,12 +141,30 @@ Route::get('/cpanel-setup-run', function (\Illuminate\Http\Request $request) {
 
     $log = [];
 
-    // 1. Storage Symlink
+    // 1. Storage Symlink Auto-Repair
+    $publicStorage = public_path('storage');
+    $storageAppPublic = storage_path('app/public');
+
+    if (is_link($publicStorage)) {
+        @unlink($publicStorage);
+    } elseif (is_dir($publicStorage)) {
+        $items = @scandir($publicStorage);
+        if ($items && count($items) <= 2) {
+            @rmdir($publicStorage);
+        }
+    }
+
     try {
-        \Illuminate\Support\Facades\Artisan::call('storage:link');
-        $log[] = 'Storage Link: ' . trim(\Illuminate\Support\Facades\Artisan::output());
+        \Illuminate\Support\Facades\Artisan::call('storage:link', ['--force' => true]);
+        $output = trim(\Illuminate\Support\Facades\Artisan::output());
+        $log[] = 'Storage Link: ' . ($output ?: 'Symlink created successfully.');
     } catch (\Throwable $e) {
         $log[] = 'Storage Link Notice: ' . $e->getMessage();
+    }
+
+    // Direct native PHP symlink fallback if needed
+    if (!file_exists($publicStorage) && file_exists($storageAppPublic)) {
+        @symlink($storageAppPublic, $publicStorage);
     }
 
     // 2. Clear old cached configs
@@ -150,7 +177,7 @@ Route::get('/cpanel-setup-run', function (\Illuminate\Http\Request $request) {
 
     return '<div style="font-family: system-ui, -apple-system, sans-serif; max-width: 620px; margin: 40px auto; padding: 24px; border-radius: 16px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534;">'
         . '<h2 style="margin-top: 0; color: #15803d; font-size: 20px;">✓ cPanel Setup Executed Successfully!</h2>'
-        . '<p style="font-size: 14px; line-height: 1.6; color: #166534;">Storage symlink has been created and application caches are refreshed.</p>'
+        . '<p style="font-size: 14px; line-height: 1.6; color: #166534;">Storage symlink has been repaired and application caches are refreshed.</p>'
         . '<pre style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #dcfce7; font-size: 12px; color: #334155; overflow-x: auto;">' . implode("\n", array_map('htmlspecialchars', $log)) . '</pre>'
         . '<div style="margin-top: 20px;"><a href="/" style="display: inline-block; padding: 10px 20px; background: #2375b8; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px;">Go to Live Website &rarr;</a></div>'
         . '</div>';

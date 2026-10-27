@@ -40,7 +40,7 @@ class BlogController extends Controller
             });
         }
 
-        $posts = $query->latest('published_at')->paginate(9)->withQueryString();
+        $posts = $query->latest('published_at')->latest('id')->paginate(9)->withQueryString();
         $categories = Category::withCount(['posts' => function ($q) {
             $q->published();
         }])->get();

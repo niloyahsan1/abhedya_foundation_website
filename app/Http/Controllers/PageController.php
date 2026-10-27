@@ -31,6 +31,7 @@ class PageController extends Controller
             ->published()
             ->with(['category', 'user'])
             ->latest('published_at')
+            ->latest('id')
             ->take(3)
             ->get();
 

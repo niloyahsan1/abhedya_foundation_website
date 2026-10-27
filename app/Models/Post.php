@@ -63,11 +63,24 @@ class Post extends Model
         return $this->belongsToMany(Tag::class, 'post_tag');
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($post) {
+            if ($post->is_published && empty($post->published_at)) {
+                $post->published_at = now();
+            }
+        });
+    }
+
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('is_published', true)
-            ->whereNotNull('published_at')
-            ->where('published_at', '<=', now());
+            ->where(function ($q) {
+                $q->whereNull('published_at')
+                    ->orWhere('published_at', '<=', now()->addHours(12));
+            });
     }
 
     public function scopeFeatured(Builder $query): Builder

@@ -25,6 +25,17 @@ class CampaignUpdate extends Model
         ];
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($update) {
+            if (empty($update->published_at)) {
+                $update->published_at = now();
+            }
+        });
+    }
+
     public function getImageAttribute($value): ?string
     {
         if (empty($value)) {
