@@ -18,9 +18,13 @@ class SetLocale
     {
         $supportedLocales = ['bn', 'en'];
 
-        // Allow query param switch (?lang=bn or ?lang=en)
-        if ($request->has('lang') && in_array($request->query('lang'), $supportedLocales, true)) {
-            $request->session()->put('locale', $request->query('lang'));
+        // Allow query param or form input switch (?lang=bn, locale=en, etc.)
+        $requestedLocale = $request->query('lang') 
+            ?? $request->input('lang') 
+            ?? $request->input('locale');
+
+        if ($requestedLocale && in_array($requestedLocale, $supportedLocales, true)) {
+            $request->session()->put('locale', $requestedLocale);
         }
 
         // Determine current locale (default to 'bn')

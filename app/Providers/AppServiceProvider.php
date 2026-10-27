@@ -15,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
             \HasinHayder\TyroDashboard\Http\Controllers\ResourceController::class,
             \App\Http\Controllers\Admin\ResourceController::class
         );
+
+        $this->app->bind(
+            \HasinHayder\TyroLogin\Http\Controllers\LoginController::class,
+            \App\Http\Controllers\Auth\LoginController::class
+        );
     }
 
     /**

@@ -49,8 +49,9 @@
             @endif
 
             <!-- Admin Login Form -->
-            <form method="POST" action="{{ route('tyro-login.login.submit') }}" style="display:flex;flex-direction:column;gap:1.15rem;">
+            <form method="POST" action="{{ route('admin.login.submit') }}" style="display:flex;flex-direction:column;gap:1.15rem;">
                 @csrf
+                <input type="hidden" name="login_type" value="admin">
 
                 <!-- Email Field -->
                 <div class="form-group" style="display:flex;flex-direction:column;gap:0.375rem;">
@@ -193,6 +194,7 @@
         <!-- Login Form -->
         <form method="POST" action="{{ route('tyro-login.login.submit') }}" class="site-login-form">
             @csrf
+            <input type="hidden" name="login_type" value="member">
 
             <!-- Email Field -->
             <div class="site-field-group">

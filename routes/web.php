@@ -184,7 +184,11 @@ Route::get('/cpanel-setup-run', function (\Illuminate\Http\Request $request) {
 });
 
 // Admin / Staff Portal Login (Direct access and local development testing)
-Route::get('/admin/login', [\HasinHayder\TyroLogin\Http\Controllers\LoginController::class, 'showLoginForm'])
+Route::get('/admin/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])
     ->middleware('web')
     ->name('admin.login');
+
+Route::post('/admin/login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])
+    ->middleware('web')
+    ->name('admin.login.submit');
 
