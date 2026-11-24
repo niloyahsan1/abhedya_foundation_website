@@ -14,7 +14,7 @@
                         {{ __('Transforming Lives with') }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-cyan-200">{{ __('Dignity, Care & Hope') }}</span>
                     </h1>
                     <p class="text-lg text-slate-300 leading-relaxed max-w-2xl">
-                        {{ __('Abhedya Foundation builds long-term community resilience through digital classrooms for remote schools, mobile medical camps, emergency flood response, and women-led vocational empowerment.') }}
+                        {{ $heroDescription }}
                     </p>
                     <div class="flex flex-wrap items-center gap-4 pt-4">
                         <a href="{{ route('donate') }}" class="px-7 py-3.5 rounded-xl font-bold text-white bg-orange-500 hover:bg-orange-600 shadow-lg shadow-orange-500/30 transition transform hover:-translate-y-0.5">

@@ -48,20 +48,85 @@ class AutoTranslationService
             $isHtml = ($text !== strip_tags($text));
 
             if ($isHtml) {
-                // If it contains simple HTML, translate paragraphs or clean text
-                $plain = strip_tags($text);
-                $translatedPlain = self::callApi($plain, $source, $target);
+                // If it contains HTML, translate block by block (e.g. paragraphs, headings, list items)
+                if (preg_match_all('/<([a-z0-9]+)[^>]*>(.*?)<\/\1>/is', $text, $matches, PREG_SET_ORDER)) {
+                    $translatedHtml = '';
+                    foreach ($matches as $match) {
+                        $tag = $match[1];
+                        $inner = trim(strip_tags($match[2]));
+                        if ($inner === '') {
+                            continue;
+                        }
+
+                        $translatedBlock = self::translateChunked($inner, $source, $target);
+                        if ($translatedBlock) {
+                            $translatedHtml .= "<{$tag}>" . nl2br(e($translatedBlock)) . "</{$tag}>";
+                        }
+                    }
+                    if ($translatedHtml !== '') {
+                        return $translatedHtml;
+                    }
+                }
+
+                $plain = trim(strip_tags($text));
+                $translatedPlain = self::translateChunked($plain, $source, $target);
                 if ($translatedPlain) {
                     return '<p>' . nl2br(e($translatedPlain)) . '</p>';
                 }
                 return null;
             }
 
-            return self::callApi($text, $source, $target);
+            return self::translateChunked($text, $source, $target);
         } catch (\Throwable $e) {
             Log::warning('AutoTranslationService error: ' . $e->getMessage());
             return null;
         }
+    }
+
+    /**
+     * Translate text in chunks of up to 450 characters if needed.
+     */
+    protected static function translateChunked(string $text, string $source, string $target): ?string
+    {
+        $text = trim($text);
+        if ($text === '') {
+            return '';
+        }
+
+        if (mb_strlen($text) <= 450) {
+            return self::callApi($text, $source, $target);
+        }
+
+        // Split by sentences or punctuation
+        $sentences = preg_split('/(?<=[.?!।\n])\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY);
+        $chunks = [];
+        $currentChunk = '';
+
+        foreach ($sentences as $sentence) {
+            if (mb_strlen($currentChunk . ' ' . $sentence) <= 450) {
+                $currentChunk = trim($currentChunk . ' ' . $sentence);
+            } else {
+                if ($currentChunk !== '') {
+                    $chunks[] = $currentChunk;
+                }
+                $currentChunk = $sentence;
+            }
+        }
+        if ($currentChunk !== '') {
+            $chunks[] = $currentChunk;
+        }
+
+        $translatedChunks = [];
+        foreach ($chunks as $chunk) {
+            $translated = self::callApi($chunk, $source, $target);
+            if ($translated) {
+                $translatedChunks[] = $translated;
+            } else {
+                $translatedChunks[] = $chunk;
+            }
+        }
+
+        return !empty($translatedChunks) ? implode(' ', $translatedChunks) : null;
     }
 
     /**

@@ -74,7 +74,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">{{ __('Our Mission') }}</h3>
                         <p class="text-sm text-slate-600 leading-relaxed">
-                            {{ __('To uplift marginalized communities by delivering high-impact educational initiatives, essential healthcare access, emergency relief, and sustainable livelihood opportunities.') }}
+                            {{ $mission }}
                         </p>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">{{ __('Our Vision') }}</h3>
                         <p class="text-sm text-slate-600 leading-relaxed">
-                            {{ __('A just, compassionate society where every individual has equal opportunities to thrive with self-reliance, security, and human dignity.') }}
+                            {{ $vision }}
                         </p>
                     </div>
                 </div>

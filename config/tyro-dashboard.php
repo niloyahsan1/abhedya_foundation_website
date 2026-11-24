@@ -438,8 +438,9 @@ return [
             'fields' => [
                 'key' => ['type' => 'text', 'label' => 'Setting Key', 'rules' => 'required|max:100', 'searchable' => true],
                 'label' => ['type' => 'text', 'label' => 'Display Label', 'rules' => 'required|max:255'],
-                'group' => ['type' => 'select', 'label' => 'Group', 'options' => ['general' => 'General', 'stats' => 'Statistics', 'contact' => 'Contact Info', 'donation' => 'Donation Instructions', 'social' => 'Social Media'], 'rules' => 'required'],
-                'value' => ['type' => 'textarea', 'label' => 'Setting Value', 'rules' => 'nullable'],
+                'group' => ['type' => 'select', 'label' => 'Group', 'options' => ['general' => 'General', 'contact' => 'Contact Info', 'donation' => 'Donation Instructions', 'social' => 'Social Media'], 'rules' => 'required'],
+                'value' => ['type' => 'textarea', 'label' => 'Value (English)', 'rules' => 'nullable'],
+                'value_bn' => ['type' => 'textarea', 'label' => 'Value (বাংলা - Optional)', 'rules' => 'nullable', 'hide_in_index' => true],
             ],
         ],
     ],

@@ -34,7 +34,8 @@
                     }
 
                     quill.on('text-change', function () {
-                        textarea.value = quill.root.innerHTML;
+                        var text = quill.getText().trim();
+                        textarea.value = (text.length === 0) ? '' : quill.root.innerHTML;
                     });
                 }
             })();

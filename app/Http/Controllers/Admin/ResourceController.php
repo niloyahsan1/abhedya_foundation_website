@@ -74,7 +74,7 @@ class ResourceController extends BaseResourceController
         // Merge validated data
         $data = array_merge($data, $validated);
 
-        // Handle booleans (checkboxes)
+        // Handle booleans (checkboxes) & empty rich-text / optional fields
         foreach ($config['fields'] as $field => $fieldConfig) {
             if ($fieldConfig['type'] === 'boolean' && ! isset($data[$field])) {
                 $data[$field] = false;
@@ -82,6 +82,17 @@ class ResourceController extends BaseResourceController
             // Don't update password if empty
             if ($fieldConfig['type'] === 'password' && empty($data[$field])) {
                 unset($data[$field]);
+            }
+            // Normalize empty rich-text strings like <p><br></p> to null for optional fields
+            if ($fieldConfig['type'] === 'richtext' && isset($data[$field])) {
+                $stripped = trim(strip_tags((string) $data[$field]));
+                if ($stripped === '' || $stripped === '&nbsp;') {
+                    $rules = $fieldConfig['rules'] ?? '';
+                    $isNullable = is_array($rules) ? in_array('nullable', $rules) : str_contains($rules, 'nullable');
+                    if ($isNullable) {
+                        $data[$field] = null;
+                    }
+                }
             }
         }
 

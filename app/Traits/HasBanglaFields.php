@@ -22,11 +22,27 @@ trait HasBanglaFields
                     continue;
                 }
 
-                // If admin left the Bangla field empty, but provided English text, auto-translate!
+                // Sanitize rich-text empty tags like <p><br></p> or whitespace
+                $rawBn = (string) ($model->attributes[$bnField] ?? '');
+                $cleanBn = trim(strip_tags($rawBn));
+                if ($cleanBn === '' || $cleanBn === '&nbsp;') {
+                    $model->attributes[$bnField] = null;
+                }
+
                 $currentBn = trim((string) ($model->attributes[$bnField] ?? ''));
                 $englishText = trim((string) ($model->attributes[$field] ?? ''));
 
-                if ($currentBn === '' && $englishText !== '') {
+                // Auto-translate if Bangla is empty or if English text changed while Bangla was left unedited
+                $needsTranslation = false;
+                if ($englishText !== '') {
+                    if ($currentBn === '') {
+                        $needsTranslation = true;
+                    } elseif ($model->isDirty($field) && !$model->isDirty($bnField)) {
+                        $needsTranslation = true;
+                    }
+                }
+
+                if ($needsTranslation) {
                     $autoBn = AutoTranslationService::translate($englishText);
                     if ($autoBn) {
                         $model->attributes[$bnField] = $autoBn;

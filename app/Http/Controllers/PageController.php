@@ -41,11 +41,14 @@ class PageController extends Controller
             ->take(6)
             ->get();
 
+        $heroDescription = SiteSetting::get('hero_description', 'Abhedya Foundation builds long-term community resilience through digital classrooms for remote schools, mobile medical camps, emergency flood response, and women-led vocational empowerment.');
+
         return view('pages.home', compact(
             'featuredProjects',
             'activeCampaigns',
             'latestPosts',
-            'galleryPreview'
+            'galleryPreview',
+            'heroDescription'
         ));
     }
 
@@ -58,6 +61,9 @@ class PageController extends Controller
             'districts' => SiteSetting::get('stat_districts', '14'),
         ];
 
-        return view('pages.about', compact('stats'));
+        $mission = SiteSetting::get('mission', 'To uplift marginalized communities by delivering high-impact educational initiatives, essential healthcare access, emergency relief, and sustainable livelihood opportunities.');
+        $vision = SiteSetting::get('vision', 'A just, compassionate society where every individual has equal opportunities to thrive with self-reliance, security, and human dignity.');
+
+        return view('pages.about', compact('stats', 'mission', 'vision'));
     }
 }

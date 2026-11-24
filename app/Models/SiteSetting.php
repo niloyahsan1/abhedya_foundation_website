@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use App\Services\AutoTranslationService;
 
 class SiteSetting extends Model
 {
@@ -14,35 +15,62 @@ class SiteSetting extends Model
         'key',
         'label',
         'value',
+        'value_bn',
         'type',
         'group',
     ];
 
     /**
-     * Clear cache on save.
+     * Clear cache and auto-translate on save.
      */
     protected static function booted(): void
     {
+        static::saving(function ($setting) {
+            // Keys that shouldn't be auto-translated (e.g. raw emails, URLs, phone/account numbers)
+            $nonTranslatable = [
+                'contact_email',
+                'social_facebook',
+                'social_twitter',
+                'social_linkedin',
+                'social_youtube',
+                'donation_bkash_number',
+                'donation_nagad_number',
+                'donation_rocket_number',
+            ];
+
+            if (in_array($setting->key, $nonTranslatable)) {
+                return;
+            }
+
+            $currentBn = trim((string) ($setting->value_bn ?? ''));
+            $englishText = trim((string) ($setting->value ?? ''));
+
+            // If admin left the Bangla value empty, but provided English text, auto-translate!
+            if ($currentBn === '' && $englishText !== '') {
+                $autoBn = AutoTranslationService::translate($englishText);
+                if ($autoBn) {
+                    $setting->value_bn = $autoBn;
+                }
+            }
+        });
+
         static::saved(function ($setting) {
             Cache::forget("site_setting_{$setting->key}");
-            if (str_ends_with($setting->key, '_bn')) {
-                $baseKey = substr($setting->key, 0, -3);
-                Cache::forget("site_setting_{$baseKey}_bn");
-            } else {
-                Cache::forget("site_setting_{$setting->key}_bn");
-            }
+            Cache::forget("site_setting_{$setting->key}_bn");
         });
     }
 
     /**
      * Retrieve a setting value by key with caching and bilingual support.
+     * When locale is 'bn', returns value_bn from the same row if it's not empty,
+     * otherwise falls back to value (English).
      */
     public static function get(string $key, mixed $default = null): mixed
     {
         if (app()->getLocale() === 'bn') {
             $bnValue = Cache::remember("site_setting_{$key}_bn", 86400, function () use ($key) {
-                $setting = static::where('key', "{$key}_bn")->first();
-                return ($setting && !empty(trim((string) $setting->value))) ? $setting->value : null;
+                $setting = static::where('key', $key)->first();
+                return ($setting && !empty(trim((string) $setting->value_bn))) ? $setting->value_bn : null;
             });
 
             if ($bnValue !== null) {
@@ -79,4 +107,3 @@ class SiteSetting extends Model
         return $setting;
     }
 }
-

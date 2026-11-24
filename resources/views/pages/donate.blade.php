@@ -155,7 +155,7 @@
                 <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm sticky top-28">
                     <h2 class="text-xl font-bold text-slate-900 mb-1.5">{{ __('Submit Donation Details') }}</h2>
                     <p class="text-sm text-slate-500 mb-5 leading-relaxed font-normal">
-                        {{ __('After transferring your donation via bKash, Nagad, Rocket, or Bank, please record your transaction information below for verification.') }}
+                        {{ __($donationInfo['guidelines']) }}
                     </p>
 
                     @if ($errors->any())
